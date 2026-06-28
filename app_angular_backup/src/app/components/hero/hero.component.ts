@@ -103,15 +103,24 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
           '-=1.5'
         );
 
-      // 2. Setup magnetic button tracking
+      // 2. Setup initial 3D Z-depths and rotations using GSAP to prevent overrides
+      if (this.floatDashboard && this.floatSupervisor && this.floatPhone) {
+        const isAr = this.langService.currentLang === 'ar';
+        gsap.set(this.floatDashboard.nativeElement, { z: 10 });
+        gsap.set(this.floatSupervisor.nativeElement, { z: 40, rotation: isAr ? -4 : 4 });
+        gsap.set(this.floatPhone.nativeElement, { z: 50, rotation: isAr ? 6 : -6 });
+      }
+
+      // 3. Setup magnetic button tracking
       if (this.magneticBtn && this.magneticBtn.nativeElement) {
         this.gsapService.makeMagnetic(this.magneticBtn.nativeElement, 0.35);
       }
 
-      // 3. Smooth background mouse glow and 3D mockup parallax using GSAP
+      // 4. Smooth background mouse glow and 3D mockup parallax using GSAP
       this.mouseMoveHandler = (e: MouseEvent) => {
         const normX = e.clientX / window.innerWidth - 0.5; // -0.5 to 0.5
         const normY = e.clientY / window.innerHeight - 0.5;
+        const isAr = this.langService.currentLang === 'ar';
 
         // Animate background glow
         gsap.to(this.glowOverlay.nativeElement, {
@@ -131,23 +140,28 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
           });
         }
 
-        // Animate floating screenshots offsets
+        // Animate floating screenshots offsets (explicitly keeping Z-depths and rotations)
         if (this.floatDashboard && this.floatSupervisor && this.floatPhone) {
           gsap.to(this.floatDashboard.nativeElement, {
             x: normX * 8,
             y: normY * 6,
+            z: 10,
             duration: 0.5,
             ease: 'power2.out'
           });
           gsap.to(this.floatSupervisor.nativeElement, {
             x: normX * 12,
             y: normY * 9,
+            z: 40,
+            rotation: isAr ? -4 : 4,
             duration: 0.5,
             ease: 'power2.out'
           });
           gsap.to(this.floatPhone.nativeElement, {
             x: normX * 15,
             y: normY * 12,
+            z: 50,
+            rotation: isAr ? 6 : -6,
             duration: 0.5,
             ease: 'power2.out'
           });
