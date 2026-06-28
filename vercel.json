@@ -1,4 +1,5 @@
 {
+  "outputDirectory": "app_angular_backup/dist/prometer-app/browser",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
