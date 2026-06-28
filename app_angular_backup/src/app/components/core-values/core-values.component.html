@@ -1,0 +1,41 @@
+<section #valuesSection class="relative py-28 bg-transparent overflow-hidden">
+  <!-- Glowing neon grid lines background -->
+  <div class="absolute inset-0 bg-[linear-gradient(rgba(165,55,251,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(165,55,251,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none -z-10"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] rounded-full bg-prometer-neon/5 blur-[120px] pointer-events-none -z-10"></div>
+
+  <div class="container mx-auto px-6 relative z-10 w-full max-w-5xl">
+    
+    <!-- Section Title & Logo -->
+    <div class="text-center mb-16 max-w-2xl mx-auto">
+      <div class="inline-block p-4 rounded-3xl bg-prometer-dark border border-prometer-mint/10 shadow-glass mb-6">
+        <img src="/assets/prometer-eco-logo.webp" class="anim-logo h-16 w-auto object-contain mx-auto animate-[spin_12s_linear_infinite]" alt="ProMeter Logo" style="filter: invert(1) brightness(2) drop-shadow(0 0 10px rgba(255,255,255,0.3));">
+      </div>
+      <span class="text-prometer-neon text-xs font-bold uppercase tracking-[2.5px] block mb-3">Core Values</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-prometer-mint tracking-tight">Our Analytical & Operational Philosophy</h2>
+      <p class="text-sm text-prometer-mint/60 mt-4 leading-relaxed font-light">Five core principles driving the daily performance of cosmetics promoters and advisors in the field.</p>
+    </div>
+
+    <!-- Cards Layout: Modern Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+      @for (val of values; track $index) {
+        <div class="value-item bg-prometer-dark/30 backdrop-blur-xl p-8 rounded-2xl border border-prometer-mint/10 transition-all duration-300 hover:-translate-y-1 hover:border-prometer-mint/30 hover:shadow-neon text-left
+                    {{ $index < 2 ? 'md:col-span-1 lg:col-span-1' : ($index === 2 ? 'md:col-span-2 lg:col-span-1' : 'md:col-span-1 lg:col-span-1') }}
+                    {{ $index === 3 || $index === 4 ? 'lg:col-span-1' : '' }}
+                    {{ $index === 4 ? 'lg:col-start-2' : '' }}">
+          <div class="flex items-center gap-4 mb-4">
+            <span class="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold bg-prometer-mint/10 text-prometer-mint border border-prometer-mint/20">
+              0{{ $index + 1 }}
+            </span>
+            <div>
+              <h3 class="text-lg font-black text-prometer-mint leading-tight">{{ val.title }}</h3>
+            </div>
+          </div>
+          <p class="text-xs text-prometer-mint/70 leading-relaxed font-light">
+            {{ val.desc }}
+          </p>
+        </div>
+      }
+    </div>
+
+  </div>
+</section>

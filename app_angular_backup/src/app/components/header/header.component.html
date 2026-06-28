@@ -1,0 +1,62 @@
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-prometer-mint/5 bg-prometer-dark/60 backdrop-blur-xl">
+  <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+    
+    <!-- Logo & Brand name -->
+    <a href="#hero" (click)="scrollToSection('#hero'); $event.preventDefault();" class="flex items-center gap-2 select-none">
+      <img src="assets/prometer-eco-logo.webp" alt="ProMeter Logo" class="h-9 w-auto object-contain" style="filter: invert(1) brightness(2);">
+      <span class="text-lg font-black text-prometer-mint tracking-wider uppercase">ProMeter</span>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="hidden md:flex items-center gap-8">
+      @for (link of navLinks; track link.anchor) {
+        <a [href]="link.anchor" (click)="scrollToSection(link.anchor); $event.preventDefault();"
+           class="text-xs font-bold text-prometer-mint/80 hover:text-prometer-neon transition-colors duration-300">
+          {{ link.label }}
+        </a>
+      }
+    </nav>
+
+    <!-- Right Call To Action -->
+    <div class="hidden md:block">
+      <a href="#contact" (click)="scrollToSection('#contact'); $event.preventDefault();"
+         class="px-6 py-2.5 rounded-xl text-xs font-bold text-prometer-dark bg-prometer-mint shadow-neon hover:shadow-neon-lg hover:bg-prometer-neon hover:text-white transition-all duration-300">
+        Request Demo
+      </a>
+    </div>
+
+    <!-- Mobile Menu Toggle Button -->
+    <button (click)="toggleMobileMenu()" class="md:hidden flex items-center justify-center w-10 h-10 rounded-xl border border-prometer-mint/10 bg-prometer-dark/30 text-prometer-mint">
+      @if (mobileMenuOpen) {
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+      } @else {
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
+        </svg>
+      }
+    </button>
+
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  @if (mobileMenuOpen) {
+    <div class="md:hidden border-t border-prometer-mint/5 bg-prometer-dark/95 backdrop-blur-xl">
+      <div class="px-6 py-6 space-y-4">
+        @for (link of navLinks; track link.anchor) {
+          <a [href]="link.anchor" (click)="scrollToSection(link.anchor); $event.preventDefault();"
+             class="block text-sm font-semibold text-prometer-mint/80 hover:text-prometer-neon py-2 transition-colors duration-300">
+            {{ link.label }}
+          </a>
+        }
+        <div class="pt-4 border-t border-prometer-mint/5">
+          <a href="#contact" (click)="scrollToSection('#contact'); $event.preventDefault();"
+             class="block text-center py-3.5 rounded-xl text-xs font-bold text-prometer-dark bg-prometer-mint shadow-neon">
+            Request Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  }
+</header>

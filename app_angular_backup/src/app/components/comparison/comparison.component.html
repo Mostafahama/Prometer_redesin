@@ -1,0 +1,101 @@
+<section #sectionRef class="py-24 bg-transparent overflow-hidden relative z-10" id="why-us">
+  <!-- Background radial glow -->
+  <div class="absolute right-[-10%] top-[30%] w-[50vw] h-[50vw] rounded-full bg-prometer-neon/5 blur-[120px] pointer-events-none -z-10"></div>
+
+  <div class="container-m relative w-full">
+    
+    <!-- Section Heading -->
+    <div class="text-center mb-16 max-w-2xl mx-auto">
+      <span class="text-prometer-neon text-[10px] font-bold uppercase tracking-[2.5px] block mb-3">
+        Digital Transformation
+      </span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-prometer-mint tracking-tight">
+        Stop Managing Your Field Team the Old Way
+      </h2>
+      <p class="text-prometer-mint/70 text-sm mt-4 font-light leading-relaxed">
+        Replace manual spreadsheets and chaotic chats with an organized operational ecosystem engineered specifically for Middle Eastern cosmetics and beauty promoters.
+      </p>
+    </div>
+
+    <!-- Contrast Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch max-w-5xl mx-auto text-left">
+      
+      <!-- LEFT: Traditional Chaos (Void/Dark theme) -->
+      <div 
+        class="rounded-2xl p-8 lg:p-10 border border-red-500/10 bg-prometer-card flex flex-col justify-between transition-shadow duration-300 hover:shadow-[0_0_30px_rgba(239,68,68,0.03)]"
+      >
+        <div>
+          <div class="flex items-center gap-2 mb-6">
+            <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+            <h3 class="text-lg lg:text-xl font-bold tracking-tight text-red-400">
+              Traditional Management
+            </h3>
+          </div>
+          <p class="text-prometer-mint/60 text-xs leading-relaxed mb-8 font-light">
+            Fragmented communications and offline reporting leave cosmetics brands blind to promoter attendance, stock outs, and instant retail counter metrics.
+          </p>
+          
+          <ul class="space-y-4">
+            @for (item of traditional; track $index) {
+              <li class="flex items-start gap-3 text-prometer-mint/70 text-xs font-light leading-relaxed">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 text-red-500/50 mt-0.5 flex-shrink-0">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
+                <span>{{ item.text }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+        
+        <div class="mt-8 pt-6 border-t border-prometer-mint/5 flex items-center gap-2">
+          <span class="text-[10px] text-red-400/80 font-bold uppercase tracking-wider">Outcome: Operational Inefficiency</span>
+        </div>
+      </div>
+
+      <!-- RIGHT: ProMeter Control (Solid Mint theme) -->
+      <div 
+        class="rounded-2xl p-8 lg:p-10 bg-prometer-mint text-prometer-dark flex flex-col justify-between transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(206,229,224,0.15)]"
+      >
+        <div>
+          <div class="flex items-center gap-2 mb-6">
+            <span class="w-2 h-2 rounded-full bg-prometer-neon animate-pulse"></span>
+            <h3 class="text-lg lg:text-xl font-black tracking-tight text-prometer-dark">
+              The ProMeter Way
+            </h3>
+          </div>
+          <p class="text-prometer-dark/70 text-xs leading-relaxed mb-8 font-medium">
+            A single unified control panel connecting promoters directly to supervisors and management, ensuring 100% visibility of cosmetics sales and attendance.
+          </p>
+
+          <ul class="space-y-4">
+            @for (item of prometer; track $index) {
+              <li class="flex items-start gap-3 text-prometer-dark/90 text-xs font-medium leading-relaxed">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-4 h-4 text-prometer-neon mt-0.5 flex-shrink-0">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                </svg>
+                <span>{{ item.text }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-prometer-dark/10 flex items-center gap-2">
+          <span class="text-[10px] text-prometer-neon font-black uppercase tracking-wider">Outcome: Systematic Performance</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom CTA Block -->
+    <div class="text-center mt-14 max-w-lg mx-auto">
+      <p class="text-prometer-mint/70 text-sm mb-6 font-light">
+        Empower your team with a platform built to eliminate administrative overhead.
+      </p>
+      <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 rounded-lg text-white font-semibold text-sm transition-all duration-300"
+         style="background: linear-gradient(135deg, #9C3FFA 0%, #7B2FD4 100%); box-shadow: 0 4px 24px rgba(156,63,250,0.35), inset 0 1px 0 rgba(255,255,255,0.12);">
+        Start Your Digital Transformation
+      </a>
+    </div>
+
+  </div>
+</section>

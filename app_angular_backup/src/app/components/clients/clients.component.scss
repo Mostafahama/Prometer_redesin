@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.marquee-row {
+  &:hover .marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+.marquee-track {
+  will-change: transform;
+}

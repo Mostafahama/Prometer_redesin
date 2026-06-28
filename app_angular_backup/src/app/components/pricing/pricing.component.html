@@ -1,0 +1,116 @@
+<section #pricingSection class="relative py-24 bg-transparent overflow-hidden">
+  
+  <!-- Backlight -->
+  <div class="absolute right-1/4 bottom-1/4 w-[40vw] h-[40vw] rounded-full bg-prometer-neon/5 blur-[120px] pointer-events-none -z-10"></div>
+
+  <div class="container mx-auto px-6 relative z-10 w-full">
+    
+    <!-- Title -->
+    <div class="text-center mb-12 max-w-2xl mx-auto">
+      <span class="text-prometer-neon text-xs font-bold uppercase tracking-[2.5px] block mb-3">Subscription Plans</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-prometer-mint tracking-tight mb-6">
+        Flexible Pricing Matched to Your Field Team Size
+      </h2>
+      
+      <!-- Switch Toggle -->
+      <div class="inline-flex items-center gap-1 p-1 rounded-xl bg-prometer-dark border border-prometer-mint/10 backdrop-blur-xl">
+        <button (click)="yearlyMode = false"
+                class="px-5 py-2 rounded-lg text-xs font-bold transition-all duration-300 select-none
+                       {{ !yearlyMode ? 'bg-prometer-neon text-white' : 'text-prometer-mint/60 hover:text-prometer-mint' }}">
+          Monthly Billing
+        </button>
+        <button (click)="yearlyMode = true"
+                class="px-5 py-2 rounded-lg text-xs font-bold transition-all duration-300 select-none
+                       {{ yearlyMode ? 'bg-prometer-neon text-white' : 'text-prometer-mint/60 hover:text-prometer-mint' }}">
+          Annual Billing <span class="text-[9px] opacity-80">(Save 20%)</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Launch Promotion Offer Banner -->
+    <div class="max-w-5xl mx-auto mb-10 rounded-2xl border border-prometer-neon/30 p-6 flex flex-col md:flex-row items-center justify-between gap-4 bg-gradient-to-r from-prometer-card to-prometer-dark shadow-neon-sm text-left">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-prometer-neon/15 border border-prometer-neon/20 flex items-center justify-center flex-shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-prometer-neon animate-pulse">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 21m0 0l-.813-5.096m.813 5.096V10M6 13h6M5 7h8a2 2 0 012 2v2H3V9a2 2 0 012-2z" />
+          </svg>
+        </div>
+        <div>
+          <h4 class="text-sm font-black text-prometer-mint">Middle East Launch Promotion:</h4>
+          <p class="text-xs text-prometer-mint/60 font-light mt-0.5">Receive complimentary configuration and training workshops when activating any annual plan.</p>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-2 justify-center">
+        <span class="px-3 py-1 rounded bg-prometer-neon/20 border border-prometer-neon/30 text-white text-[10px] font-bold">Auto Commission Sync</span>
+        <span class="px-3 py-1 rounded bg-prometer-neon/20 border border-prometer-neon/30 text-white text-[10px] font-bold">Priority Setup Support</span>
+      </div>
+    </div>
+
+    <!-- Pricing Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto items-stretch">
+      @for (plan of plans; track plan.name) {
+        <div class="relative p-6 rounded-2xl flex flex-col justify-between transition-all duration-300 cursor-pointer select-none group text-left
+                    {{ plan.isPopular 
+                       ? 'border-2 border-prometer-neon bg-prometer-neon/[0.04] shadow-neon hover:shadow-neon-lg' 
+                       : 'border border-prometer-mint/10 bg-prometer-dark/30 backdrop-blur-xl shadow-glass hover:border-prometer-neon/40' 
+                    }}">
+          
+          <!-- Best seller indicator -->
+          @if (plan.isPopular) {
+            <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-prometer-neon text-white text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-wider select-none">
+              Most Popular
+            </span>
+          }
+
+          <div>
+            <!-- Header info -->
+            <h3 class="text-base font-black text-prometer-mint mb-1">{{ plan.name }}</h3>
+            <p class="text-[10px] text-prometer-mint/55 mb-6">{{ plan.users }}</p>
+
+            <!-- Price -->
+            <div class="mb-6 pb-6 border-b border-prometer-mint/5">
+              @if (plan.monthlyPrice === 0) {
+                <span class="text-2xl font-black text-prometer-mint">Contact Us</span>
+              } @else {
+                <div class="flex items-baseline gap-1.5">
+                  <span class="text-3xl font-black text-prometer-mint">
+                    SAR {{ (yearlyMode ? plan.yearlyPrice : plan.monthlyPrice) | number }}
+                  </span>
+                  <span class="text-[10px] text-prometer-mint/45">/rep/month</span>
+                </div>
+                @if (yearlyMode) {
+                  <p class="text-[10px] text-prometer-neon font-bold mt-1">
+                    Save SAR {{ ((plan.monthlyPrice - plan.yearlyPrice) * 12) | number }} yearly
+                  </p>
+                }
+              }
+            </div>
+
+            <!-- Features list -->
+            <ul class="space-y-3 mb-8">
+              @for (feat of plan.features; track feat) {
+                <li class="flex items-center gap-2.5 text-xs text-prometer-mint/85 leading-relaxed font-light">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-3.5 h-3.5 text-prometer-neon flex-shrink-0">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                  </svg>
+                  <span>{{ feat }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+
+          <!-- Button -->
+          <button class="w-full py-3.5 rounded-xl text-xs font-bold transition-all duration-300 select-none
+                         {{ plan.isPopular 
+                            ? 'bg-prometer-neon text-white shadow-neon hover:bg-prometer-neon/90' 
+                            : 'border border-prometer-mint/15 text-prometer-mint hover:bg-prometer-mint/5 hover:border-prometer-mint/30' 
+                         }}">
+            {{ plan.monthlyPrice === 0 ? 'Request Quote' : 'Start Free Trial' }}
+          </button>
+
+        </div>
+      }
+    </div>
+
+  </div>
+</section>

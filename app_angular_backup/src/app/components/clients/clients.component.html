@@ -1,0 +1,40 @@
+<section #clientsSection class="relative py-20 bg-transparent overflow-hidden min-h-[50vh] flex flex-col justify-center border-t border-b border-prometer-mint/5">
+  
+  <!-- Header -->
+  <div class="container mx-auto px-6 mb-12">
+    <div class="text-center max-w-2xl mx-auto">
+      <span class="text-prometer-neon text-xs font-bold uppercase tracking-[2.5px] block mb-3">Field Success Partnerships</span>
+      <h2 class="text-2xl md:text-3xl font-extrabold text-prometer-mint tracking-tight mb-4">
+        Trusted by Leading Brands in the Kingdom
+      </h2>
+      <p class="text-sm text-prometer-mint/60 font-light leading-relaxed">
+        Major suppliers and distributors utilize ProMeter for their promoter teams to track live field transactions and daily sales records.
+      </p>
+    </div>
+  </div>
+
+  <!-- Marquee rows -->
+  <div class="flex flex-col gap-5 md:gap-6 w-full">
+    @for (row of rows; track $index) {
+      <div class="marquee-row relative w-full overflow-hidden">
+        <div class="marquee-track flex items-center gap-5 md:gap-6 {{ row.dirClass }}" style="width: max-content;">
+          
+          <!-- Render brands 3x for a seamless loop -->
+          @for (loop of [0, 1, 2]; track loop) {
+            <div class="flex items-center gap-5 md:gap-6">
+              @for (brand of row.brands; track brand) {
+                <div class="trusted-brand-card flex-shrink-0 flex items-center justify-center px-8 py-4 rounded-xl select-none transition-all duration-300 hover:scale-105 border border-prometer-neon/10 bg-prometer-neon/[0.03] shadow-glass min-w-[150px] h-[55px]">
+                  <span class="text-prometer-mint font-bold text-sm tracking-wider whitespace-nowrap">
+                    {{ brand }}
+                  </span>
+                </div>
+              }
+            </div>
+          }
+          
+        </div>
+      </div>
+    }
+  </div>
+
+</section>

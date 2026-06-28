@@ -1,0 +1,66 @@
+:host {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.orbit-scene {
+  margin: 0 auto;
+}
+
+/* Elliptical guide ring */
+.orbit-guide-ring {
+  border-radius: 50%;
+  border: 1px dashed rgba(202, 227, 222, 0.06);
+}
+
+/* Glass card outer container — for position & scale */
+.glass-module-card {
+  transition: transform 0.12s linear;
+  will-change: transform, opacity;
+}
+
+/* Glass card inner body */
+.glass-card-inner {
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(202, 227, 222, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(165, 55, 251, 0.15),
+              inset 0 0 20px rgba(202, 227, 222, 0.05);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  overflow: hidden;
+}
+
+.glass-card-inner.is-hovered {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(202, 227, 222, 0.6);
+  box-shadow: 0 0 30px rgba(165, 55, 251, 0.3),
+              0 8px 32px rgba(0, 0, 0, 0.2),
+              inset 0 0 25px rgba(202, 227, 222, 0.15);
+}
+
+.card-glow {
+  pointer-events: none;
+}
+
+.module-icon {
+  flex-shrink: 0;
+}
+
+/* Hover tooltip */
+.card-tooltip {
+  background: rgba(22, 5, 43, 0.9) !important;
+  border: 1px solid rgba(165, 55, 251, 0.25) !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  white-space: normal;
+  pointer-events: none;
+}
+
+/* Man layer */
+.man-layer {
+  user-select: none;
+  -webkit-user-drag: none;
+}

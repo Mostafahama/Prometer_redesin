@@ -1,0 +1,113 @@
+<section #ecosystemRef class="relative py-24 bg-transparent overflow-hidden min-h-screen flex items-center" id="ecosystem">
+  <!-- Background ambient glow -->
+  <div class="absolute right-1/4 top-1/4 w-[45vw] h-[45vw] rounded-full bg-prometer-neon/5 blur-[140px] pointer-events-none -z-10"></div>
+  <div class="absolute left-1/4 bottom-1/4 w-[30vw] h-[30vw] rounded-full bg-prometer-neon/4 blur-[100px] pointer-events-none -z-10"></div>
+
+  <div class="container mx-auto px-6 relative z-10 w-full">
+    <div class="flex flex-col items-center justify-center gap-12">
+
+      <!-- Heading -->
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="text-prometer-neon text-xs font-bold uppercase tracking-[2.5px] block mb-3">Technical Ecosystem</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-prometer-mint tracking-tight mb-4">
+          One Platform. Ten Integrated Modules.
+        </h2>
+        <p class="text-sm text-prometer-mint/60 font-light max-w-lg mx-auto leading-relaxed">
+          Each module operates seamlessly together to give you complete field visibility across every retail counter.
+        </p>
+      </div>
+
+      <!-- 3D Orbit Scene -->
+      <div #orbitScene
+           class="orbit-scene relative select-none"
+           [style.width.px]="sceneSize"
+           [style.height.px]="sceneSize">
+
+        <!-- Elliptical guide ring (visual only) -->
+        <div class="orbit-guide-ring absolute pointer-events-none"
+             [style.width.px]="sceneSize * 0.88"
+             [style.height.px]="sceneSize * 0.44"
+             [style.left.px]="sceneSize * 0.06"
+             [style.top.px]="sceneSize * 0.28">
+        </div>
+
+        <!-- Central Man Image (background removed) -->
+        <div class="man-layer absolute inset-0 flex items-center justify-center" style="z-index: 6; pointer-events: none;">
+          <img
+            src="/assets/3d-design-nobg.webp"
+            alt="ProMeter Field Operator"
+            [style.height.px]="sceneSize * 0.82"
+            style="object-fit: contain; filter: drop-shadow(0 20px 50px rgba(165,55,251,0.2));"
+          >
+        </div>
+
+        <!-- Orbiting Module Cards -->
+        @for (mod of modules; track $index) {
+          @if (positions[$index]) {
+            <div
+              class="glass-module-card absolute"
+              [style.left.px]="positions[$index].left - cardSize / 2"
+              [style.top.px]="positions[$index].top - cardSize / 2"
+              [style.z-index]="positions[$index].z"
+              [style.opacity]="positions[$index].opacity"
+              [style.transform]="'scale(' + positions[$index].scale + ')'"
+              (mouseenter)="hoveredIndex = $index"
+              (mouseleave)="hoveredIndex = null"
+            >
+              <div
+                class="glass-card-inner relative flex flex-col items-center justify-center gap-1.5 cursor-pointer transition-all duration-200"
+                [style.width.px]="cardSize"
+                [style.height.px]="cardSize"
+                [class.is-hovered]="hoveredIndex === $index"
+              >
+                <!-- Glow behind hovered card -->
+                @if (hoveredIndex === $index) {
+                  <div class="card-glow absolute inset-0 rounded-2xl"
+                       [style.background]="'radial-gradient(circle, ' + mod.color + '22 0%, transparent 70%)'">
+                  </div>
+                }
+
+                <!-- Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor"
+                  class="module-icon transition-colors duration-200"
+                  [style.width.px]="cardSize * 0.38"
+                  [style.height.px]="cardSize * 0.38"
+                  [style.color]="hoveredIndex === $index ? '#F8FAFC' : mod.color"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" [attr.d]="mod.svgPath" />
+                </svg>
+
+                <!-- Label -->
+                <span
+                  class="text-center font-bold leading-tight transition-colors duration-200 px-1"
+                  [style.fontSize.px]="cardSize * 0.115"
+                  [style.color]="hoveredIndex === $index ? '#F8FAFC' : 'rgba(202,227,222,0.75)'"
+                >{{ mod.shortTitle }}</span>
+              </div>
+
+              <!-- Hover Tooltip -->
+              @if (hoveredIndex === $index) {
+                <div class="card-tooltip glass-panel absolute left-full top-1/2 -translate-y-1/2 ml-3 p-3 rounded-xl min-w-[180px] text-left shadow-neon-sm z-50 pointer-events-none"
+                     [style.top.px]="positions[$index].top < sceneSize / 2 ? -8 : undefined"
+                >
+                  <div class="flex items-center gap-1.5 mb-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" [style.backgroundColor]="mod.color"></span>
+                    <h4 class="text-[11px] font-black text-prometer-mint">{{ mod.title }}</h4>
+                  </div>
+                  <p class="text-[10px] text-prometer-mint/65 font-light leading-relaxed">{{ mod.desc }}</p>
+                </div>
+              }
+            </div>
+          }
+        }
+
+      </div>
+
+      <!-- Hint text -->
+      <p class="text-prometer-mint/30 text-[10px] tracking-widest uppercase font-bold -mt-4">
+        Hover a module to explore
+      </p>
+
+    </div>
+  </div>
+</section>

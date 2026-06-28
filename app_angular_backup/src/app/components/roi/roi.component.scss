@@ -1,0 +1,42 @@
+:host {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+input[type="range"] {
+  will-change: background;
+  transition: background 0.15s ease-out;
+  outline: none;
+  
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #CAE3DE;
+    box-shadow: 0 0 10px rgba(165, 55, 251, 0.8);
+    cursor: pointer;
+    transition: transform 0.15s ease;
+    
+    &:hover {
+      transform: scale(1.3);
+    }
+  }
+
+  &::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border: none;
+    border-radius: 50%;
+    background: #CAE3DE;
+    box-shadow: 0 0 10px rgba(165, 55, 251, 0.8);
+    cursor: pointer;
+    transition: transform 0.15s ease;
+    
+    &:hover {
+      transform: scale(1.3);
+    }
+  }
+}

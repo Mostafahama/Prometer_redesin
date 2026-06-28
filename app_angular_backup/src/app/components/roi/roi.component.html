@@ -1,0 +1,160 @@
+<section #roiSection class="relative py-24 bg-transparent overflow-hidden">
+  
+  <!-- Backlight glow -->
+  <div class="absolute left-1/4 bottom-1/4 w-[40vw] h-[40vw] rounded-full bg-prometer-neon/5 blur-[120px] pointer-events-none -z-10"></div>
+
+  <div class="container mx-auto px-6 relative z-10 w-full">
+    
+    <!-- Title -->
+    <div class="text-center mb-16 max-w-2xl mx-auto">
+      <span class="text-prometer-neon text-xs font-bold uppercase tracking-[2.5px] block mb-3">ROI Calculator</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-prometer-mint tracking-tight">
+        Calculate Your ProMeter Impact
+      </h2>
+      <p class="text-sm text-prometer-mint/60 mt-4 leading-relaxed font-light">
+        Enter your current field team dimensions and parameters to view estimated efficiency improvements and annual cost savings.
+      </p>
+    </div>
+
+    <!-- Main Card container -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch text-left">
+      
+      <!-- Inputs Column (Left Panel) -->
+      <div class="glass-panel p-8 rounded-2xl border border-prometer-mint/10 bg-prometer-dark/30 backdrop-blur-xl flex flex-col justify-between">
+        <h3 class="text-base font-black text-prometer-mint mb-8 border-b border-prometer-mint/5 pb-4">Your Field Team Parameters:</h3>
+        
+        <!-- Input Sliders -->
+        <div class="space-y-6 flex-1">
+          <!-- 1. Employees -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-prometer-mint/80">Field Promoters / Beauty Advisors:</span>
+              <span class="text-sm font-black text-prometer-neon font-mono">{{ employees }} reps</span>
+            </div>
+            <input type="range" min="5" max="500" step="5" [(ngModel)]="employees"
+                   class="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-prometer-mint/10"
+                   [style.background]="getSliderProgress(employees, 5, 500)">
+          </div>
+
+          <!-- 2. Supervisors -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-prometer-mint/80">Field Supervisors:</span>
+              <span class="text-sm font-black text-prometer-neon font-mono">{{ supervisors }} supervisors</span>
+            </div>
+            <input type="range" min="1" max="50" step="1" [(ngModel)]="supervisors"
+                   class="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-prometer-mint/10"
+                   [style.background]="getSliderProgress(supervisors, 1, 50)">
+          </div>
+
+          <!-- 3. Branches -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-prometer-mint/80">Branches / Pharmacies Covered:</span>
+              <span class="text-sm font-black text-prometer-neon font-mono">{{ branches }} stores</span>
+            </div>
+            <input type="range" min="1" max="50" step="1" [(ngModel)]="branches"
+                   class="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-prometer-mint/10"
+                   [style.background]="getSliderProgress(branches, 1, 50)">
+          </div>
+
+          <!-- 4. Monthly Visits -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-prometer-mint/80">Monthly Visits per Rep:</span>
+              <span class="text-sm font-black text-prometer-neon font-mono">{{ visits }} visits/rep</span>
+            </div>
+            <input type="range" min="10" max="100" step="5" [(ngModel)]="visits"
+                   class="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-prometer-mint/10"
+                   [style.background]="getSliderProgress(visits, 10, 100)">
+          </div>
+
+          <!-- 5. Average Salary -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-prometer-mint/80">Avg Monthly Representative Salary:</span>
+              <span class="text-sm font-black text-prometer-neon font-mono">SAR {{ salary | number }}</span>
+            </div>
+            <input type="range" min="3000" max="20000" step="500" [(ngModel)]="salary"
+                   class="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-prometer-mint/10"
+                   [style.background]="getSliderProgress(salary, 3000, 20000)">
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Outputs Column (Right Panel) -->
+      <div class="flex flex-col gap-4">
+        
+        <!-- 1. Productivity -->
+        <div class="glass-panel p-5 rounded-xl border border-prometer-mint/5 bg-prometer-dark/30 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-prometer-mint/10 border border-prometer-mint/20">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-prometer-mint">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v5.25c0 .621-.504 1.125-1.125 1.125h-2.25A1.125 1.125 0 0 1 3 18.375v-5.25z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-[10px] text-prometer-mint/45 font-bold uppercase tracking-wider">Productivity Improvement</p>
+              <p class="text-lg font-black text-prometer-mint mt-0.5">{{ productivityGain }}%</p>
+            </div>
+          </div>
+          <span class="text-[10px] text-prometer-mint/60 font-light">Increase in active field coverage</span>
+        </div>
+
+        <!-- 2. Time Saved -->
+        <div class="glass-panel p-5 rounded-xl border border-prometer-mint/5 bg-prometer-dark/30 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-prometer-mint/10 border border-prometer-mint/20">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-prometer-mint">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-[10px] text-prometer-mint/45 font-bold uppercase tracking-wider">Monitoring Time Saved</p>
+              <p class="text-lg font-black text-prometer-mint mt-0.5">{{ timeSaved }}%</p>
+            </div>
+          </div>
+          <span class="text-[10px] text-prometer-mint/60 font-light">Time saved from manual follow-ups</span>
+        </div>
+
+        <!-- 3. Compliance -->
+        <div class="glass-panel p-5 rounded-xl border border-prometer-mint/5 bg-prometer-dark/30 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-prometer-mint/10 border border-prometer-mint/20">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-prometer-mint">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-[10px] text-prometer-mint/45 font-bold uppercase tracking-wider">Visit Compliance accuracy</p>
+              <p class="text-lg font-black text-prometer-mint mt-0.5">{{ complianceGain }}%</p>
+            </div>
+          </div>
+          <span class="text-[10px] text-prometer-mint/60 font-light">Driven by verified GPS check-ins</span>
+        </div>
+
+        <!-- 4. Estimated Savings (Highlighted Card) -->
+        <div class="rounded-2xl p-6 border border-prometer-mint/20 bg-gradient-to-r from-prometer-mint/10 to-prometer-dark shadow-neon-sm">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-prometer-mint/15 border border-prometer-mint/20">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-prometer-mint">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.879a3 3 0 0 0 4.242 0 3 3 0 0 0-4.242-4.242 3 3 0 0 1 4.242-4.242 3 3 0 0 1 0 4.242m-1.121-6.712v1.5a3 3 0 1 1-6 0v-1.5" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-[10px] text-prometer-mint font-bold uppercase tracking-wider">Estimated Annual Savings:</p>
+              <p class="text-2xl sm:text-3xl font-black text-prometer-mint mt-1">SAR {{ annualValue | number }}</p>
+            </div>
+          </div>
+          <p class="text-[10px] text-prometer-mint/55 mt-4 font-light leading-relaxed">
+            * This estimation is calculated based on productivity increments, supervisor hours saved from paper summaries, and biometric geolocated verification of hours worked inside counters.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>

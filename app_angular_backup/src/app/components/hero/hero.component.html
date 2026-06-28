@@ -1,0 +1,150 @@
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden py-24 md:py-32 bg-[#110321]">
+  <!-- 1. Blurred Hero Background Image (Ensured visible by positive z-index stack) -->
+  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none" 
+       style="background-image: url('assets/hero-section.webp'); filter: blur(2px); opacity: 0.8; transform: scale(1.02); z-index: 1;"></div>
+  
+  <!-- 2. Cinematic Glowing Accents & Mask -->
+  <div #glowOverlay class="absolute -top-1/4 left-1/2 -translate-x-1/2 w-[70vw] h-[70vw] max-w-[800px] max-h-[800px] rounded-full bg-prometer-neon/15 blur-[120px] pointer-events-none"
+       style="z-index: 2;"></div>
+  
+  <!-- Radial mask to fade the background image edges into the dark background -->
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,rgba(17,3,33,0.85)_80%)] pointer-events-none"
+       style="z-index: 3;"></div>
+
+  <!-- 3. SVG 5-Point Symmetry Background Pattern -->
+  <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none"
+       style="z-index: 4;">
+    <svg width="600" height="600" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-[550px] aspect-square animate-[orbit_120s_linear_infinite]">
+      <defs>
+        <g id="eye-petal">
+          <path d="M 200 130 C 235 130 265 170 280 200 C 265 230 235 270 200 270 C 165 270 135 230 120 200 C 135 170 165 130 200 130 Z" 
+                stroke="#CAE3DE" stroke-width="2" stroke-linejoin="round" />
+          <circle cx="200" cy="200" r="28" stroke="#CAE3DE" stroke-width="1.5" />
+          <circle cx="200" cy="200" r="12" fill="#CAE3DE" />
+          <line x1="200" y1="120" x2="200" y2="105" stroke="#CAE3DE" stroke-width="2" />
+        </g>
+      </defs>
+      <use href="#eye-petal" transform="rotate(0, 200, 200)" />
+      <use href="#eye-petal" transform="rotate(72, 200, 200)" />
+      <use href="#eye-petal" transform="rotate(144, 200, 200)" />
+      <use href="#eye-petal" transform="rotate(216, 200, 200)" />
+      <use href="#eye-petal" transform="rotate(288, 200, 200)" />
+      <circle cx="200" cy="200" r="185" stroke="#CAE3DE" stroke-width="1" stroke-dasharray="8 6" />
+      <circle cx="200" cy="200" r="95" stroke="#A537FB" stroke-width="1.5" stroke-dasharray="4 4" class="opacity-50" />
+    </svg>
+  </div>
+
+  <!-- 4. Content Container -->
+  <div class="container mx-auto px-6 relative w-full" style="z-index: 10;">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      
+      <!-- Left Column: English Text -->
+      <div class="flex flex-col items-start text-left max-w-xl">
+        <!-- Badge Indicator & Logo -->
+        <div class="flex flex-col items-start gap-6 mb-8">
+          <img src="assets/prometer-eco-logo.webp" alt="ProMeter Logo" class="h-16 w-auto object-contain" style="filter: invert(1) brightness(2) drop-shadow(0 0 10px rgba(255,255,255,0.3));">
+          
+          <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-prometer-neon/10 border border-prometer-neon/20 backdrop-blur-md">
+            <span class="w-2.5 h-2.5 rounded-full bg-prometer-neon animate-pulse shadow-[0_0_10px_#A537FB]"></span>
+            <span class="text-prometer-mint text-[10px] font-bold uppercase tracking-[2px]">
+              Field Sales Intelligence Platform
+            </span>
+          </div>
+        </div>
+
+        <!-- H1 Main Cinematic Title -->
+        <h1 #heroTitle class="text-4xl sm:text-5xl lg:text-[3.4rem] font-black text-prometer-mint leading-[1.05] mb-6 select-none">
+          One Platform.<br>
+          <span class="text-white">Total Field Visibility.</span>
+        </h1>
+
+        <!-- H2 Subtitle -->
+        <h2 #heroSubtitle class="text-lg sm:text-xl font-bold text-prometer-mint/90 mb-6 tracking-wide uppercase">
+          Complete Control. One Touch.
+        </h2>
+
+        <!-- Description Paragraph -->
+        <p #heroText class="text-sm sm:text-base text-prometer-mint/70 leading-relaxed mb-10 font-light">
+          Track and optimize field promoters in real-time across Middle Eastern pharmacies and retail counters. Verify employee attendance via GPS biometric verification, trace cosmetic shelf stock levels, and collect direct sales data to multiply operational revenue based on hard facts.
+        </p>
+
+        <!-- Call To Action Buttons -->
+        <div #heroCta class="flex flex-wrap items-center gap-4 mb-12">
+          <!-- Request Demo Button (Magnetic) -->
+          <a #magneticBtn href="#contact"
+             class="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-xl px-7 py-3.5 font-bold text-sm tracking-wide text-white transition-all duration-300 shadow-neon hover:shadow-neon-lg"
+             style="background: linear-gradient(135deg, #9C3FFA 0%, #7B2FD4 100%);">
+            <span class="relative z-10 flex items-center gap-2">
+              Request Demo
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </span>
+            <span class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style="background: linear-gradient(135deg, #AE5AFB 0%, #9C3FFA 100%);"></span>
+          </a>
+
+          <!-- Watch Platform Button -->
+          <a href="#experience"
+             class="group inline-flex items-center gap-2.5 rounded-xl px-7 py-3.5 font-bold text-sm tracking-wide transition-all duration-300"
+             style="background: rgba(255,255,255,0.04); border: 1px solid rgba(156,63,250,0.25); color: rgba(255,255,255,0.8);"
+             onmouseenter="this.style.borderColor='rgba(156,63,250,0.5)'; this.style.background='rgba(156,63,250,0.08)';"
+             onmouseleave="this.style.borderColor='rgba(156,63,250,0.25)'; this.style.background='rgba(255,255,255,0.04)';">
+            <span class="w-7 h-7 rounded-full flex items-center justify-center"
+                  style="background: rgba(156,63,250,0.15); border: 1px solid rgba(156,63,250,0.3);">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-prometer-neon ml-0.5">
+                <path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clip-rule="evenodd" />
+              </svg>
+            </span>
+            Watch Platform
+          </a>
+        </div>
+
+        <!-- KPI Grid -->
+        <div #kpisContainer class="grid grid-cols-2 sm:grid-cols-5 gap-3 w-full pt-8 border-t border-prometer-mint/10">
+          @for (kpi of kpis; track $index) {
+            <div class="glass-panel p-3.5 rounded-xl flex flex-col items-center justify-center text-center">
+              <span class="text-lg font-black text-prometer-mint">{{ kpi.val }}</span>
+              <span class="text-[9px] font-semibold text-prometer-neon mt-0.5 whitespace-nowrap">{{ kpi.label }}</span>
+              <span class="text-[8px] text-prometer-mint/50 mt-0.5">{{ kpi.desc }}</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Right Column: 3D Floating Screenshots Parallax -->
+      <div class="relative hidden lg:block" style="perspective: 1200px;">
+        <div #floatContainer class="relative w-full" style="transform-style: preserve-3d; transition: transform 0.15s ease-out;">
+          
+          <!-- Main: Admin Dashboard Screenshot -->
+          <div #floatDashboard class="rounded-2xl overflow-hidden relative"
+               style="transform: translateZ(30px); box-shadow: 0 25px 80px rgba(165,55,251,0.25); transition: transform 0.15s ease-out;">
+            <img src="images/admin-dashboard.png" alt="Admin Dashboard" class="w-full h-auto block" loading="eager">
+          </div>
+
+          <!-- Floating: Supervisor Dashboard - top-right overlay -->
+          <div #floatSupervisor class="absolute -top-4 -right-8 w-[55%] rounded-xl overflow-hidden"
+               style="transform: translateZ(65px) rotate(4deg); box-shadow: 0 15px 50px rgba(0,0,0,0.5); transition: transform 0.15s ease-out;">
+            <img src="images/supervisor-dashboard.png" alt="Supervisor Dashboard" class="w-full h-auto block" loading="lazy">
+          </div>
+
+          <!-- Floating: Mobile App - bottom-left overlay -->
+          <div #floatPhone class="absolute -bottom-6 -left-6 w-[22%] rounded-[1.5rem] overflow-hidden"
+               style="transform: translateZ(55px) rotate(-6deg); box-shadow: 0 15px 50px rgba(0,0,0,0.5); transition: transform 0.15s ease-out;">
+            <img src="images/mobile-app.png" alt="Mobile App" class="w-full h-auto block" loading="lazy">
+          </div>
+          
+        </div>
+        
+        <!-- Bottom Label -->
+        <div class="mt-8 flex items-center justify-center">
+          <div class="flex items-center gap-2 px-5 py-2 rounded-full border border-prometer-mint/10 bg-[#110321]/80 backdrop-blur-xl">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-[9px] font-mono tracking-wider uppercase text-prometer-mint/60">Real Platform Screenshots</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

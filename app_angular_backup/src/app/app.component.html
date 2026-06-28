@@ -1,0 +1,138 @@
+<main class="relative w-full min-h-screen bg-prometer-dark selection:bg-prometer-neon selection:text-white">
+  <!-- Header Bar -->
+  <app-header></app-header>
+
+  <!-- Hero Section (Critical render block, loads immediately) -->
+  <app-hero id="hero"></app-hero>
+
+  <!-- Watermarked Wrapper for the rest of the site -->
+  <div class="relative w-full site-watermark-bg overflow-hidden">
+    <!-- Cinematic Large Rotated Watermarks Layer -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden select-none" style="z-index: 0;">
+      <!-- Watermark 1: Top Left -->
+      <div class="absolute w-[800px] h-[800px] -top-[150px] -left-[300px] rotate-[-15deg] mix-blend-screen bg-contain bg-no-repeat bg-center"
+           style="background-image: url('assets/prometer-eco-logo.webp'); filter: invert(1) brightness(1.8); opacity: 0.025; z-index: -1;"></div>
+      
+      <!-- Watermark 2: Top Right -->
+      <div class="absolute w-[750px] h-[750px] top-[12%] -right-[300px] rotate-[-30deg] mix-blend-screen bg-contain bg-no-repeat bg-center"
+           style="background-image: url('assets/prometer-eco-logo.webp'); filter: invert(1) brightness(1.8); opacity: 0.015; z-index: -1;"></div>
+
+      <!-- Watermark 3: Mid-Upper Right -->
+      <div class="absolute w-[700px] h-[700px] top-[25%] -right-[250px] rotate-[20deg] mix-blend-screen bg-contain bg-no-repeat bg-center"
+           style="background-image: url('assets/prometer-eco-logo.webp'); filter: invert(1) brightness(1.8); opacity: 0.015; z-index: -1;"></div>
+
+      <!-- Watermark 4: Mid Left -->
+      <div class="absolute w-[850px] h-[850px] top-[40%] -left-[280px] rotate-[15deg] mix-blend-screen bg-contain bg-no-repeat bg-center"
+           style="background-image: url('assets/prometer-eco-logo.webp'); filter: invert(1) brightness(1.8); opacity: 0.02; z-index: -1;"></div>
+
+      <!-- Watermark 5: Mid-Lower Left -->
+      <div class="absolute w-[900px] h-[900px] top-[55%] -left-[350px] rotate-[-25deg] mix-blend-screen bg-contain bg-no-repeat bg-center"
+           style="background-image: url('assets/prometer-eco-logo.webp'); filter: invert(1) brightness(1.8); opacity: 0.022; z-index: -1;"></div>
+
+      <!-- Watermark 6: Lower Right -->
+      <div class="absolute w-[900px] h-[900px] top-[70%] -right-[320px] rotate-[-10deg] mix-blend-screen bg-contain bg-no-repeat bg-center"
+           style="background-image: url('assets/prometer-eco-logo.webp'); filter: invert(1) brightness(1.8); opacity: 0.018; z-index: -1;"></div>
+
+      <!-- Watermark 7: Near Bottom Left -->
+      <div class="absolute w-[700px] h-[700px] top-[85%] -left-[300px] rotate-[40deg] mix-blend-screen bg-contain bg-no-repeat bg-center"
+           style="background-image: url('assets/prometer-eco-logo.webp'); filter: invert(1) brightness(1.8); opacity: 0.02; z-index: -1;"></div>
+
+      <!-- Watermark 8: Bottom Right -->
+      <div class="absolute w-[750px] h-[750px] bottom-[5%] -right-[200px] rotate-[35deg] mix-blend-screen bg-contain bg-no-repeat bg-center"
+           style="background-image: url('assets/prometer-eco-logo.webp'); filter: invert(1) brightness(1.8); opacity: 0.018; z-index: -1;"></div>
+    </div>
+
+    <!-- Viewport Deferred Pillars Section -->
+    @defer (on viewport) {
+      <app-pillars></app-pillars>
+    } @placeholder {
+      <div class="min-h-[50vh] flex items-center justify-center bg-prometer-deep border-t border-prometer-mint/5">
+        <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
+      </div>
+    }
+
+    <!-- Viewport Deferred Core Values Section -->
+    @defer (on viewport) {
+      <app-core-values></app-core-values>
+    } @placeholder {
+      <div class="min-h-[50vh] flex items-center justify-center bg-prometer-dark border-t border-prometer-mint/5">
+        <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
+      </div>
+    }
+
+    <!-- Viewport Deferred Comparison Section -->
+    @defer (on viewport) {
+      <app-comparison id="why-us"></app-comparison>
+    } @placeholder {
+      <div class="min-h-[50vh] flex items-center justify-center bg-prometer-deep border-t border-prometer-mint/5">
+        <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
+      </div>
+    }
+
+    <!-- Viewport Deferred Ecosystem Section -->
+    @defer (on viewport) {
+      <app-ecosystem id="ecosystem"></app-ecosystem>
+    } @placeholder {
+      <div class="min-h-[50vh] flex items-center justify-center bg-prometer-dark border-t border-prometer-mint/5">
+        <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
+      </div>
+    }
+
+    <!-- Viewport Deferred Clients Section -->
+    @defer (on viewport) {
+      <app-clients id="clients"></app-clients>
+    } @placeholder {
+      <div class="min-h-[50vh] flex items-center justify-center bg-prometer-dark border-t border-prometer-mint/5">
+        <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
+      </div>
+    }
+
+    <!-- Viewport Deferred Industries Section -->
+    @defer (on viewport) {
+      <app-industries id="industry"></app-industries>
+    } @placeholder {
+      <div class="min-h-[50vh] flex items-center justify-center bg-prometer-deep border-t border-prometer-mint/5">
+        <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
+      </div>
+    }
+
+    <!-- Viewport Deferred Experience Section -->
+    @defer (on viewport) {
+      <app-experience id="experience"></app-experience>
+    } @placeholder {
+      <div class="min-h-[50vh] flex items-center justify-center bg-prometer-dark border-t border-prometer-mint/5">
+        <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
+      </div>
+    }
+
+    <!-- Viewport Deferred ROI Section -->
+    @defer (on viewport) {
+      <app-roi id="roi"></app-roi>
+    } @placeholder {
+      <div class="min-h-[50vh] flex items-center justify-center bg-prometer-deep border-t border-prometer-mint/5">
+        <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
+      </div>
+    }
+
+    <!-- Viewport Deferred Pricing Section -->
+    @defer (on viewport) {
+      <app-pricing id="pricing"></app-pricing>
+    } @placeholder {
+      <div class="min-h-[50vh] flex items-center justify-center bg-prometer-dark border-t border-prometer-mint/5">
+        <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
+      </div>
+    }
+
+    <!-- Viewport Deferred Contact Section -->
+    @defer (on viewport) {
+      <app-contact id="contact"></app-contact>
+    } @placeholder {
+      <div class="min-h-[50vh] flex items-center justify-center bg-prometer-deep border-t border-prometer-mint/5">
+        <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
+      </div>
+    }
+
+    <!-- Footer Section -->
+    <app-footer></app-footer>
+  </div>
+</main>

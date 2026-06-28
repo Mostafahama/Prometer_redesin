@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Zanjabeel';
+  src: url('/assets/fonts/Zanjabeel.woff2') format('woff2'),
+       url('/assets/fonts/Zanjabeel.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Palestine';
+  src: url('/assets/fonts/Palestine.woff2') format('woff2'),
+       url('/assets/fonts/Palestine.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg-primary: #16052b;     /* Slightly lightened from #110321 */
+  --bg-secondary: #0e0220;
+  --bg-surface: #1e0a35;
+  
+  --text-primary: #CAE3DE;
+  --text-secondary: rgba(202, 227, 222, 0.7);
+  --text-muted: rgba(202, 227, 222, 0.45);
+  
+  --color-neon: #A537FB;
+  --color-mint: #CAE3DE;
+  --color-dark: #16052b;
+  
+  --border-color: rgba(202, 227, 222, 0.1);
+  --border-hover: rgba(165, 55, 251, 0.5);
+  
+  --font-heading: 'Zanjabeel', 'Outfit', 'Inter', sans-serif;
+  --font-body: 'Palestine', 'Inter', sans-serif;
+}
+
+[dir="ltr"] {
+  text-align: left;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  scroll-behavior: auto; /* Handled by Lenis */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-neon);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #bd6eff;
+}
+
+/* Lenis Smooth Scroll Setup */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overflow: clip;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Glassmorphism Styles */
+.glass-panel {
+  background: rgba(17, 3, 33, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(202, 227, 222, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Hardware acceleration to prevent scroll lag */
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+.glass-panel:hover {
+  border-color: rgba(165, 55, 251, 0.5);
+  box-shadow: 0 0 30px rgba(165, 55, 251, 0.15);
+}
+
+/* Cinematic Glowing text */
+.text-glow {
+  text-shadow: 0 0 20px rgba(165, 55, 251, 0.6);
+}
+
+.text-gradient-neon {
+  background: linear-gradient(135deg, #CAE3DE 0%, #A537FB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.site-watermark-bg {
+  position: relative;
+  background-color: var(--bg-primary);
+}

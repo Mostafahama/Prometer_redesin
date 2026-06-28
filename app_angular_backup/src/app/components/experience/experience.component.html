@@ -1,0 +1,95 @@
+<section #sectionRef class="relative py-24 bg-transparent overflow-hidden">
+  
+  <!-- Subtle backlights -->
+  <div class="absolute left-1/4 top-1/4 w-[50vw] h-[50vw] rounded-full bg-prometer-neon/5 blur-[120px] pointer-events-none -z-10"></div>
+
+  <div class="container mx-auto px-6 relative z-10 w-full">
+    
+    <!-- Title -->
+    <div class="text-center mb-12 max-w-2xl mx-auto">
+      <span class="text-prometer-neon text-xs font-bold uppercase tracking-[2.5px] block mb-3">System Dashboards</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-prometer-mint tracking-tight">
+        Three Integrated Views. One Unified System.
+      </h2>
+    </div>
+
+    <!-- Tabs Container -->
+    <div class="flex flex-wrap justify-center gap-3 mb-12 max-w-3xl mx-auto">
+      @for (v of views; track v.id) {
+        <button (click)="changeTab($index)"
+                class="flex items-center gap-3 px-6 py-4 rounded-xl text-sm font-semibold transition-all duration-300 select-none
+                       {{ activeIndex === $index 
+                          ? 'bg-prometer-neon text-white shadow-neon' 
+                          : 'bg-prometer-dark border border-prometer-mint/10 text-prometer-mint/80 hover:text-prometer-mint hover:border-prometer-mint/30' 
+                       }}">
+          <span class="font-mono text-xs opacity-60">0{{ $index + 1 }}</span>
+          {{ v.label }}
+        </button>
+      }
+    </div>
+
+    <!-- Active view content -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto text-left">
+      
+      <!-- Features list (Left Column) -->
+      <div class="transition-opacity duration-300" [class.opacity-40]="transitioning">
+        <h3 class="text-xl font-black text-prometer-mint mb-4">Key View Features:</h3>
+        <p class="text-sm text-prometer-mint/70 mb-8 leading-relaxed font-light">
+          {{ views[activeIndex].desc }}
+        </p>
+
+        <div class="space-y-4">
+          @for (f of views[activeIndex].features; track f.text) {
+            <div class="flex items-center gap-4 p-4 rounded-xl border border-prometer-mint/5 bg-prometer-dark/30 backdrop-blur-xl">
+              <!-- Number Indicator -->
+              <span class="text-xs font-mono font-bold text-prometer-neon flex-shrink-0 w-5">0{{ $index + 1 }}.</span>
+              <span class="text-sm text-prometer-mint/80 font-semibold">{{ f.text }}</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- 3D Parallax Screenshot (Right Column) -->
+      <div #imageContainer class="relative flex justify-center w-full" style="perspective: 1200px;">
+        <div class="relative w-full max-w-[500px] aspect-[4/3] rounded-2xl overflow-hidden shadow-neon border border-prometer-mint/10 bg-prometer-dark/50 transition-transform duration-200 ease-out"
+             [style.transform]="'rotateY(' + (mouseX * 6) + 'deg) rotateX(' + (-mouseY * 5) + 'deg)'"
+             style="transform-style: preserve-3d;">
+          
+          <!-- Mockup Browser Header -->
+          <div class="flex items-center gap-2 px-4 py-3 border-b border-prometer-mint/10 bg-prometer-dark/80">
+            <div class="flex gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+            </div>
+            <div class="flex-1 mx-4 flex justify-center">
+              <div class="px-4 py-0.5 rounded-md text-[10px] text-prometer-mint/40 bg-prometer-mint/5 border border-prometer-mint/10 font-mono tracking-wide truncate max-w-[260px]">
+                prometer-sa.com/app/{{ views[activeIndex].id }}
+              </div>
+            </div>
+          </div>
+
+          <!-- Screenshot (Rendering Actual Image Assets) -->
+          <div class="w-full h-[calc(100%-43px)] flex items-center justify-center p-6 bg-gradient-to-b from-prometer-dark to-prometer-deep relative overflow-hidden"
+               [class.py-8]="views[activeIndex].id === 'employee'">
+            
+            <img src="{{ views[activeIndex].image }}" 
+                 alt="{{ views[activeIndex].label }}"
+                 [class]="views[activeIndex].id === 'employee' 
+                          ? 'w-[45%] max-w-[200px] rounded-[1.25rem] shadow-2xl h-auto block transition-all duration-300' 
+                          : 'w-full h-auto block transition-all duration-300'"
+                 [class.scale-[0.95]]="transitioning"
+                 [class.opacity-0]="transitioning"
+                 [class.opacity-100]="!transitioning"
+                 [style.boxShadow]="views[activeIndex].id === 'employee' ? '0 20px 60px rgba(165,55,251,0.3), 0 0 0 3px rgba(165,55,251,0.15)' : ''"
+                 loading="eager">
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

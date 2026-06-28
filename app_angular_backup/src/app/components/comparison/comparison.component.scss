@@ -1,0 +1,9 @@
+:host {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.comparison-row {
+  will-change: transform, opacity;
+}
