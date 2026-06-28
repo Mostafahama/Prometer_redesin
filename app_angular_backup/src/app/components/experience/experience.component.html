@@ -7,9 +7,11 @@
     
     <!-- Title -->
     <div class="text-center mb-12 max-w-2xl mx-auto">
-      <span class="text-prometer-neon text-xs font-bold uppercase tracking-[2.5px] block mb-3">System Dashboards</span>
+      <span class="text-prometer-neon text-xs font-bold uppercase tracking-[2.5px] block mb-3">
+        {{ currentText.badge }}
+      </span>
       <h2 class="text-3xl md:text-4xl font-extrabold text-prometer-mint tracking-tight">
-        Three Integrated Views. One Unified System.
+        {{ currentText.title }}
       </h2>
     </div>
 
@@ -33,7 +35,9 @@
       
       <!-- Features list (Left Column) -->
       <div class="transition-opacity duration-300" [class.opacity-40]="transitioning">
-        <h3 class="text-xl font-black text-prometer-mint mb-4">Key View Features:</h3>
+        <h3 class="text-xl font-black text-prometer-mint mb-4">
+          {{ currentText.featuresHeader }}
+        </h3>
         <p class="text-sm text-prometer-mint/70 mb-8 leading-relaxed font-light">
           {{ views[activeIndex].desc }}
         </p>
@@ -50,20 +54,20 @@
       </div>
 
       <!-- 3D Parallax Screenshot (Right Column) -->
-      <div #imageContainer class="relative flex justify-center w-full" style="perspective: 1200px;">
+      <div #imageContainer class="relative flex justify-center w-full lg:order-last" style="perspective: 1200px;">
         <div class="relative w-full max-w-[500px] aspect-[4/3] rounded-2xl overflow-hidden shadow-neon border border-prometer-mint/10 bg-prometer-dark/50 transition-transform duration-200 ease-out"
              [style.transform]="'rotateY(' + (mouseX * 6) + 'deg) rotateX(' + (-mouseY * 5) + 'deg)'"
              style="transform-style: preserve-3d;">
           
           <!-- Mockup Browser Header -->
-          <div class="flex items-center gap-2 px-4 py-3 border-b border-prometer-mint/10 bg-prometer-dark/80">
-            <div class="flex gap-1.5">
+          <div class="flex items-center gap-2 px-4 py-3 border-b border-prometer-mint/10 bg-prometer-dark/80 justify-start">
+            <div class="flex gap-1.5 flex-row">
               <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
             </div>
             <div class="flex-1 mx-4 flex justify-center">
-              <div class="px-4 py-0.5 rounded-md text-[10px] text-prometer-mint/40 bg-prometer-mint/5 border border-prometer-mint/10 font-mono tracking-wide truncate max-w-[260px]">
+              <div class="px-4 py-0.5 rounded-md text-[10px] text-prometer-mint/40 bg-prometer-mint/5 border border-prometer-mint/10 font-mono tracking-wide truncate max-w-[260px] select-all">
                 prometer-sa.com/app/{{ views[activeIndex].id }}
               </div>
             </div>

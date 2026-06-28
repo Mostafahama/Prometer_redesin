@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GsapService } from '../../services/gsap.service';
+import { LanguageService } from '../../services/language.service';
 
 interface FeatureItem {
   text: string;
@@ -32,13 +33,25 @@ export class ExperienceComponent implements OnInit, OnDestroy {
 
   private triggers: any[] = [];
 
-  // Standalone component views translated to English with screenshots paths
-  public views: ViewItem[] = [
+  public texts = {
+    en: {
+      badge: 'System Dashboards',
+      title: 'Three Integrated Views. One Unified System.',
+      featuresHeader: 'Key View Features:'
+    },
+    ar: {
+      badge: 'لوحات تحكم النظام',
+      title: 'ثلاثة واجهات متكاملة. نظام موحد واحد.',
+      featuresHeader: 'الميزات الرئيسية للواجهة:'
+    }
+  };
+
+  private enViews: ViewItem[] = [
     {
       id: 'admin',
       label: 'Administrator Dashboard',
       desc: 'Complete command center for managers and executives to supervise all field sales activities, regions, and representative metrics.',
-      image: '/images/experience-admin.png',
+      image: 'images/experience-admin.png',
       features: [
         { text: 'Live sell-out performance logging across all pharmacy counters' },
         { text: 'Dynamic GPS map listing all active promoter positions' },
@@ -51,7 +64,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
       id: 'supervisor',
       label: 'Supervisor Workspace',
       desc: 'Dedicated oversight dashboard designed for field supervisors to verify daily promoter visits, attendance, and coach teams.',
-      image: '/images/experience-supervisor.png',
+      image: 'images/experience-supervisor.png',
       features: [
         { text: 'Track real-time promoter team visits and sales achievement' },
         { text: 'Verify visit coordinates via geofenced GPS check-in reports' },
@@ -64,7 +77,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
       id: 'employee',
       label: 'Promoter Mobile App',
       desc: 'Mobile application designed for promoters to record sales, log display compliance, check-in, and review monthly commission achievements.',
-      image: '/images/experience-mobile.png',
+      image: 'images/experience-mobile.png',
       features: [
         { text: 'Geofenced GPS attendance clock-in with selfie confirmation' },
         { text: 'Log counter visits with image uploads for shelf compliance' },
@@ -75,7 +88,57 @@ export class ExperienceComponent implements OnInit, OnDestroy {
     }
   ];
 
-  constructor(private gsapService: GsapService) {}
+  private arViews: ViewItem[] = [
+    {
+      id: 'admin',
+      label: 'لوحة تحكم المدير المسؤول',
+      desc: 'مركز قيادة كامل للمدراء والمسؤولين للإشراف على جميع الأنشطة الميدانية للمبيعات والمناطق ومؤشرات المناديب.',
+      image: 'images/experience-admin.png',
+      features: [
+        { text: 'تسجيل أداء المبيعات الفوري عبر جميع منافذ الصيدليات' },
+        { text: 'خريطة تفاعلية بالـ GPS توضح مواقع المروجين النشطين' },
+        { text: 'قاعدة بيانات موحدة للعملاء مع سجل الزيارات وتقييم العرض' },
+        { text: 'تقارير وتحليلات متقدمة مصممة لدعم القرارات الإدارية' },
+        { text: 'تنبيهات تلقائية في حالة تأخر المندوب أو خروجه عن النطاق الجغرافي' }
+      ]
+    },
+    {
+      id: 'supervisor',
+      label: 'مساحة عمل المشرف الميداني',
+      desc: 'لوحة تحكم مخصصة للمشرفين الميدانيين للتحقق من زيارات المروجين اليومية وحضورهم وتوجيه الفرق.',
+      image: 'images/experience-supervisor.png',
+      features: [
+        { text: 'متابعة زيارات فريق المروجين ونسب تحقيق المبيعات فوراً' },
+        { text: 'التحقق من إحداثيات الزيارة عبر تقارير حضور الـ GPS الجغرافية' },
+        { text: 'تدقيق الحضور بالبصمة الحيوية وإجمالي ساعات العمل اليومية' },
+        { text: 'مقارنة أداء المبيعات الميداني الفعلي مع الأهداف المحددة' },
+        { text: 'رسائل مباشرة ونصائح سريعة لتوجيه المندوبين الأقل أداءً' }
+      ]
+    },
+    {
+      id: 'employee',
+      label: 'تطبيق الهاتف للمروج الميداني',
+      desc: 'تطبيق هاتف ذكي مخصص للمروجين لتسجيل المبيعات وتوثيق حالة منصات العرض، وتسجيل الحضور ومتابعة العمولات.',
+      image: 'images/experience-mobile.png',
+      features: [
+        { text: 'تسجيل حضور بالـ GPS الموثق جغرافياً مع التحقق بالصورة الشخصية' },
+        { text: 'توثيق زيارات العرض بالصور للتحقق من مطابقة الأرفف للمعايير' },
+        { text: 'تسجيل فواتير الطلبات والتحصيلات النقدية والائتمانية فوراً' },
+        { text: 'تتبع تحقيق الأهداف الشهرية والعمولات المستحقة والنشطة' },
+        { text: 'عرض مسارات الزيارات المحسنة لتجنب ضياع الوقت في التنقل' }
+      ]
+    }
+  ];
+
+  public get views() {
+    return this.langService.currentLang === 'en' ? this.enViews : this.arViews;
+  }
+
+  public get currentText() {
+    return this.langService.currentLang === 'en' ? this.texts.en : this.texts.ar;
+  }
+
+  constructor(private gsapService: GsapService, private langService: LanguageService) {}
 
   ngOnInit(): void {}
 

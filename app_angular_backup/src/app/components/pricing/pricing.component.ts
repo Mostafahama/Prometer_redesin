@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GsapService } from '../../services/gsap.service';
+import { LanguageService } from '../../services/language.service';
 
 interface PlanItem {
   name: string;
@@ -24,8 +25,44 @@ export class PricingComponent implements OnInit, OnDestroy {
   public yearlyMode = false;
   private triggers: any[] = [];
 
-  // Pricing plans in English
-  public plans: PlanItem[] = [
+  public texts = {
+    en: {
+      badge: 'Platform Pricing',
+      title: 'Flexible Pricing Plans for Every Team',
+      billedMonthly: 'Billed Monthly',
+      billedAnnually: 'Billed Annually',
+      save20: 'Save 20%',
+      promoTitle: 'Early Bird Special:',
+      promoText: 'Get 20% discount on all plans this month!',
+      promoBtn: 'Contact Sales',
+      popular: 'Popular',
+      sar: 'SAR',
+      perMonth: 'per month',
+      customPrice: 'Custom',
+      customPriceDesc: 'contact us',
+      chooseBtn: 'Choose Plan',
+      contactBtn: 'Contact Sales'
+    },
+    ar: {
+      badge: 'أسعار المنصة',
+      title: 'خطط أسعار مرنة لكل فريق',
+      billedMonthly: 'دفع شهري',
+      billedAnnually: 'دفع سنوي',
+      save20: 'وفر 20%',
+      promoTitle: 'عرض الانضمام المبكر:',
+      promoText: 'احصل على خصم 20% على جميع الخطط هذا الشهر!',
+      promoBtn: 'تواصل مع المبيعات',
+      popular: 'الأكثر شيوعاً',
+      sar: 'ريال',
+      perMonth: 'شهرياً',
+      customPrice: 'مخصص',
+      customPriceDesc: 'اتصل بنا',
+      chooseBtn: 'اختر الخطة',
+      contactBtn: 'تواصل مع المبيعات'
+    }
+  };
+
+  private enPlans: PlanItem[] = [
     {
       name: 'Starter Plan',
       users: 'Up to 10 field promoters',
@@ -83,7 +120,77 @@ export class PricingComponent implements OnInit, OnDestroy {
     }
   ];
 
-  constructor(private gsapService: GsapService) {}
+  private arPlans: PlanItem[] = [
+    {
+      name: 'الباقة الأساسية',
+      users: 'حتى 10 مروجين ميدانيين',
+      monthlyPrice: 299,
+      yearlyPrice: 239,
+      isPopular: false,
+      features: [
+        'تتبع الـ GPS وتسجيل الحضور الميداني',
+        'التحقق اليومي من حضور وانصراف الفريق',
+        'تقارير أداء مبيعات أساسية ومبسطة',
+        'مساحة تخزين سحابية آمنة 5 جيجابايت'
+      ]
+    },
+    {
+      name: 'باقة النمو',
+      users: 'حتى 30 مروجاً ميدانياً',
+      monthlyPrice: 799,
+      yearlyPrice: 639,
+      isPopular: true,
+      features: [
+        'جميع ميزات الباقة الأساسية',
+        'تدقيق وسجلات جرد المخزون على الأرفف',
+        'لوحات تحكم تفاعلية مخصصة للمشرفين',
+        'حساب تلقائي للعمولات التشجيعية للمبيعات',
+        'مساحة تخزين سحابية آمنة 25 جيجابايت'
+      ]
+    },
+    {
+      name: 'الباقة الاحترافية',
+      users: 'حتى 100 مروج ميداني',
+      monthlyPrice: 1499,
+      yearlyPrice: 1199,
+      isPopular: false,
+      features: [
+        'جميع ميزات باقة النمو الميدانية',
+        'تخطيط مسارات الزيارات الذكية للعملاء',
+        'مزامنة وتتبع مباشر لأهداف المبيعات',
+        'تصدير تقارير وتحليلات مخصصة للإدارة',
+        'دعم فني متكامل ذو أولوية 24/7'
+      ]
+    },
+    {
+      name: 'باقة المؤسسات',
+      users: 'أكثر من 100 مروج ميداني',
+      monthlyPrice: 0,
+      yearlyPrice: 0,
+      isPopular: false,
+      features: [
+        'عدد غير محدود من المروجين والمناديب الميدانيين',
+        'استضافة سحابية خاصة وآمنة للمؤسسة',
+        'ربط مباشر مع أنظمة ERP عبر واجهات API',
+        'تطوير وتخصيص ميزات خاصة بطلب العميل',
+        'اتفاقية مستوى خدمة SLA معتمدة ومضمونة'
+      ]
+    }
+  ];
+
+  public get plans() {
+    return this.langService.currentLang === 'en' ? this.enPlans : this.arPlans;
+  }
+
+  public get currentText() {
+    return this.langService.currentLang === 'en' ? this.texts.en : this.texts.ar;
+  }
+
+  public get isAr(): boolean {
+    return this.langService.currentLang === 'ar';
+  }
+
+  constructor(private gsapService: GsapService, private langService: LanguageService) {}
 
   ngOnInit(): void {}
 

@@ -10,6 +10,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LanguageService } from '../../services/language.service';
 
 interface ModuleItem {
   title: string;
@@ -49,8 +50,22 @@ export class EcosystemComponent implements OnInit, AfterViewInit, OnDestroy {
   private isVisible = false;
   private observer: IntersectionObserver | null = null;
 
-  // 10 modules with short labels and single-color icons
-  public modules: ModuleItem[] = [
+  public texts = {
+    en: {
+      badge: 'Technical Ecosystem',
+      title: 'One Platform. Ten Integrated Modules.',
+      desc: 'Each module operates seamlessly together to give you complete field visibility across every retail counter.',
+      hint: 'Hover a module to explore'
+    },
+    ar: {
+      badge: 'المنظومة التقنية',
+      title: 'منصة واحدة. عشرة موديولات متكاملة.',
+      desc: 'يعمل كل موديول بسلاسة وتكامل ليمنحك رؤية ميدانية شاملة عبر كل منافذ البيع بالتجزئة.',
+      hint: 'مرر المؤشر فوق الموديول للاستكشاف'
+    }
+  };
+
+  private enModules: ModuleItem[] = [
     {
       title: 'Sales Logging',
       shortTitle: 'Sales',
@@ -123,7 +138,88 @@ export class EcosystemComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   ];
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  private arModules: ModuleItem[] = [
+    {
+      title: 'تسجيل المبيعات',
+      shortTitle: 'المبيعات',
+      desc: 'تقارير مبيعات فورية يتم تقديمها مباشرة من أرضية المعرض.',
+      color: '#CAE3DE',
+      svgPath: 'M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5 21 12m0 0-17.25 7.5M21 12H3.75'
+    },
+    {
+      title: 'حضور الـ GPS',
+      shortTitle: 'الحضور',
+      desc: 'تسجيل حضور بالـ GPS مع تحديد جغرافي وتأكيد بالصورة الحيوية للوجه.',
+      color: '#CAE3DE',
+      svgPath: 'M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z'
+    },
+    {
+      title: 'تتبع مباشر',
+      shortTitle: 'التتبع الجغرافي',
+      desc: 'مواقع المندوبين المباشرة وتحسين المسارات الديناميكية على الخرائط.',
+      color: '#CAE3DE',
+      svgPath: 'M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z'
+    },
+    {
+      title: 'التحصيلات',
+      shortTitle: 'التحصيل',
+      desc: 'فواتير رقمية، شروط ائتمان، ومطابقة نقدية مباشرة من نقاط البيع.',
+      color: '#CAE3DE',
+      svgPath: 'M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z'
+    },
+    {
+      title: 'جرد المخزون',
+      shortTitle: 'الجرد',
+      desc: 'جرد فوري لمخزون الأرفف وتتبع المنتجات التجميلية النافدة من العرض.',
+      color: '#CAE3DE',
+      svgPath: 'M20.25 7.5 12 12 3.75 7.5M12 12v9m-8.25-13.5v9a2.25 2.25 0 0 0 2.25 2.25h12a2.25 2.25 0 0 0 2.25-2.25v-9'
+    },
+    {
+      title: 'إدارة الأهداف',
+      shortTitle: 'الأهداف',
+      desc: 'إعدادات الأهداف الشهرية للمبيعات مع تتبع تلقائي لمستويات الإنجاز.',
+      color: '#CAE3DE',
+      svgPath: 'M12 3v18M3 12h18M12 12c2.5 0 4.5-2 4.5-4.5S14.5 3 12 3 7.5 5 7.5 7.5 9.5 12 12 12Z'
+    },
+    {
+      title: 'توثيق الزيارات',
+      shortTitle: 'الزيارات',
+      desc: 'التحقق من كل زيارة مجدولة لمنفذ البيع بتوقيت دقيق وسجلات إثبات حضور.',
+      color: '#CAE3DE',
+      svgPath: 'M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5'
+    },
+    {
+      title: 'ملفات العملاء',
+      shortTitle: 'العملاء',
+      desc: 'ملفات كاملة للصيدليات ومنافذ البيع، حدود الائتمان، وسجل المعاملات.',
+      color: '#CAE3DE',
+      svgPath: 'M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z'
+    },
+    {
+      title: 'التقارير التحليلية',
+      shortTitle: 'التقارير',
+      desc: 'لوحات بيانات وتقارير تحليلية مخصصة يتم إنشاؤها تلقائياً للإدارة.',
+      color: '#CAE3DE',
+      svgPath: 'M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v5.25c0 .621-.504 1.125-1.125 1.125h-2.25A1.125 1.125 0 0 1 3 18.375v-5.25ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125v-9.75ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v14.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z'
+    },
+    {
+      title: 'حساب العمولات',
+      shortTitle: 'العمولات',
+      desc: 'حساب تلقائي لعمولات المبيعات بناءً على نسب تحقيق المستهدفات.',
+      color: '#CAE3DE',
+      svgPath: 'M12 6v12m-3-2.818.879.879a3 3 0 0 0 4.242 0 3 3 0 0 0-4.242-4.242 3 3 0 0 1 4.242-4.242 3 3 0 0 1 0 4.242m-1.121-6.712v1.5a3 3 0 1 1-6 0v-1.5'
+    }
+  ];
+
+  public get modules() {
+    return this.langService.currentLang === 'en' ? this.enModules : this.arModules;
+  }
+
+  public get currentText() {
+    return this.langService.currentLang === 'en' ? this.texts.en : this.texts.ar;
+  }
+
+  constructor(private cdr: ChangeDetectorRef, private langService: LanguageService) {}
 
   ngOnInit(): void {
     this.handleResize();
@@ -178,7 +274,10 @@ export class EcosystemComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const tick = (now: number) => {
       const elapsed = now - this.startTime;
-      const angle = (elapsed / revolutionDuration) * 2 * Math.PI;
+      let angle = (elapsed / revolutionDuration) * 2 * Math.PI;
+      if (this.langService.currentLang === 'ar') {
+        angle = -angle;
+      }
 
       const cx = this.sceneSize / 2;
       const cy = this.sceneSize / 2;

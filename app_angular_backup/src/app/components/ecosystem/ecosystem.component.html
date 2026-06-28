@@ -8,12 +8,14 @@
 
       <!-- Heading -->
       <div class="text-center max-w-2xl mx-auto">
-        <span class="text-prometer-neon text-xs font-bold uppercase tracking-[2.5px] block mb-3">Technical Ecosystem</span>
+        <span class="text-prometer-neon text-xs font-bold uppercase tracking-[2.5px] block mb-3">
+          {{ currentText.badge }}
+        </span>
         <h2 class="text-3xl md:text-4xl font-extrabold text-prometer-mint tracking-tight mb-4">
-          One Platform. Ten Integrated Modules.
+          {{ currentText.title }}
         </h2>
         <p class="text-sm text-prometer-mint/60 font-light max-w-lg mx-auto leading-relaxed">
-          Each module operates seamlessly together to give you complete field visibility across every retail counter.
+          {{ currentText.desc }}
         </p>
       </div>
 
@@ -34,7 +36,7 @@
         <!-- Central Man Image (background removed) -->
         <div class="man-layer absolute inset-0 flex items-center justify-center" style="z-index: 6; pointer-events: none;">
           <img
-            src="/assets/3d-design-nobg.webp"
+            src="assets/3d-design-nobg.webp"
             alt="ProMeter Field Operator"
             [style.height.px]="sceneSize * 0.82"
             style="object-fit: contain; filter: drop-shadow(0 20px 50px rgba(165,55,251,0.2));"
@@ -59,10 +61,13 @@
                 [style.width.px]="cardSize"
                 [style.height.px]="cardSize"
                 [class.is-hovered]="hoveredIndex === $index"
+                [style.boxShadow]="hoveredIndex === $index 
+                  ? 'inset 0 1px 1px rgba(255,255,255,0.4), 0 8px 32px rgba(0,0,0,0.45), 0 0 32px rgba(156,63,250,0.4)' 
+                  : 'inset 0 1px 1px rgba(255,255,255,0.25), 0 8px 24px rgba(0,0,0,0.35), 0 0 ' + ((positions[$index].scale - 0.72) / 0.3 * 24) + 'px rgba(156,63,250,' + ((positions[$index].scale - 0.72) / 0.3 * 0.25) + ')'"
               >
                 <!-- Glow behind hovered card -->
                 @if (hoveredIndex === $index) {
-                  <div class="card-glow absolute inset-0 rounded-2xl"
+                  <div class="card-glow absolute inset-0 rounded-2xl animate-pulse"
                        [style.background]="'radial-gradient(circle, ' + mod.color + '22 0%, transparent 70%)'">
                   </div>
                 }
@@ -87,10 +92,10 @@
 
               <!-- Hover Tooltip -->
               @if (hoveredIndex === $index) {
-                <div class="card-tooltip glass-panel absolute left-full top-1/2 -translate-y-1/2 ml-3 p-3 rounded-xl min-w-[180px] text-left shadow-neon-sm z-50 pointer-events-none"
+                <div class="card-tooltip glass-panel absolute left-full rtl:left-auto rtl:right-full top-1/2 -translate-y-1/2 ml-3 rtl:ml-0 rtl:mr-3 p-3 rounded-xl min-w-[180px] text-left rtl:text-right shadow-neon-sm z-50 pointer-events-none"
                      [style.top.px]="positions[$index].top < sceneSize / 2 ? -8 : undefined"
                 >
-                  <div class="flex items-center gap-1.5 mb-1.5">
+                  <div class="flex items-center gap-1.5 mb-1.5 justify-start rtl:justify-end">
                     <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" [style.backgroundColor]="mod.color"></span>
                     <h4 class="text-[11px] font-black text-prometer-mint">{{ mod.title }}</h4>
                   </div>
@@ -105,7 +110,7 @@
 
       <!-- Hint text -->
       <p class="text-prometer-mint/30 text-[10px] tracking-widest uppercase font-bold -mt-4">
-        Hover a module to explore
+        {{ currentText.hint }}
       </p>
 
     </div>

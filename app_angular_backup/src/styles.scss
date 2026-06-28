@@ -130,3 +130,22 @@ html.lenis, html.lenis body {
   position: relative;
   background-color: var(--bg-primary);
 }
+
+/* ── Arabic RTL Typography overrides ── */
+[dir="rtl"] {
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: 'Lalezar', 'IBM Plex Sans Arabic', sans-serif !important;
+    letter-spacing: 0 !important;
+  }
+  
+  body, .font-sans, p, span, a, button, input, textarea, label {
+    font-family: 'IBM Plex Sans Arabic', 'Noto Kufi Arabic', sans-serif !important;
+  }
+
+  .text-left {
+    text-align: right !important;
+  }
+  .text-right {
+    text-align: left !important;
+  }
+}

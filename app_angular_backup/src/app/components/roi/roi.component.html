@@ -7,12 +7,14 @@
     
     <!-- Title -->
     <div class="text-center mb-16 max-w-2xl mx-auto">
-      <span class="text-prometer-neon text-xs font-bold uppercase tracking-[2.5px] block mb-3">ROI Calculator</span>
+      <span class="text-prometer-neon text-xs font-bold uppercase tracking-[2.5px] block mb-3">
+        {{ currentText.badge }}
+      </span>
       <h2 class="text-3xl md:text-4xl font-extrabold text-prometer-mint tracking-tight">
-        Calculate Your ProMeter Impact
+        {{ currentText.title }}
       </h2>
       <p class="text-sm text-prometer-mint/60 mt-4 leading-relaxed font-light">
-        Enter your current field team dimensions and parameters to view estimated efficiency improvements and annual cost savings.
+        {{ currentText.subtitle }}
       </p>
     </div>
 
@@ -21,15 +23,21 @@
       
       <!-- Inputs Column (Left Panel) -->
       <div class="glass-panel p-8 rounded-2xl border border-prometer-mint/10 bg-prometer-dark/30 backdrop-blur-xl flex flex-col justify-between">
-        <h3 class="text-base font-black text-prometer-mint mb-8 border-b border-prometer-mint/5 pb-4">Your Field Team Parameters:</h3>
+        <h3 class="text-base font-black text-prometer-mint mb-8 border-b border-prometer-mint/5 pb-4">
+          {{ isAr ? 'معايير فريقك الميداني:' : 'Your Field Team Parameters:' }}
+        </h3>
         
         <!-- Input Sliders -->
         <div class="space-y-6 flex-1">
           <!-- 1. Employees -->
           <div>
             <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-bold text-prometer-mint/80">Field Promoters / Beauty Advisors:</span>
-              <span class="text-sm font-black text-prometer-neon font-mono">{{ employees }} reps</span>
+              <span class="text-xs font-bold text-prometer-mint/80">
+                {{ currentText.fieldReps }}:
+              </span>
+              <span class="text-sm font-black text-prometer-neon font-mono">
+                {{ employees }} {{ isAr ? 'مروج' : 'reps' }}
+              </span>
             </div>
             <input type="range" min="5" max="500" step="5" [(ngModel)]="employees"
                    class="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-prometer-mint/10"
@@ -39,8 +47,12 @@
           <!-- 2. Supervisors -->
           <div>
             <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-bold text-prometer-mint/80">Field Supervisors:</span>
-              <span class="text-sm font-black text-prometer-neon font-mono">{{ supervisors }} supervisors</span>
+              <span class="text-xs font-bold text-prometer-mint/80">
+                {{ currentText.supervisors }}:
+              </span>
+              <span class="text-sm font-black text-prometer-neon font-mono">
+                {{ supervisors }} {{ isAr ? 'مشرف' : 'supervisors' }}
+              </span>
             </div>
             <input type="range" min="1" max="50" step="1" [(ngModel)]="supervisors"
                    class="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-prometer-mint/10"
@@ -50,8 +62,12 @@
           <!-- 3. Branches -->
           <div>
             <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-bold text-prometer-mint/80">Branches / Pharmacies Covered:</span>
-              <span class="text-sm font-black text-prometer-neon font-mono">{{ branches }} stores</span>
+              <span class="text-xs font-bold text-prometer-mint/80">
+                {{ currentText.branches }}:
+              </span>
+              <span class="text-sm font-black text-prometer-neon font-mono">
+                {{ branches }} {{ isAr ? 'منفذ / صيدلية' : 'stores' }}
+              </span>
             </div>
             <input type="range" min="1" max="50" step="1" [(ngModel)]="branches"
                    class="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-prometer-mint/10"
@@ -61,8 +77,12 @@
           <!-- 4. Monthly Visits -->
           <div>
             <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-bold text-prometer-mint/80">Monthly Visits per Rep:</span>
-              <span class="text-sm font-black text-prometer-neon font-mono">{{ visits }} visits/rep</span>
+              <span class="text-xs font-bold text-prometer-mint/80">
+                {{ currentText.monthlyVisits }}:
+              </span>
+              <span class="text-sm font-black text-prometer-neon font-mono">
+                {{ visits }} {{ isAr ? 'زيارة/مروج' : 'visits/rep' }}
+              </span>
             </div>
             <input type="range" min="10" max="100" step="5" [(ngModel)]="visits"
                    class="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-prometer-mint/10"
@@ -72,8 +92,12 @@
           <!-- 5. Average Salary -->
           <div>
             <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-bold text-prometer-mint/80">Avg Monthly Representative Salary:</span>
-              <span class="text-sm font-black text-prometer-neon font-mono">SAR {{ salary | number }}</span>
+              <span class="text-xs font-bold text-prometer-mint/80">
+                {{ currentText.repSalary }}:
+              </span>
+              <span class="text-sm font-black text-prometer-neon font-mono">
+                {{ salary | number }} {{ currentText.sar }}
+              </span>
             </div>
             <input type="range" min="3000" max="20000" step="500" [(ngModel)]="salary"
                    class="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-prometer-mint/10"
@@ -95,11 +119,15 @@
               </svg>
             </div>
             <div>
-              <p class="text-[10px] text-prometer-mint/45 font-bold uppercase tracking-wider">Productivity Improvement</p>
+              <p class="text-[10px] text-prometer-mint/45 font-bold uppercase tracking-wider">
+                {{ currentText.productivityGain }}
+              </p>
               <p class="text-lg font-black text-prometer-mint mt-0.5">{{ productivityGain }}%</p>
             </div>
           </div>
-          <span class="text-[10px] text-prometer-mint/60 font-light">Increase in active field coverage</span>
+          <span class="text-[10px] text-prometer-mint/60 font-light">
+            {{ isAr ? 'زيادة التغطية الميدانية النشطة' : 'Increase in active field coverage' }}
+          </span>
         </div>
 
         <!-- 2. Time Saved -->
@@ -111,11 +139,15 @@
               </svg>
             </div>
             <div>
-              <p class="text-[10px] text-prometer-mint/45 font-bold uppercase tracking-wider">Monitoring Time Saved</p>
+              <p class="text-[10px] text-prometer-mint/45 font-bold uppercase tracking-wider">
+                {{ currentText.supervisionTimeSaved }}
+              </p>
               <p class="text-lg font-black text-prometer-mint mt-0.5">{{ timeSaved }}%</p>
             </div>
           </div>
-          <span class="text-[10px] text-prometer-mint/60 font-light">Time saved from manual follow-ups</span>
+          <span class="text-[10px] text-prometer-mint/60 font-light">
+            {{ isAr ? 'ساعات موفرة من المتابعات اليدوية' : 'Time saved from manual follow-ups' }}
+          </span>
         </div>
 
         <!-- 3. Compliance -->
@@ -127,11 +159,15 @@
               </svg>
             </div>
             <div>
-              <p class="text-[10px] text-prometer-mint/45 font-bold uppercase tracking-wider">Visit Compliance accuracy</p>
+              <p class="text-[10px] text-prometer-mint/45 font-bold uppercase tracking-wider">
+                {{ currentText.complianceIncrease }}
+              </p>
               <p class="text-lg font-black text-prometer-mint mt-0.5">{{ complianceGain }}%</p>
             </div>
           </div>
-          <span class="text-[10px] text-prometer-mint/60 font-light">Driven by verified GPS check-ins</span>
+          <span class="text-[10px] text-prometer-mint/60 font-light">
+            {{ isAr ? 'مدعوم بنظام تحقق الـ GPS' : 'Driven by verified GPS check-ins' }}
+          </span>
         </div>
 
         <!-- 4. Estimated Savings (Highlighted Card) -->
@@ -143,12 +179,18 @@
               </svg>
             </div>
             <div>
-              <p class="text-[10px] text-prometer-mint font-bold uppercase tracking-wider">Estimated Annual Savings:</p>
-              <p class="text-2xl sm:text-3xl font-black text-prometer-mint mt-1">SAR {{ annualValue | number }}</p>
+              <p class="text-[10px] text-prometer-mint font-bold uppercase tracking-wider">
+                {{ currentText.estimatedAnnualValue }}:
+              </p>
+              <p class="text-2xl sm:text-3xl font-black text-prometer-mint mt-1">
+                {{ annualValue | number }} {{ currentText.sar }}
+              </p>
             </div>
           </div>
           <p class="text-[10px] text-prometer-mint/55 mt-4 font-light leading-relaxed">
-            * This estimation is calculated based on productivity increments, supervisor hours saved from paper summaries, and biometric geolocated verification of hours worked inside counters.
+            {{ isAr 
+              ? '* يتم احتساب هذا التقدير بناءً على معدلات زيادة إنتاجية المناديب، وساعات المشرف الموفرة من ملخصات التقارير اليدوية، والتحقق الجغرافي الحيوي لساعات العمل الفعلية داخل منصات التجميل.' 
+              : '* This estimation is calculated based on productivity increments, supervisor hours saved from paper summaries, and biometric geolocated verification of hours worked inside counters.' }}
           </p>
         </div>
 

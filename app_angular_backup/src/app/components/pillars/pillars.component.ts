@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GsapService } from '../../services/gsap.service';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-pillars',
@@ -14,8 +15,20 @@ export class PillarsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private triggers: any[] = [];
 
-  // Card items matching user requirements exactly in English
-  public cards = [
+  public texts = {
+    en: {
+      badge: 'Platform Pillars',
+      title: 'Digital Visibility & Field Intelligence',
+      footerIndicator: 'Full Visibility'
+    },
+    ar: {
+      badge: 'أركان المنصة',
+      title: 'الرؤية الرقمية والذكاء الميداني',
+      footerIndicator: 'رؤية ميدانية شاملة'
+    }
+  };
+
+  private enCards = [
     {
       bgClass: 'bg-prometer-neon text-white shadow-neon',
       accentText: 'Systematic & Clear',
@@ -36,7 +49,36 @@ export class PillarsComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   ];
 
-  constructor(private gsapService: GsapService) {}
+  private arCards = [
+    {
+      bgClass: 'bg-prometer-neon text-white shadow-neon',
+      accentText: 'منظم وواضح',
+      text: 'أداء منظم وشفاف',
+      description: 'وداعاً للفوضى والمتابعات اليدوية. تضمن الحلول البرمجية الذكية تنظيم وتوثيق أداء المروجين في منافذ البيع بالتجزئة في الوقت الفعلي.'
+    },
+    {
+      bgClass: 'bg-prometer-dark border border-prometer-mint/10 text-prometer-mint shadow-glass hover:border-prometer-neon/50',
+      accentText: 'مصداقية البيانات',
+      text: 'حقيقة البيانات للقرارات الصحيحة',
+      description: 'تتبع مباشر عبر الخرائط التفاعلية والتحقق من الحضور باستخدام إثباتات الـ GPS الحيوية والصور لضمان مصداقية كل تقرير مبيعات ميداني.'
+    },
+    {
+      bgClass: 'bg-prometer-mint text-prometer-dark shadow-lg',
+      accentText: 'تنظيم المبيعات الميدانية',
+      text: 'تنظيم فرق العمل الميدانية للتجميل',
+      description: 'تخصيص كامل لأهداف المروجين، وتتبع العمولات، وجرد المخزون للعلامات التجارية العالمية والمحلية في قطاع التجميل بالشرق الأوسط.'
+    }
+  ];
+
+  public get cards() {
+    return this.langService.currentLang === 'en' ? this.enCards : this.arCards;
+  }
+
+  public get currentText() {
+    return this.langService.currentLang === 'en' ? this.texts.en : this.texts.ar;
+  }
+
+  constructor(private gsapService: GsapService, private langService: LanguageService) {}
 
   ngOnInit(): void {}
 

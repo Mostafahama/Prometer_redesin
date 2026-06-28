@@ -3,38 +3,108 @@
   <div class="absolute inset-0 bg-[linear-gradient(rgba(165,55,251,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(165,55,251,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none -z-10"></div>
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] rounded-full bg-prometer-neon/5 blur-[120px] pointer-events-none -z-10"></div>
 
-  <div class="container mx-auto px-6 relative z-10 w-full max-w-5xl">
+  <div class="container mx-auto px-6 relative z-10 w-full text-center">
     
     <!-- Section Title & Logo -->
-    <div class="text-center mb-16 max-w-2xl mx-auto">
-      <div class="inline-block p-4 rounded-3xl bg-prometer-dark border border-prometer-mint/10 shadow-glass mb-6">
-        <img src="/assets/prometer-eco-logo.webp" class="anim-logo h-16 w-auto object-contain mx-auto animate-[spin_12s_linear_infinite]" alt="ProMeter Logo" style="filter: invert(1) brightness(2) drop-shadow(0 0 10px rgba(255,255,255,0.3));">
-      </div>
-      <span class="text-prometer-neon text-xs font-bold uppercase tracking-[2.5px] block mb-3">Core Values</span>
-      <h2 class="text-3xl md:text-4xl font-extrabold text-prometer-mint tracking-tight">Our Analytical & Operational Philosophy</h2>
-      <p class="text-sm text-prometer-mint/60 mt-4 leading-relaxed font-light">Five core principles driving the daily performance of cosmetics promoters and advisors in the field.</p>
+    <div class="text-center mb-10 max-w-2xl mx-auto">
+      <span class="text-prometer-neon text-xs font-bold uppercase tracking-[2.5px] block mb-3">
+        {{ currentText.badge }}
+      </span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-prometer-mint tracking-tight mb-4">
+        {{ currentText.title }}
+      </h2>
+      <p class="text-sm text-prometer-mint/60 font-light leading-relaxed max-w-lg mx-auto">
+        {{ currentText.subtitle }}
+      </p>
     </div>
 
-    <!-- Cards Layout: Modern Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-      @for (val of values; track $index) {
-        <div class="value-item bg-prometer-dark/30 backdrop-blur-xl p-8 rounded-2xl border border-prometer-mint/10 transition-all duration-300 hover:-translate-y-1 hover:border-prometer-mint/30 hover:shadow-neon text-left
-                    {{ $index < 2 ? 'md:col-span-1 lg:col-span-1' : ($index === 2 ? 'md:col-span-2 lg:col-span-1' : 'md:col-span-1 lg:col-span-1') }}
-                    {{ $index === 3 || $index === 4 ? 'lg:col-span-1' : '' }}
-                    {{ $index === 4 ? 'lg:col-start-2' : '' }}">
-          <div class="flex items-center gap-4 mb-4">
-            <span class="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold bg-prometer-mint/10 text-prometer-mint border border-prometer-mint/20">
-              0{{ $index + 1 }}
-            </span>
-            <div>
-              <h3 class="text-lg font-black text-prometer-mint leading-tight">{{ val.title }}</h3>
-            </div>
-          </div>
-          <p class="text-xs text-prometer-mint/70 leading-relaxed font-light">
-            {{ val.desc }}
+    <!-- 5-Petal Diagram Layout -->
+    <div class="flex flex-col items-center justify-center max-w-4xl mx-auto mt-12 gap-8">
+      
+      <!-- Interactive SVG Petal Ring -->
+      <div class="relative w-full max-w-[400px] aspect-square flex items-center justify-center">
+        
+        <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full overflow-visible">
+          <defs>
+            <!-- Inactive Petal Stroke Gradient -->
+            <linearGradient id="stroke-inactive" x1="200" y1="100" x2="200" y2="300" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="rgba(202,227,222,0.15)" />
+              <stop offset="100%" stop-color="rgba(165,55,251,0.15)" />
+            </linearGradient>
+            
+            <!-- Active Petal Fill Gradient -->
+            <linearGradient id="fill-active" x1="200" y1="130" x2="200" y2="270" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="rgba(165, 55, 251, 0.16)" />
+              <stop offset="100%" stop-color="rgba(156, 63, 250, 0.04)" />
+            </linearGradient>
+
+            <!-- Active Petal Stroke Gradient -->
+            <linearGradient id="stroke-active-grad" x1="200" y1="130" x2="200" y2="270" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#CAE3DE" />
+              <stop offset="100%" stop-color="#A537FB" />
+            </linearGradient>
+          </defs>
+
+          <!-- Central core branding ring -->
+          <circle cx="200" cy="200" r="45" stroke="rgba(202,227,222,0.12)" stroke-width="1" stroke-dasharray="4 4" />
+          <circle cx="200" cy="200" r="18" fill="rgba(165,55,251,0.08)" stroke="rgba(165,55,251,0.25)" stroke-width="1.5" />
+          
+          <!-- 5 Radial Interactive Petals -->
+          @for (val of currentTextValues; track $index) {
+            <g class="interactive-petal cursor-pointer"
+               (mouseenter)="onPetalHover($index)"
+               (mouseleave)="onPetalLeave()"
+               [attr.transform]="'rotate(' + ($index * 72) + ', 200, 200)'">
+              
+              <!-- The Petal Shape -->
+              <path d="M 200 130 C 235 130 265 170 280 200 C 265 230 235 270 200 270 C 165 270 135 230 120 200 C 135 170 165 130 200 130 Z"
+                    [attr.fill]="activeIndex === $index ? 'url(#fill-active)' : 'rgba(255,255,255,0.01)'"
+                    [attr.stroke]="activeIndex === $index ? 'url(#stroke-active-grad)' : 'url(#stroke-inactive)'"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                    class="petal-path transition-all duration-300"
+                    style="transform-origin: 200px 200px;"
+                    [style.transform]="activeIndex === $index ? 'scale(1.05)' : 'scale(1)'" />
+              
+              <!-- Small Number inside petal -->
+              <text x="200" y="165"
+                    fill="#CAE3DE"
+                    [attr.opacity]="activeIndex === $index ? '1' : '0.4'"
+                    font-size="12"
+                    font-weight="bold"
+                    text-anchor="middle"
+                    class="transition-opacity duration-300 select-none"
+                    [attr.transform]="'rotate(' + (-$index * 72) + ', 200, 161)'">
+                0{{ $index + 1 }}
+              </text>
+            </g>
+          }
+        </svg>
+
+        <!-- Static Logo Icon watermark in the exact center -->
+        <div class="absolute w-10 h-10 flex items-center justify-center pointer-events-none select-none" style="z-index: 5;">
+          <img src="assets/prometer-eco-logo.webp" alt="ProMeter Logo" class="w-6 h-6 object-contain opacity-40" style="filter: invert(1) brightness(2);">
+        </div>
+
+      </div>
+
+      <!-- Shared Text Panel (crossfade text card) -->
+      <div class="w-full max-w-xl glass-panel p-8 rounded-2xl border border-prometer-mint/10 bg-prometer-dark/30 backdrop-blur-xl min-h-[160px] flex flex-col justify-center text-center transition-all duration-300">
+        <div class="flex flex-col items-center justify-center transition-opacity duration-200"
+             [class.opacity-100]="textOpacity === 1"
+             [class.opacity-0]="textOpacity === 0">
+          <span class="text-prometer-neon text-[10px] font-mono tracking-wider uppercase mb-2 block font-bold">
+            {{ isAr ? 'المبدأ الأساسي' : 'Core Principle' }} 0{{ activeIndex + 1 }}
+          </span>
+          <h3 class="text-lg font-black text-prometer-mint mb-2 leading-tight">
+            {{ currentTextValues[activeIndex].title }}
+          </h3>
+          <p class="text-xs text-prometer-mint/70 leading-relaxed font-light max-w-md">
+            {{ currentTextValues[activeIndex].desc }}
           </p>
         </div>
-      }
+      </div>
+
     </div>
 
   </div>

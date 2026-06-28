@@ -35,37 +35,37 @@
   </div>
 
   <!-- 4. Content Container -->
-  <div class="container mx-auto px-6 relative w-full" style="z-index: 10;">
+  <div class="container mx-auto px-6 relative w-full text-left rtl:text-right" style="z-index: 10;">
     <div class="grid lg:grid-cols-2 gap-12 items-center">
       
-      <!-- Left Column: English Text -->
-      <div class="flex flex-col items-start text-left max-w-xl">
+      <!-- Left/Right Column: Text Content -->
+      <div class="flex flex-col items-start rtl:items-start text-left rtl:text-right max-w-xl">
         <!-- Badge Indicator & Logo -->
-        <div class="flex flex-col items-start gap-6 mb-8">
+        <div class="flex flex-col items-start rtl:items-start gap-6 mb-8">
           <img src="assets/prometer-eco-logo.webp" alt="ProMeter Logo" class="h-16 w-auto object-contain" style="filter: invert(1) brightness(2) drop-shadow(0 0 10px rgba(255,255,255,0.3));">
           
           <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-prometer-neon/10 border border-prometer-neon/20 backdrop-blur-md">
             <span class="w-2.5 h-2.5 rounded-full bg-prometer-neon animate-pulse shadow-[0_0_10px_#A537FB]"></span>
             <span class="text-prometer-mint text-[10px] font-bold uppercase tracking-[2px]">
-              Field Sales Intelligence Platform
+              {{ currentText.badge }}
             </span>
           </div>
         </div>
 
         <!-- H1 Main Cinematic Title -->
         <h1 #heroTitle class="text-4xl sm:text-5xl lg:text-[3.4rem] font-black text-prometer-mint leading-[1.05] mb-6 select-none">
-          One Platform.<br>
-          <span class="text-white">Total Field Visibility.</span>
+          {{ currentText.title1 }}<br>
+          <span class="text-white">{{ currentText.title2 }}</span>
         </h1>
 
         <!-- H2 Subtitle -->
         <h2 #heroSubtitle class="text-lg sm:text-xl font-bold text-prometer-mint/90 mb-6 tracking-wide uppercase">
-          Complete Control. One Touch.
+          {{ currentText.subtitle }}
         </h2>
 
         <!-- Description Paragraph -->
         <p #heroText class="text-sm sm:text-base text-prometer-mint/70 leading-relaxed mb-10 font-light">
-          Track and optimize field promoters in real-time across Middle Eastern pharmacies and retail counters. Verify employee attendance via GPS biometric verification, trace cosmetic shelf stock levels, and collect direct sales data to multiply operational revenue based on hard facts.
+          {{ currentText.desc }}
         </p>
 
         <!-- Call To Action Buttons -->
@@ -75,8 +75,8 @@
              class="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-xl px-7 py-3.5 font-bold text-sm tracking-wide text-white transition-all duration-300 shadow-neon hover:shadow-neon-lg"
              style="background: linear-gradient(135deg, #9C3FFA 0%, #7B2FD4 100%);">
             <span class="relative z-10 flex items-center gap-2">
-              Request Demo
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200">
+              {{ currentText.requestDemo }}
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180 transition-transform duration-200">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
               </svg>
             </span>
@@ -92,11 +92,11 @@
              onmouseleave="this.style.borderColor='rgba(156,63,250,0.25)'; this.style.background='rgba(255,255,255,0.04)';">
             <span class="w-7 h-7 rounded-full flex items-center justify-center"
                   style="background: rgba(156,63,250,0.15); border: 1px solid rgba(156,63,250,0.3);">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-prometer-neon ml-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-prometer-neon ml-0.5 rtl:mr-0.5 rtl:ml-0 rtl:rotate-180">
                 <path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clip-rule="evenodd" />
               </svg>
             </span>
-            Watch Platform
+            {{ currentText.watchPlatform }}
           </a>
         </div>
 
@@ -123,14 +123,14 @@
           </div>
 
           <!-- Floating: Supervisor Dashboard - top-right overlay -->
-          <div #floatSupervisor class="absolute -top-4 -right-8 w-[55%] rounded-xl overflow-hidden"
-               style="transform: translateZ(65px) rotate(4deg); box-shadow: 0 15px 50px rgba(0,0,0,0.5); transition: transform 0.15s ease-out;">
+          <div #floatSupervisor class="absolute -top-4 -right-8 rtl:-right-auto rtl:-left-8 w-[55%] rounded-xl overflow-hidden"
+               style="transform: translateZ(65px) rotate(4deg) lg:rotate(4deg) rtl:rotate(-4deg); box-shadow: 0 15px 50px rgba(0,0,0,0.5); transition: transform 0.15s ease-out;">
             <img src="images/supervisor-dashboard.png" alt="Supervisor Dashboard" class="w-full h-auto block" loading="lazy">
           </div>
 
           <!-- Floating: Mobile App - bottom-left overlay -->
-          <div #floatPhone class="absolute -bottom-6 -left-6 w-[22%] rounded-[1.5rem] overflow-hidden"
-               style="transform: translateZ(55px) rotate(-6deg); box-shadow: 0 15px 50px rgba(0,0,0,0.5); transition: transform 0.15s ease-out;">
+          <div #floatPhone class="absolute -bottom-6 -left-6 rtl:-left-auto rtl:-right-6 w-[22%] rounded-[1.5rem] overflow-hidden"
+               style="transform: translateZ(55px) rotate(-6deg) lg:rotate(-6deg) rtl:rotate(6deg); box-shadow: 0 15px 50px rgba(0,0,0,0.5); transition: transform 0.15s ease-out;">
             <img src="images/mobile-app.png" alt="Mobile App" class="w-full h-auto block" loading="lazy">
           </div>
           
@@ -140,7 +140,9 @@
         <div class="mt-8 flex items-center justify-center">
           <div class="flex items-center gap-2 px-5 py-2 rounded-full border border-prometer-mint/10 bg-[#110321]/80 backdrop-blur-xl">
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span class="text-[9px] font-mono tracking-wider uppercase text-prometer-mint/60">Real Platform Screenshots</span>
+            <span class="text-[9px] font-mono tracking-wider uppercase text-prometer-mint/60">
+              {{ currentText.screenshots }}
+            </span>
           </div>
         </div>
       </div>

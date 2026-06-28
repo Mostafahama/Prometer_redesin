@@ -7,9 +7,11 @@
     
     <!-- Title -->
     <div class="text-center mb-12 max-w-2xl mx-auto">
-      <span class="text-prometer-neon text-xs font-bold uppercase tracking-[2.5px] block mb-3">Subscription Plans</span>
+      <span class="text-prometer-neon text-xs font-bold uppercase tracking-[2.5px] block mb-3">
+        {{ currentText.badge }}
+      </span>
       <h2 class="text-3xl md:text-4xl font-extrabold text-prometer-mint tracking-tight mb-6">
-        Flexible Pricing Matched to Your Field Team Size
+        {{ currentText.title }}
       </h2>
       
       <!-- Switch Toggle -->
@@ -17,18 +19,18 @@
         <button (click)="yearlyMode = false"
                 class="px-5 py-2 rounded-lg text-xs font-bold transition-all duration-300 select-none
                        {{ !yearlyMode ? 'bg-prometer-neon text-white' : 'text-prometer-mint/60 hover:text-prometer-mint' }}">
-          Monthly Billing
+          {{ currentText.billedMonthly }}
         </button>
         <button (click)="yearlyMode = true"
                 class="px-5 py-2 rounded-lg text-xs font-bold transition-all duration-300 select-none
                        {{ yearlyMode ? 'bg-prometer-neon text-white' : 'text-prometer-mint/60 hover:text-prometer-mint' }}">
-          Annual Billing <span class="text-[9px] opacity-80">(Save 20%)</span>
+          {{ currentText.billedAnnually }} <span class="text-[9px] opacity-80">({{ currentText.save20 }})</span>
         </button>
       </div>
     </div>
 
     <!-- Launch Promotion Offer Banner -->
-    <div class="max-w-5xl mx-auto mb-10 rounded-2xl border border-prometer-neon/30 p-6 flex flex-col md:flex-row items-center justify-between gap-4 bg-gradient-to-r from-prometer-card to-prometer-dark shadow-neon-sm text-left">
+    <div class="max-w-5xl mx-auto mb-10 rounded-2xl border border-prometer-neon/30 p-6 flex flex-col md:flex-row items-center justify-between gap-4 bg-gradient-to-r from-prometer-card to-prometer-dark shadow-neon-sm text-left rtl:text-right">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl bg-prometer-neon/15 border border-prometer-neon/20 flex items-center justify-center flex-shrink-0">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-prometer-neon animate-pulse">
@@ -36,20 +38,28 @@
           </svg>
         </div>
         <div>
-          <h4 class="text-sm font-black text-prometer-mint">Middle East Launch Promotion:</h4>
-          <p class="text-xs text-prometer-mint/60 font-light mt-0.5">Receive complimentary configuration and training workshops when activating any annual plan.</p>
+          <h4 class="text-sm font-black text-prometer-mint">
+            {{ isAr ? 'عرض إطلاق منصة بروميتر في الشرق الأوسط:' : 'Middle East Launch Promotion:' }}
+          </h4>
+          <p class="text-xs text-prometer-mint/60 font-light mt-0.5">
+            {{ isAr ? 'احصل على ورش عمل وتدريب مجاني وتهيئة كاملة للنظام عند تفعيل أي خطة سنوية.' : 'Receive complimentary configuration and training workshops when activating any annual plan.' }}
+          </p>
         </div>
       </div>
       <div class="flex flex-wrap gap-2 justify-center">
-        <span class="px-3 py-1 rounded bg-prometer-neon/20 border border-prometer-neon/30 text-white text-[10px] font-bold">Auto Commission Sync</span>
-        <span class="px-3 py-1 rounded bg-prometer-neon/20 border border-prometer-neon/30 text-white text-[10px] font-bold">Priority Setup Support</span>
+        <span class="px-3 py-1 rounded bg-prometer-neon/20 border border-prometer-neon/30 text-white text-[10px] font-bold">
+          {{ isAr ? 'مزامنة تلقائية للعمولات' : 'Auto Commission Sync' }}
+        </span>
+        <span class="px-3 py-1 rounded bg-prometer-neon/20 border border-prometer-neon/30 text-white text-[10px] font-bold">
+          {{ isAr ? 'دعم فني خاص للتهيئة' : 'Priority Setup Support' }}
+        </span>
       </div>
     </div>
 
     <!-- Pricing Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto items-stretch">
       @for (plan of plans; track plan.name) {
-        <div class="relative p-6 rounded-2xl flex flex-col justify-between transition-all duration-300 cursor-pointer select-none group text-left
+        <div class="relative p-6 rounded-2xl flex flex-col justify-between transition-all duration-300 cursor-pointer select-none group text-left rtl:text-right
                     {{ plan.isPopular 
                        ? 'border-2 border-prometer-neon bg-prometer-neon/[0.04] shadow-neon hover:shadow-neon-lg' 
                        : 'border border-prometer-mint/10 bg-prometer-dark/30 backdrop-blur-xl shadow-glass hover:border-prometer-neon/40' 
@@ -58,7 +68,7 @@
           <!-- Best seller indicator -->
           @if (plan.isPopular) {
             <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-prometer-neon text-white text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-wider select-none">
-              Most Popular
+              {{ currentText.popular }}
             </span>
           }
 
@@ -70,17 +80,23 @@
             <!-- Price -->
             <div class="mb-6 pb-6 border-b border-prometer-mint/5">
               @if (plan.monthlyPrice === 0) {
-                <span class="text-2xl font-black text-prometer-mint">Contact Us</span>
+                <span class="text-2xl font-black text-prometer-mint">
+                  {{ isAr ? 'اتصل بنا' : 'Contact Us' }}
+                </span>
               } @else {
-                <div class="flex items-baseline gap-1.5">
+                <div class="flex items-baseline gap-1.5 justify-start">
                   <span class="text-3xl font-black text-prometer-mint">
-                    SAR {{ (yearlyMode ? plan.yearlyPrice : plan.monthlyPrice) | number }}
+                    {{ isAr 
+                       ? (((yearlyMode ? plan.yearlyPrice : plan.monthlyPrice) | number) + ' ' + currentText.sar) 
+                       : (currentText.sar + ' ' + ((yearlyMode ? plan.yearlyPrice : plan.monthlyPrice) | number)) }}
                   </span>
-                  <span class="text-[10px] text-prometer-mint/45">/rep/month</span>
+                  <span class="text-[10px] text-prometer-mint/45">/{{ isAr ? 'مروج/شهرياً' : 'rep/month' }}</span>
                 </div>
                 @if (yearlyMode) {
                   <p class="text-[10px] text-prometer-neon font-bold mt-1">
-                    Save SAR {{ ((plan.monthlyPrice - plan.yearlyPrice) * 12) | number }} yearly
+                    {{ isAr 
+                       ? ('وفر ' + (((plan.monthlyPrice - plan.yearlyPrice) * 12) | number) + ' ريال سنوياً') 
+                       : ('Save ' + currentText.sar + ' ' + (((plan.monthlyPrice - plan.yearlyPrice) * 12) | number) + ' yearly') }}
                   </p>
                 }
               }
@@ -105,7 +121,9 @@
                             ? 'bg-prometer-neon text-white shadow-neon hover:bg-prometer-neon/90' 
                             : 'border border-prometer-mint/15 text-prometer-mint hover:bg-prometer-mint/5 hover:border-prometer-mint/30' 
                          }}">
-            {{ plan.monthlyPrice === 0 ? 'Request Quote' : 'Start Free Trial' }}
+            {{ plan.monthlyPrice === 0 
+               ? (isAr ? 'طلب تسعيرة خاصة' : 'Request Quote') 
+               : (isAr ? 'ابدأ تجربة مجانية' : 'Start Free Trial') }}
           </button>
 
         </div>

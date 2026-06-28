@@ -6,8 +6,12 @@
     
     <!-- Section Title -->
     <div class="text-center mb-16 max-w-2xl mx-auto">
-      <span class="text-prometer-neon text-xs font-bold uppercase tracking-[2.5px] block mb-3">Platform Pillars</span>
-      <h2 class="text-3xl md:text-4xl font-extrabold text-prometer-mint tracking-tight">Digital Visibility & Field Intelligence</h2>
+      <span class="text-prometer-neon text-xs font-bold uppercase tracking-[2.5px] block mb-3">
+        {{ currentText.badge }}
+      </span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-prometer-mint tracking-tight">
+        {{ currentText.title }}
+      </h2>
     </div>
 
     <!-- Cards Grid -->
@@ -33,9 +37,11 @@
 
           <!-- Bottom Footer Icon -->
           <div class="flex items-center justify-between mt-10 pt-6 border-t border-white/5">
-            <span class="text-xs font-semibold opacity-60">Full Visibility</span>
+            <span class="text-xs font-semibold opacity-60">
+              {{ currentText.footerIndicator }}
+            </span>
             <div class="w-8 h-8 rounded-full flex items-center justify-center bg-black/10">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 rtl:rotate-180 transition-transform">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
               </svg>
             </div>

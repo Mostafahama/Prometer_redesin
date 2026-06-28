@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GsapService } from '../../services/gsap.service';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-hero',
@@ -27,8 +28,30 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
   private timeline: any;
   private mouseMoveHandler: any;
 
-  // Real localized cosmetic & beauty KPIs (English)
-  public kpis = [
+  public texts = {
+    en: {
+      title1: 'One Platform.',
+      title2: 'Total Field Visibility.',
+      subtitle: 'Complete Control. One Touch.',
+      desc: 'Track and optimize field promoters in real-time across Middle Eastern pharmacies and retail counters. Verify employee attendance via GPS biometric verification, trace cosmetic shelf stock levels, and collect direct sales data to multiply operational revenue based on hard facts.',
+      requestDemo: 'Request Demo',
+      watchPlatform: 'Watch Platform',
+      badge: 'Field Sales Intelligence Platform',
+      screenshots: 'Real Platform Screenshots'
+    },
+    ar: {
+      title1: 'منصة واحدة.',
+      title2: 'رؤية شاملة.. أداء بلا حدود.',
+      subtitle: 'سيطرة كاملة بلمسة واحدة',
+      desc: 'تتبع وحسّن أداء المروجين الميدانيين في الوقت الفعلي عبر الصيدليات ومنافذ التجزئة في الشرق الأوسط. تحقق من حضور الموظفين عبر نظام تحديد المواقع الجغرافي وبصمة الميدان، وتتبع مستويات مخزون مستحضرات التجميل على الأرفف، واجمع بيانات المبيعات المباشرة لمضاعفة أرباحك التشغيلية استناداً إلى الحقائق.',
+      requestDemo: 'طلب تجربة المنصة',
+      watchPlatform: 'شاهد المنصة',
+      badge: 'منصة ذكاء المبيعات الميدانية',
+      screenshots: 'لقطات شاشة حقيقية للمنصة'
+    }
+  };
+
+  private enKpis = [
     { label: 'Real-Time Sell-Out', val: '+47%', desc: 'Instant sales logging' },
     { label: 'Live GPS Tracking', val: '100%', desc: 'Promoter verification' },
     { label: 'Instant Analytics', val: '24/7', desc: 'Auto dashboard refresh' },
@@ -36,7 +59,23 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
     { label: 'Decision Making', val: '3x Faster', desc: 'Direct market response' },
   ];
 
-  constructor(private gsapService: GsapService) {}
+  private arKpis = [
+    { label: 'مبيعات فورية', val: '+47%', desc: 'تسجيل مبيعات لحظي' },
+    { label: 'تتبع مباشر بالـ GPS', val: '100%', desc: 'التحقق من المروجين' },
+    { label: 'تحليلات لحظية', val: '24/7', desc: 'تحديث تلقائي للوحة البيانات' },
+    { label: 'تغطية شاملة', val: '360°', desc: 'تقارير زيارات مفصلة' },
+    { label: 'اتخاذ القرار', val: '3x أسرع', desc: 'استجابة مباشرة للسوق' },
+  ];
+
+  public get kpis() {
+    return this.langService.currentLang === 'en' ? this.enKpis : this.arKpis;
+  }
+
+  public get currentText() {
+    return this.langService.currentLang === 'en' ? this.texts.en : this.texts.ar;
+  }
+
+  constructor(private gsapService: GsapService, private langService: LanguageService) {}
 
   ngOnInit(): void {}
 

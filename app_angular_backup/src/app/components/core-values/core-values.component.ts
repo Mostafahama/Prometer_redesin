@@ -1,6 +1,7 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GsapService } from '../../services/gsap.service';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-core-values',
@@ -12,9 +13,25 @@ import { GsapService } from '../../services/gsap.service';
 export class CoreValuesComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('valuesSection', { static: true }) valuesSection!: ElementRef<HTMLElement>;
 
-  private triggers: any[] = [];
+  public activeIndex = 0;
+  public textOpacity = 1;
+  private autoCycleInterval: any;
+  private resumeTimeout: any;
 
-  public values = [
+  public texts = {
+    en: {
+      badge: 'Core Values',
+      title: 'Our Analytical & Operational Philosophy',
+      subtitle: 'Five core principles driving the daily performance of cosmetics promoters and advisors in the field.'
+    },
+    ar: {
+      badge: 'القيم الأساسية',
+      title: 'فلسفتنا التحليلية والتشغيلية',
+      subtitle: 'خمسة مبادئ أساسية تقود الأداء اليومي لمروجي ومستشاري مستحضرات التجميل في الميدان.'
+    }
+  };
+
+  private enValues = [
     {
       title: 'Clarity',
       desc: 'Full transparency in tracking promoter sales activities and daily display audits without any clutter.'
@@ -37,54 +54,103 @@ export class CoreValuesComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   ];
 
-  constructor(private gsapService: GsapService) {}
+  private arValues = [
+    {
+      title: 'الوضوح (Clarity)',
+      desc: 'شفافية كاملة في تتبع مبيعات المروجين وجولات تدقيق العرض اليومية دون أي تعقيد.'
+    },
+    {
+      title: 'الدقة (Precision)',
+      desc: 'تحديد المواقع الجغرافي والتحقق الفوري لمنع التلاعب بالبيانات وإثبات وجود المروج في الميدان.'
+    },
+    {
+      title: 'التحكم المتزن (Balanced Control)',
+      desc: 'إشراف مرن على الفريق يوازن بين الانضباط التشغيلي وتمكين المروجين في الميدان.'
+    },
+    {
+      title: 'التوقع الذكي (Smart Forecast)',
+      desc: 'تحليل سلوكيات الشراء ومخزون منصات العرض للتنبؤ بالطلب وتفادي حالات نفاد المنتجات.'
+    },
+    {
+      title: 'الانضباط (Discipline)',
+      desc: 'الالتزام الكامل بالمسارات المجدولة وخطط الزيارات لضمان حضور شامل للعلامة التجارية عبر كافة المنصات.'
+    }
+  ];
 
-  ngOnInit(): void {}
+  public get currentTextValues() {
+    return this.langService.currentLang === 'en' ? this.enValues : this.arValues;
+  }
+
+  public get currentText() {
+    return this.langService.currentLang === 'en' ? this.texts.en : this.texts.ar;
+  }
+
+  public get isAr(): boolean {
+    return this.langService.currentLang === 'ar';
+  }
+
+  constructor(
+    private gsapService: GsapService,
+    private langService: LanguageService,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  ngOnInit(): void {
+    this.startAutoCycle();
+  }
 
   ngAfterViewInit(): void {
-    this.gsapService.run((gsap, ScrollTrigger) => {
-      const items = this.valuesSection.nativeElement.querySelectorAll('.value-item');
-      const logo = this.valuesSection.nativeElement.querySelector('.anim-logo');
+    // Entrance animations if needed
+  }
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: this.valuesSection.nativeElement,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-          onRefresh: (self) => {
-            this.triggers.push(self);
-          }
-        }
-      });
+  public selectPetal(index: number) {
+    if (this.activeIndex === index) return;
+    this.textOpacity = 0;
+    this.cdr.markForCheck();
+    setTimeout(() => {
+      this.activeIndex = index;
+      this.textOpacity = 1;
+      this.cdr.markForCheck();
+    }, 200);
+  }
 
-      if (logo) {
-        tl.fromTo(logo,
-          { opacity: 0, scale: 0.5, rotation: -90 },
-          { opacity: 1, scale: 1, rotation: 0, duration: 1, ease: 'back.out(1.7)' }
-        );
-      }
+  public onPetalHover(index: number): void {
+    this.stopAutoCycle();
+    if (this.resumeTimeout) {
+      clearTimeout(this.resumeTimeout);
+    }
+    this.selectPetal(index);
+  }
 
-      if (items.length) {
-        tl.fromTo(items,
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power2.out' },
-          '-=0.5'
-        );
-      }
-    });
+  public onPetalLeave(): void {
+    if (this.resumeTimeout) {
+      clearTimeout(this.resumeTimeout);
+    }
+    // Resume cycle after 3.5s of no interaction
+    this.resumeTimeout = setTimeout(() => {
+      this.startAutoCycle();
+    }, 3500);
+  }
+
+  private startAutoCycle(): void {
+    this.stopAutoCycle();
+    this.autoCycleInterval = setInterval(() => {
+      const nextIndex = (this.activeIndex + 1) % this.currentTextValues.length;
+      this.selectPetal(nextIndex);
+    }, 2800);
+  }
+
+  private stopAutoCycle(): void {
+    if (this.autoCycleInterval) {
+      clearInterval(this.autoCycleInterval);
+      this.autoCycleInterval = null;
+    }
   }
 
   ngOnDestroy(): void {
-    this.triggers.forEach(trigger => {
-      if (trigger) trigger.kill();
-    });
-    
-    this.gsapService.run((gsap, ScrollTrigger) => {
-      ScrollTrigger.getAll().forEach(trigger => {
-        if (trigger.vars.trigger && this.valuesSection.nativeElement.contains(trigger.vars.trigger as Element)) {
-          trigger.kill();
-        }
-      });
-    });
+    this.stopAutoCycle();
+    if (this.resumeTimeout) {
+      clearTimeout(this.resumeTimeout);
+    }
   }
 }

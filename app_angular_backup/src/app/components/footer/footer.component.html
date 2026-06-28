@@ -1,19 +1,21 @@
 <footer class="relative bg-prometer-dark border-t border-prometer-mint/5 py-16 overflow-hidden">
   
-  <div class="container mx-auto px-6 relative z-10 w-full text-left">
+  <div class="container mx-auto px-6 relative z-10 w-full text-left rtl:text-right">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
       
       <!-- Brand & Description (Col 1-2) -->
       <div class="lg:col-span-2">
-        <a href="#hero" (click)="scrollToSection('#hero'); $event.preventDefault();" class="flex items-center gap-2 mb-4 select-none">
+        <a href="#hero" (click)="scrollToSection('#hero'); $event.preventDefault();" class="flex items-center gap-2 mb-4 select-none justify-start">
           <img src="assets/prometer-eco-logo.webp" alt="ProMeter Logo" class="h-8 w-auto object-contain" style="filter: invert(1) brightness(2);">
           <span class="text-base font-black text-prometer-mint tracking-wider uppercase">ProMeter</span>
         </a>
         <p class="text-xs text-prometer-mint/60 leading-relaxed mb-6 max-w-xs font-light">
-          The first operational and performance analysis platform for promoters in the Middle Eastern cosmetics and beauty sector.
+          {{ currentText.desc }}
         </p>
         <div class="space-y-1.5 text-xs text-prometer-mint/75">
-          <p class="font-light">Riyadh, Kingdom of Saudi Arabia</p>
+          <p class="font-light">
+            {{ isAr ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Kingdom of Saudi Arabia' }}
+          </p>
           <a href="mailto:info&#64;prometer.sa" class="block hover:text-prometer-neon transition-colors">info&#64;prometer.sa</a>
           <a href="tel:+966569809566" class="block hover:text-prometer-neon transition-colors" dir="ltr">+966 56 980 9566</a>
         </div>
@@ -21,34 +23,44 @@
 
       <!-- Links Column 1 -->
       <div>
-        <h4 class="text-xs font-black text-prometer-mint mb-4 uppercase tracking-wider">Platform</h4>
+        <h4 class="text-xs font-black text-prometer-mint mb-4 uppercase tracking-wider">
+          {{ isAr ? 'المنصة' : 'Platform' }}
+        </h4>
         <ul class="space-y-2.5 text-xs text-prometer-mint/65">
-          <li><a href="#why-us" (click)="scrollToSection('#why-us'); $event.preventDefault();" class="hover:text-prometer-neon transition-colors font-light">Comparison</a></li>
-          <li><a href="#ecosystem" (click)="scrollToSection('#ecosystem'); $event.preventDefault();" class="hover:text-prometer-neon transition-colors font-light">Ecosystem</a></li>
-          <li><a href="#experience" (click)="scrollToSection('#experience'); $event.preventDefault();" class="hover:text-prometer-neon transition-colors font-light">Dashboards</a></li>
-          <li><a href="#pricing" (click)="scrollToSection('#pricing'); $event.preventDefault();" class="hover:text-prometer-neon transition-colors font-light">Pricing Plans</a></li>
+          @for (link of currentText.links; track link.anchor) {
+            <li>
+              <a [href]="link.anchor" (click)="scrollToSection(link.anchor); $event.preventDefault();" 
+                 class="hover:text-prometer-neon transition-colors font-light">
+                {{ link.label }}
+              </a>
+            </li>
+          }
         </ul>
       </div>
 
       <!-- Links Column 2 -->
       <div>
-        <h4 class="text-xs font-black text-prometer-mint mb-4 uppercase tracking-wider">Sectors</h4>
+        <h4 class="text-xs font-black text-prometer-mint mb-4 uppercase tracking-wider">
+          {{ isAr ? 'القطاعات' : 'Sectors' }}
+        </h4>
         <ul class="space-y-2.5 text-xs text-prometer-mint/65">
-          <li><a href="#hero" (click)="scrollToSection('#hero'); $event.preventDefault();" class="hover:text-prometer-neon transition-colors font-light">Beauty & Cosmetics</a></li>
-          <li><a href="#hero" (click)="scrollToSection('#hero'); $event.preventDefault();" class="hover:text-prometer-neon transition-colors font-light">Skincare & Derma</a></li>
-          <li><a href="#hero" (click)="scrollToSection('#hero'); $event.preventDefault();" class="hover:text-prometer-neon transition-colors font-light">Pharma & Pharmacy</a></li>
-          <li><a href="#hero" (click)="scrollToSection('#hero'); $event.preventDefault();" class="hover:text-prometer-neon transition-colors font-light">Retail Counters</a></li>
+          <li><a href="#hero" (click)="scrollToSection('#hero'); $event.preventDefault();" class="hover:text-prometer-neon transition-colors font-light">{{ isAr ? 'الجمال ومستحضرات التجميل' : 'Beauty & Cosmetics' }}</a></li>
+          <li><a href="#hero" (click)="scrollToSection('#hero'); $event.preventDefault();" class="hover:text-prometer-neon transition-colors font-light">{{ isAr ? 'العناية بالبشرة والجلدية' : 'Skincare & Derma' }}</a></li>
+          <li><a href="#hero" (click)="scrollToSection('#hero'); $event.preventDefault();" class="hover:text-prometer-neon transition-colors font-light">{{ isAr ? 'الأدوية والصيدليات' : 'Pharma & Pharmacy' }}</a></li>
+          <li><a href="#hero" (click)="scrollToSection('#hero'); $event.preventDefault();" class="hover:text-prometer-neon transition-colors font-light">{{ isAr ? 'منصات البيع بالتجزئة' : 'Retail Counters' }}</a></li>
         </ul>
       </div>
 
       <!-- Links Column 3 -->
       <div>
-        <h4 class="text-xs font-black text-prometer-mint mb-4 uppercase tracking-wider">Company</h4>
+        <h4 class="text-xs font-black text-prometer-mint mb-4 uppercase tracking-wider">
+          {{ isAr ? 'الشركة' : 'Company' }}
+        </h4>
         <ul class="space-y-2.5 text-xs text-prometer-mint/65">
-          <li><a href="#hero" (click)="scrollToSection('#hero'); $event.preventDefault();" class="hover:text-prometer-neon transition-colors font-light">About Us</a></li>
-          <li><a href="#hero" (click)="scrollToSection('#hero'); $event.preventDefault();" class="hover:text-prometer-neon transition-colors font-light">Careers</a></li>
-          <li><a href="#contact" (click)="scrollToSection('#contact'); $event.preventDefault();" class="hover:text-prometer-neon transition-colors font-light">Contact Us</a></li>
-          <li><a href="#hero" (click)="scrollToSection('#hero'); $event.preventDefault();" class="hover:text-prometer-neon transition-colors font-light">Privacy Policy</a></li>
+          <li><a href="#hero" (click)="scrollToSection('#hero'); $event.preventDefault();" class="hover:text-prometer-neon transition-colors font-light">{{ currentText.aboutUs }}</a></li>
+          <li><a href="#hero" (click)="scrollToSection('#hero'); $event.preventDefault();" class="hover:text-prometer-neon transition-colors font-light">{{ currentText.careers }}</a></li>
+          <li><a href="#contact" (click)="scrollToSection('#contact'); $event.preventDefault();" class="hover:text-prometer-neon transition-colors font-light">{{ isAr ? 'تواصل معنا' : 'Contact Us' }}</a></li>
+          <li><a href="#hero" (click)="scrollToSection('#hero'); $event.preventDefault();" class="hover:text-prometer-neon transition-colors font-light">{{ currentText.privacy }}</a></li>
         </ul>
       </div>
 
@@ -56,9 +68,9 @@
 
     <!-- Copyright Bar -->
     <div class="mt-12 pt-8 border-t border-prometer-mint/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-prometer-mint/45">
-      <div class="flex items-center gap-2 select-none">
+      <div class="flex items-center gap-2 select-none justify-start">
         <img src="assets/prometer-eco-logo.webp" alt="ProMeter Logo" class="h-4 w-auto object-contain" style="filter: invert(1) brightness(2); opacity: 0.5;">
-        <span>&copy; {{ currentYear }} ProMeter. All rights reserved.</span>
+        <span>&copy; {{ currentYear }} ProMeter. {{ currentText.copyright }}</span>
       </div>
       <div class="flex gap-5">
         <a href="#" class="hover:text-prometer-mint transition-colors">LinkedIn</a>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-header',
@@ -11,8 +12,7 @@ import { CommonModule } from '@angular/common';
 export class HeaderComponent implements OnInit {
   public mobileMenuOpen = false;
 
-  // English nav links
-  public navLinks = [
+  private enLinks = [
     { label: 'Home', anchor: '#hero' },
     { label: 'Comparison', anchor: '#why-us' },
     { label: 'Ecosystem', anchor: '#ecosystem' },
@@ -21,9 +21,34 @@ export class HeaderComponent implements OnInit {
     { label: 'Contact', anchor: '#contact' }
   ];
 
-  constructor() {}
+  private arLinks = [
+    { label: 'الرئيسية', anchor: '#hero' },
+    { label: 'المقارنة', anchor: '#why-us' },
+    { label: 'المنظومة', anchor: '#ecosystem' },
+    { label: 'الواجهات', anchor: '#experience' },
+    { label: 'الأسعار', anchor: '#pricing' },
+    { label: 'تواصل معنا', anchor: '#contact' }
+  ];
+
+  public get navLinks() {
+    return this.langService.currentLang === 'en' ? this.enLinks : this.arLinks;
+  }
+
+  public get currentLang(): string {
+    return this.langService.currentLang;
+  }
+
+  public get buttonText(): string {
+    return this.langService.currentLang === 'en' ? 'Request Demo' : 'طلب تجربة المنصة';
+  }
+
+  constructor(private langService: LanguageService) {}
 
   ngOnInit(): void {}
+
+  public toggleLanguage(): void {
+    this.langService.toggleLanguage();
+  }
 
   public toggleMobileMenu(): void {
     this.mobileMenuOpen = !this.mobileMenuOpen;
