@@ -21,69 +21,92 @@
     <!-- 5-Petal Diagram Layout -->
     <div class="flex flex-col items-center justify-center max-w-4xl mx-auto mt-12 gap-8">
       
-      <!-- Interactive SVG Petal Ring -->
-      <div class="relative w-full max-w-[400px] aspect-square flex items-center justify-center">
+      <!-- Interactive Radial SVG Diagram -->
+      <div class="relative w-full max-w-[420px] aspect-square flex items-center justify-center select-none">
         
-        <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full overflow-visible">
+        <svg width="420" height="420" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full overflow-visible">
           <defs>
-            <!-- Inactive Petal Stroke Gradient -->
-            <linearGradient id="stroke-inactive" x1="200" y1="100" x2="200" y2="300" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="rgba(202,227,222,0.15)" />
-              <stop offset="100%" stop-color="rgba(165,55,251,0.15)" />
-            </linearGradient>
-            
-            <!-- Active Petal Fill Gradient -->
-            <linearGradient id="fill-active" x1="200" y1="130" x2="200" y2="270" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="rgba(165, 55, 251, 0.16)" />
-              <stop offset="100%" stop-color="rgba(156, 63, 250, 0.04)" />
-            </linearGradient>
+            <!-- Single Petal Definition for the rotating logo -->
+            <g id="petal-shape">
+              <path d="M 200 68 C 248 68 280 135 200 200 C 120 135 152 68 200 68 Z" 
+                    stroke-width="1.8" stroke-linejoin="round" />
+            </g>
 
-            <!-- Active Petal Stroke Gradient -->
-            <linearGradient id="stroke-active-grad" x1="200" y1="130" x2="200" y2="270" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#CAE3DE" />
-              <stop offset="100%" stop-color="#A537FB" />
-            </linearGradient>
+            <!-- Gradual Center Glow -->
+            <radialGradient id="center-glow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="rgba(165,55,251,0.25)" />
+              <stop offset="100%" stop-color="rgba(17,3,33,0)" />
+            </radialGradient>
           </defs>
 
-          <!-- Central core branding ring -->
-          <circle cx="200" cy="200" r="45" stroke="rgba(202,227,222,0.12)" stroke-width="1" stroke-dasharray="4 4" />
-          <circle cx="200" cy="200" r="18" fill="rgba(165,55,251,0.08)" stroke="rgba(165,55,251,0.25)" stroke-width="1.5" />
-          
-          <!-- 5 Radial Interactive Petals -->
-          @for (val of currentTextValues; track $index) {
-            <g class="interactive-petal cursor-pointer"
-               (mouseenter)="onPetalHover($index)"
-               (mouseleave)="onPetalLeave()"
-               [attr.transform]="'rotate(' + ($index * 72) + ', 200, 200)'">
-              
-              <!-- The Petal Shape -->
-              <path d="M 200 130 C 235 130 265 170 280 200 C 265 230 235 270 200 270 C 165 270 135 230 120 200 C 135 170 165 130 200 130 Z"
-                    [attr.fill]="activeIndex === $index ? 'url(#fill-active)' : 'rgba(255,255,255,0.01)'"
-                    [attr.stroke]="activeIndex === $index ? 'url(#stroke-active-grad)' : 'url(#stroke-inactive)'"
-                    stroke-width="2"
-                    stroke-linejoin="round"
-                    class="petal-path transition-all duration-300"
-                    style="transform-origin: 200px 200px;"
-                    [style.transform]="activeIndex === $index ? 'scale(1.05)' : 'scale(1)'" />
-              
-              <!-- Small Number inside petal -->
-              <text x="200" y="165"
-                    fill="#CAE3DE"
-                    [attr.opacity]="activeIndex === $index ? '1' : '0.4'"
-                    font-size="12"
-                    font-weight="bold"
-                    text-anchor="middle"
-                    class="transition-opacity duration-300 select-none"
-                    [attr.transform]="'rotate(' + (-$index * 72) + ', 200, 161)'">
-                0{{ $index + 1 }}
-              </text>
+          <!-- Ambient glow under the logo -->
+          <circle cx="200" cy="200" r="140" fill="url(#center-glow)" pointer-events-none />
+
+          <!-- Dashed guide track for the numbers -->
+          <circle cx="200" cy="200" r="100" stroke="rgba(202,227,222,0.12)" stroke-width="1.2" stroke-dasharray="6 4" />
+
+          <!-- ── ROTATING LOGO MARK LAYER 1 (Purple - Clockwise) ── -->
+          <g class="animate-[spin_40s_linear_infinite]" style="transform-origin: 200px 200px;">
+            <g stroke="rgba(165, 55, 251, 0.4)" fill="none">
+              <use href="#petal-shape" transform="rotate(0, 200, 200)" />
+              <use href="#petal-shape" transform="rotate(72, 200, 200)" />
+              <use href="#petal-shape" transform="rotate(144, 200, 200)" />
+              <use href="#petal-shape" transform="rotate(216, 200, 200)" />
+              <use href="#petal-shape" transform="rotate(288, 200, 200)" />
             </g>
-          }
+          </g>
+
+          <!-- ── ROTATING LOGO MARK LAYER 2 (Mint/White - Counter-Clockwise, Offset) ── -->
+          <g class="animate-[spin_28s_linear_infinite_reverse]" style="transform-origin: 200px 200px;">
+            <g stroke="rgba(202, 227, 222, 0.3)" fill="none">
+              <use href="#petal-shape" transform="rotate(18, 200, 200)" />
+              <use href="#petal-shape" transform="rotate(90, 200, 200)" />
+              <use href="#petal-shape" transform="rotate(162, 200, 200)" />
+              <use href="#petal-shape" transform="rotate(234, 200, 200)" />
+              <use href="#petal-shape" transform="rotate(306, 200, 200)" />
+            </g>
+          </g>
+
+          <!-- ── ROTATING LOGO MARK LAYER 3 (Active Highlight - Slow Clockwise) ── -->
+          <g [style.transform]="'rotate(' + (activeIndex * 72) + 'deg)'" 
+             class="transition-transform duration-700 ease-out" 
+             style="transform-origin: 200px 200px;">
+            <g stroke="#CAE3DE" stroke-width="2.5" fill="rgba(165, 55, 251, 0.08)">
+              <!-- Highlight active direction petal shape -->
+              <use href="#petal-shape" transform="rotate(0, 200, 200)" />
+            </g>
+          </g>
+
+          <!-- Central brand mark logo outline (mini logo in exact center) -->
+          <circle cx="200" cy="200" r="28" fill="rgba(17,3,33,0.95)" stroke="rgba(165,55,251,0.3)" stroke-width="1" />
+          <!-- Tiny interlocking 5-petals in the center -->
+          <g transform="translate(187, 187) scale(0.65)" stroke="rgba(202,227,222,0.6)" stroke-width="1.5" fill="none">
+            <path d="M 20 5 C 25 5 28 15 20 20 C 12 15 15 5 20 5 Z" transform="rotate(0, 20, 20)" />
+            <path d="M 20 5 C 25 5 28 15 20 20 C 12 15 15 5 20 5 Z" transform="rotate(72, 20, 20)" />
+            <path d="M 20 5 C 25 5 28 15 20 20 C 12 15 15 5 20 5 Z" transform="rotate(144, 20, 20)" />
+            <path d="M 20 5 C 25 5 28 15 20 20 C 12 15 15 5 20 5 Z" transform="rotate(216, 20, 20)" />
+            <path d="M 20 5 C 25 5 28 15 20 20 C 12 15 15 5 20 5 Z" transform="rotate(288, 20, 20)" />
+          </g>
         </svg>
 
-        <!-- Static Logo Icon watermark in the exact center -->
-        <div class="absolute w-10 h-10 flex items-center justify-center pointer-events-none select-none" style="z-index: 5;">
-          <img src="assets/prometer-eco-logo.webp" alt="ProMeter Logo" class="w-6 h-6 object-contain opacity-40" style="filter: invert(1) brightness(2);">
+        <!-- ── INTERACTIVE NUMBERS PLACED ON TOP AS HTML BUTTONS ── -->
+        <div class="absolute inset-0 pointer-events-none">
+          @for (val of currentTextValues; track $index) {
+            <button
+              (mouseenter)="onPetalHover($index)"
+              (mouseleave)="onPetalLeave()"
+              (click)="selectPetal($index)"
+              class="absolute pointer-events-auto flex items-center justify-center w-11 h-11 rounded-full border transition-all duration-300 font-mono text-xs font-bold"
+              [class]="activeIndex === $index 
+                ? 'bg-prometer-neon border-white text-white scale-125 shadow-neon' 
+                : 'bg-[#110321]/95 border-prometer-mint/20 text-prometer-mint/60 hover:text-prometer-mint hover:border-prometer-mint/50 hover:scale-110'"
+              [style.left]="getNumberPosition($index).x"
+              [style.top]="getNumberPosition($index).y"
+              [style.transform]="'translate(-50%, -50%)'"
+            >
+              0{{ $index + 1 }}
+            </button>
+          }
         </div>
 
       </div>

@@ -132,6 +132,17 @@ export class CoreValuesComponent implements OnInit, AfterViewInit, OnDestroy {
     }, 3500);
   }
 
+  public getNumberPosition(index: number) {
+    const positions = [
+      { x: '50%', y: '25%' },
+      { x: '73.8%', y: '42.3%' },
+      { x: '64.7%', y: '70.2%' },
+      { x: '35.3%', y: '70.2%' },
+      { x: '26.2%', y: '42.3%' }
+    ];
+    return positions[index];
+  }
+
   private startAutoCycle(): void {
     this.stopAutoCycle();
     this.autoCycleInterval = setInterval(() => {
