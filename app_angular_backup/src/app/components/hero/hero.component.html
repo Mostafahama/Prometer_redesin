@@ -43,13 +43,6 @@
         <!-- Badge Indicator & Logo -->
         <div class="flex flex-col items-start rtl:items-start gap-6 mb-8">
           <img src="assets/prometer-eco-logo.webp" alt="ProMeter Logo" class="h-16 w-auto object-contain" style="filter: invert(1) brightness(2) drop-shadow(0 0 10px rgba(255,255,255,0.3));">
-          
-          <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-prometer-neon/10 border border-prometer-neon/20 backdrop-blur-md">
-            <span class="w-2.5 h-2.5 rounded-full bg-prometer-neon animate-pulse shadow-[0_0_10px_#A537FB]"></span>
-            <span class="text-prometer-mint text-[10px] font-bold uppercase tracking-[2px]">
-              {{ currentText.badge }}
-            </span>
-          </div>
         </div>
 
         <!-- H1 Main Cinematic Title -->
@@ -116,21 +109,21 @@
       <div class="relative hidden lg:block" style="perspective: 1200px;">
         <div #floatContainer class="relative w-full" style="transform-style: preserve-3d; transition: transform 0.15s ease-out;">
           
-          <!-- Main: Admin Dashboard Screenshot -->
-          <div #floatDashboard class="rounded-2xl overflow-hidden relative"
-               style="transform: translateZ(30px); box-shadow: 0 25px 80px rgba(165,55,251,0.25); transition: transform 0.15s ease-out;">
+          <!-- Main: Admin Dashboard Screenshot (z-10, lower translateZ) -->
+          <div #floatDashboard class="rounded-2xl overflow-hidden relative z-10"
+               style="transform: translateZ(10px); box-shadow: 0 25px 80px rgba(165,55,251,0.2); transition: transform 0.15s ease-out;">
             <img src="images/admin-dashboard.png" alt="Admin Dashboard" class="w-full h-auto block" loading="eager">
           </div>
 
-          <!-- Floating: Supervisor Dashboard - top-right overlay -->
-          <div #floatSupervisor class="absolute -top-4 -right-8 rtl:-right-auto rtl:-left-8 w-[55%] rounded-xl overflow-hidden"
-               style="transform: translateZ(65px) rotate(4deg) lg:rotate(4deg) rtl:rotate(-4deg); box-shadow: 0 15px 50px rgba(0,0,0,0.5); transition: transform 0.15s ease-out;">
+          <!-- Floating: Supervisor Dashboard - top-right overlay (z-20, higher translateZ) -->
+          <div #floatSupervisor class="absolute -top-4 -right-8 rtl:-right-auto rtl:-left-8 w-[55%] rounded-xl overflow-hidden z-20"
+               style="transform: translateZ(40px) rotate(4deg) lg:rotate(4deg) rtl:rotate(-4deg); box-shadow: 0 15px 50px rgba(0,0,0,0.55); transition: transform 0.15s ease-out;">
             <img src="images/supervisor-dashboard.png" alt="Supervisor Dashboard" class="w-full h-auto block" loading="lazy">
           </div>
 
-          <!-- Floating: Mobile App - bottom-left overlay -->
-          <div #floatPhone class="absolute -bottom-6 -left-6 rtl:-left-auto rtl:-right-6 w-[22%] rounded-[1.5rem] overflow-hidden"
-               style="transform: translateZ(55px) rotate(-6deg) lg:rotate(-6deg) rtl:rotate(6deg); box-shadow: 0 15px 50px rgba(0,0,0,0.5); transition: transform 0.15s ease-out;">
+          <!-- Floating: Mobile App - bottom-left overlay (z-30, highest translateZ) -->
+          <div #floatPhone class="absolute -bottom-6 -left-6 rtl:-left-auto rtl:-right-6 w-[22%] rounded-[1.5rem] overflow-hidden z-30"
+               style="transform: translateZ(50px) rotate(-6deg) lg:rotate(-6deg) rtl:rotate(6deg); box-shadow: 0 15px 50px rgba(0,0,0,0.55); transition: transform 0.15s ease-out;">
             <img src="images/mobile-app.png" alt="Mobile App" class="w-full h-auto block" loading="lazy">
           </div>
           
