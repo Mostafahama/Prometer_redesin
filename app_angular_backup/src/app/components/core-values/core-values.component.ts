@@ -13,7 +13,11 @@ import { LanguageService } from '../../services/language.service';
 export class CoreValuesComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('valuesSection', { static: true }) valuesSection!: ElementRef<HTMLElement>;
 
-  public petals: { path: string, cx: number, cy: number }[] = [];
+  public petals: Array<{ path: string, cx: number, cy: number }> = [];
+
+
+
+  // Track active module for auto-cycle
   public activeIndex = 0;
   public textOpacity = 1;
   private autoCycleInterval: any;
@@ -103,32 +107,41 @@ export class CoreValuesComponent implements OnInit, AfterViewInit, OnDestroy {
     this.generatePetals();
   }
 
-  private generatePetals(): void {
-    const D = 122;
-    const R = 82;
+  public generatePetals(): void {
     const center = 200;
+    const D = 104.5; // Finalized Distance
+    const R = 61.5;  // Finalized Radius
 
-    const h = Math.sqrt(R * R - (D * Math.sin(36 * Math.PI / 180)) * (D * Math.sin(36 * Math.PI / 180)));
+    // Calculate intersection points of adjacent circles
+    const d = D * Math.sin(36 * Math.PI / 180);
+    const h = Math.sqrt(R * R - d * d);
     const rOut = D * Math.cos(36 * Math.PI / 180) + h;
     const rIn = D * Math.cos(36 * Math.PI / 180) - h;
 
     this.petals = [];
     for (let i = 0; i < 5; i++) {
       const angleCenter = (i * 72 - 90) * Math.PI / 180;
+      
+      // Angles for the radial seams where petals meet
       const angleL = ((i * 72 - 36) - 90) * Math.PI / 180;
       const angleR = ((i * 72 + 36) - 90) * Math.PI / 180;
 
-      const oL = { x: center + rOut * Math.cos(angleL), y: center + rOut * Math.sin(angleL) };
-      const oR = { x: center + rOut * Math.cos(angleR), y: center + rOut * Math.sin(angleR) };
-      const iR = { x: center + rIn * Math.cos(angleR), y: center + rIn * Math.sin(angleR) };
-      const iL = { x: center + rIn * Math.cos(angleL), y: center + rIn * Math.sin(angleL) };
+      // The 4 corner points of the petal
+      const p_out_L = { x: center + rOut * Math.cos(angleL), y: center + rOut * Math.sin(angleL) };
+      const p_out_R = { x: center + rOut * Math.cos(angleR), y: center + rOut * Math.sin(angleR) };
+      const p_in_R = { x: center + rIn * Math.cos(angleR), y: center + rIn * Math.sin(angleR) };
+      const p_in_L = { x: center + rIn * Math.cos(angleL), y: center + rIn * Math.sin(angleL) };
 
-      let path = `M ${oL.x} ${oL.y} `;
-      path += `A ${R} ${R} 0 0 1 ${oR.x} ${oR.y} `;
-      path += `A ${R} ${R} 0 0 0 ${iR.x} ${iR.y} `;
-      path += `A ${R} ${R} 0 0 1 ${iL.x} ${iL.y} `;
-      path += `A ${R} ${R} 0 0 0 ${oL.x} ${oL.y} Z`;
+      // Exact rosette boundary:
+      // Left boundary (Arc of Circle i-1), Outer boundary (Arc of Circle i),
+      // Right boundary (Arc of Circle i+1), Inner boundary (Arc of Circle i)
+      let path = `M ${p_in_L.x} ${p_in_L.y} `;
+      path += `A ${R} ${R} 0 0 0 ${p_out_L.x} ${p_out_L.y} `;
+      path += `A ${R} ${R} 0 0 1 ${p_out_R.x} ${p_out_R.y} `;
+      path += `A ${R} ${R} 0 0 0 ${p_in_R.x} ${p_in_R.y} `;
+      path += `A ${R} ${R} 0 0 1 ${p_in_L.x} ${p_in_L.y} Z`;
 
+      // Centroid for scaling inner stroke and placing text
       const cx = center + D * Math.cos(angleCenter);
       const cy = center + D * Math.sin(angleCenter);
 
@@ -163,6 +176,7 @@ export class CoreValuesComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public selectPetal(index: number) {
     if (this.activeIndex === index) return;
+
     this.textOpacity = 0;
     this.cdr.markForCheck();
     setTimeout(() => {

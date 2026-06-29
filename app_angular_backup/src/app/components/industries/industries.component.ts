@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GsapService } from '../../services/gsap.service';
+import { LanguageService } from '../../services/language.service';
 
 interface IndustryItem {
   title: string;
@@ -23,8 +24,7 @@ export class IndustriesComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private triggers: any[] = [];
 
-  // Industries list translated to English, highlighting the primary cosmetics sectors
-  public industries: IndustryItem[] = [
+  private enIndustries: IndustryItem[] = [
     {
       title: 'Beauty & Perfumes',
       desc: 'Track and manage beauty advisor performance, check display inventory, and highlight best-selling products.',
@@ -62,7 +62,70 @@ export class IndustriesComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   ];
 
-  constructor(private gsapService: GsapService) {}
+  private arIndustries: IndustryItem[] = [
+    {
+      title: 'التجميل والعطور',
+      desc: 'تتبع وإدارة أداء مستشاري التجميل، وفحص مخزون العرض، وتسليط الضوء على المنتجات الأكثر مبيعاً.',
+      color: '#CAE3DE',
+      isCosmetics: true,
+      svgPath: 'M9.813 15.904L9 21m0 0l-.813-5.096m.813 5.096V10M6 13h6M5 7h8a2 2 0 012 2v2H3V9a2 2 0 012-2z'
+    },
+    {
+      title: 'العناية بالبشرة والجلدية',
+      desc: 'مراقبة مستشاري التجميل الطبيين ومقاييس المبيعات في الصيدليات الرائدة وعيادات العناية بالبشرة.',
+      color: '#CAE3DE',
+      isCosmetics: true,
+      svgPath: 'M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z'
+    },
+    {
+      title: 'الأدوية والصيدليات',
+      desc: 'الإشراف على زيارات المندوبين الطبيين، وتوزيع العينات، وتوفر الأدوية على الرفوف.',
+      color: '#CAE3DE',
+      isCosmetics: false,
+      svgPath: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h10a2 2 0 012 2v14a2 2 0 01-2 2z'
+    },
+    {
+      title: 'السلع الاستهلاكية',
+      desc: 'تحسين جدولة المسارات، وتسجيل نسب مساحة الرف، وتتبع توفر المنتجات بشكل فوري.',
+      color: '#CAE3DE',
+      isCosmetics: false,
+      svgPath: 'M20.25 7.5 12 12 3.75 7.5M12 12v9m-8.25-13.5v9a2.25 2.25 0 002.25 2.25h12a2.25 2.25 0 002.25-2.25v-9'
+    },
+    {
+      title: 'متاجر التجزئة الكبرى',
+      desc: 'مراقبة مبيعات الفروع، والتحقق من التزام العرض، وتتبع حضور المروجين في المراكز التجارية.',
+      color: '#CAE3DE',
+      isCosmetics: false,
+      svgPath: 'M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z'
+    }
+  ];
+
+  public text = {
+    en: {
+      badge: 'Supported Sectors',
+      title: 'Built for Businesses Relying on Field Performance',
+      desc: 'Whether your sales are concentrated in pharmacies, counters, or hypermarkets, ProMeter offers customized solutions for your field operations.',
+      viewDetails: 'View Details',
+      coreSector: 'Core Sector'
+    },
+    ar: {
+      badge: 'القطاعات المدعومة',
+      title: 'مصمم للشركات التي تعتمد على الأداء الميداني',
+      desc: 'سواء كانت مبيعاتك تتركز في الصيدليات، أو فروع التجميل، أو الهايبر ماركت، تقدم Prometer حلولاً مخصصة لعملياتك الميدانية.',
+      viewDetails: 'عرض التفاصيل',
+      coreSector: 'قطاع رئيسي'
+    }
+  };
+
+  public get currentText() {
+    return this.languageService.currentLang === 'ar' ? this.text.ar : this.text.en;
+  }
+
+  public get industries() {
+    return this.languageService.currentLang === 'ar' ? this.arIndustries : this.enIndustries;
+  }
+
+  constructor(private gsapService: GsapService, private languageService: LanguageService) {}
 
   ngOnInit(): void {}
 

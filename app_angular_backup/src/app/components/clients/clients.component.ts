@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GsapService } from '../../services/gsap.service';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-clients',
@@ -14,7 +15,6 @@ export class ClientsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private triggers: any[] = [];
 
-  // Alternating marquee directions & brand data from original application
   public rows = [
     { dirClass: 'animate-marquee-ltr', brands: ['Al-Dawaa', 'Al Nahdi', 'Extra', 'Jarir'] },
     { dirClass: 'animate-marquee-rtl', brands: ['Lulu', 'Carrefour', 'Tamimi', 'Othaim'] },
@@ -23,7 +23,24 @@ export class ClientsComponent implements OnInit, AfterViewInit, OnDestroy {
     { dirClass: 'animate-marquee-ltr', brands: ['Tamimi', 'Othaim', 'Panda', 'Danube'] }
   ];
 
-  constructor(private gsapService: GsapService) {}
+  public text = {
+    en: {
+      badge: 'Field Success Partnerships',
+      title: 'Trusted by Leading Brands in the Kingdom',
+      desc: 'Major suppliers and distributors utilize ProMeter for their promoter teams to track live field transactions and daily sales records.'
+    },
+    ar: {
+      badge: 'شركاء النجاح الميداني',
+      title: 'موثوقون لدى كبرى العلامات التجارية في المملكة',
+      desc: 'يعتمد كبار الموردين والموزعين على Prometer لإدارة فرق الترويج لديهم وتتبع المعاملات الميدانية وسجلات المبيعات اليومية بشكل فوري.'
+    }
+  };
+
+  public get currentText() {
+    return this.languageService.currentLang === 'ar' ? this.text.ar : this.text.en;
+  }
+
+  constructor(private gsapService: GsapService, private languageService: LanguageService) {}
 
   ngOnInit(): void {}
 

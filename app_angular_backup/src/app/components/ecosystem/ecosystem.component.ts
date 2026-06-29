@@ -71,7 +71,7 @@ export class EcosystemComponent implements OnInit, AfterViewInit, OnDestroy {
       shortTitle: 'Sales',
       desc: 'Instant sell-out reports submitted directly from the counter floor.',
       color: '#CAE3DE',
-      svgPath: 'M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5 21 12m0 0-17.25 7.5M21 12H3.75'
+      svgPath: 'M3 18 h18 M6 18 v-5 M12 18 v-9 M18 18 v-14 M14 8 l4 -4 l4 4'
     },
     {
       title: 'GPS Attendance',
@@ -106,7 +106,7 @@ export class EcosystemComponent implements OnInit, AfterViewInit, OnDestroy {
       shortTitle: 'Targets',
       desc: 'Monthly KPI configurations with automated achievement bar metrics.',
       color: '#CAE3DE',
-      svgPath: 'M12 3v18M3 12h18M12 12c2.5 0 4.5-2 4.5-4.5S14.5 3 12 3 7.5 5 7.5 7.5 9.5 12 12 12Z'
+      svgPath: 'M2.25 18L9 9.75l5.25 5.25L21.75 7.5m0 0v5.25m0-5.25h-5.25'
     },
     {
       title: 'Visit Validation',
@@ -134,7 +134,7 @@ export class EcosystemComponent implements OnInit, AfterViewInit, OnDestroy {
       shortTitle: 'Commission',
       desc: 'Automatic commission calculation based on sales threshold achievements.',
       color: '#CAE3DE',
-      svgPath: 'M12 6v12m-3-2.818.879.879a3 3 0 0 0 4.242 0 3 3 0 0 0-4.242-4.242 3 3 0 0 1 4.242-4.242 3 3 0 0 1 0 4.242m-1.121-6.712v1.5a3 3 0 1 1-6 0v-1.5'
+      svgPath: 'M3 8 h12 a2 2 0 0 1 2 2 v6 a2 2 0 0 1 -2 2 h-12 a2 2 0 0 1 -2 -2 v-6 a2 2 0 0 1 2 -2 z M9 13 a2 2 0 1 0 0 -4 a2 2 0 0 0 0 4 z M14 11 l3 3 l6 -6'
     }
   ];
 
@@ -144,7 +144,7 @@ export class EcosystemComponent implements OnInit, AfterViewInit, OnDestroy {
       shortTitle: 'المبيعات',
       desc: 'تقارير مبيعات فورية يتم تقديمها مباشرة من أرضية المعرض.',
       color: '#CAE3DE',
-      svgPath: 'M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5 21 12m0 0-17.25 7.5M21 12H3.75'
+      svgPath: 'M3 18 h18 M6 18 v-5 M12 18 v-9 M18 18 v-14 M14 8 l4 -4 l4 4'
     },
     {
       title: 'حضور الـ GPS',
@@ -179,7 +179,7 @@ export class EcosystemComponent implements OnInit, AfterViewInit, OnDestroy {
       shortTitle: 'الأهداف',
       desc: 'إعدادات الأهداف الشهرية للمبيعات مع تتبع تلقائي لمستويات الإنجاز.',
       color: '#CAE3DE',
-      svgPath: 'M12 3v18M3 12h18M12 12c2.5 0 4.5-2 4.5-4.5S14.5 3 12 3 7.5 5 7.5 7.5 9.5 12 12 12Z'
+      svgPath: 'M2.25 18L9 9.75l5.25 5.25L21.75 7.5m0 0v5.25m0-5.25h-5.25'
     },
     {
       title: 'توثيق الزيارات',
@@ -207,7 +207,7 @@ export class EcosystemComponent implements OnInit, AfterViewInit, OnDestroy {
       shortTitle: 'العمولات',
       desc: 'حساب تلقائي لعمولات المبيعات بناءً على نسب تحقيق المستهدفات.',
       color: '#CAE3DE',
-      svgPath: 'M12 6v12m-3-2.818.879.879a3 3 0 0 0 4.242 0 3 3 0 0 0-4.242-4.242 3 3 0 0 1 4.242-4.242 3 3 0 0 1 0 4.242m-1.121-6.712v1.5a3 3 0 1 1-6 0v-1.5'
+      svgPath: 'M3 8 h12 a2 2 0 0 1 2 2 v6 a2 2 0 0 1 -2 2 h-12 a2 2 0 0 1 -2 -2 v-6 a2 2 0 0 1 2 -2 z M9 13 a2 2 0 1 0 0 -4 a2 2 0 0 0 0 4 z M14 11 l3 3 l6 -6'
     }
   ];
 

@@ -22,12 +22,12 @@
     <div class="flex flex-col items-center justify-center max-w-4xl mx-auto mt-12 gap-8">
       
       <!-- Interactive Radial SVG Diagram -->
-      <div class="relative w-full max-w-[420px] aspect-square flex items-center justify-center select-none">
-        
-        <!-- Rotating Container for Logo and Orbiting Numbers -->
-        <div class="absolute inset-0 w-full h-full animate-[spin_40s_linear_infinite]">
-          
-          <svg width="420" height="420" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full overflow-visible absolute inset-0 pointer-events-none">
+      <div class="relative w-full max-w-3xl flex items-center justify-center min-h-[500px]">
+        <!-- Interactive Pentagon/Flower Base -->
+        <div class="relative w-[500px] h-[500px] mx-auto group">
+               
+            <!-- Central SVG Geometry -->
+            <svg viewBox="0 0 400 400" class="w-full h-full drop-shadow-[0_0_15px_rgba(165,55,251,0.2)]">
             <defs>
               <!-- Gradual Center Glow -->
               <radialGradient id="center-glow" cx="50%" cy="50%" r="50%">
@@ -38,9 +38,6 @@
 
             <!-- Ambient glow under the logo -->
             <circle cx="200" cy="200" r="140" fill="url(#center-glow)" />
-
-            <!-- Dashed guide track for the numbers (Updated to r=122 matching 30.5% radius) -->
-            <circle cx="200" cy="200" r="122" stroke="rgba(202,227,222,0.12)" stroke-width="1.2" stroke-dasharray="6 4" />
 
             <!-- ── EXACT GEOMETRIC PETAL PATHS ── -->
             <!-- Each petal is rendered independently, allowing individual hover fills and the exact 5-cusp pentagon negative space -->
@@ -59,17 +56,7 @@
                       stroke-linecap="round" 
                       stroke-linejoin="round" />
                 
-                <!-- Inner Offset Stroke (Scaled down slightly towards centroid) -->
-                <path class="petal-path-inner transition-all duration-300" 
-                      [attr.d]="petal.path" 
-                      fill="none" 
-                      [attr.stroke]="activeIndex === $index ? 'rgba(165,55,251,0.6)' : 'rgba(202,227,222,0.25)'" 
-                      stroke-width="1.5" 
-                      stroke-linecap="round" 
-                      stroke-linejoin="round" 
-                      [style.transform]="'scale(0.82)'"
-                      [style.transform-origin]="petal.cx + 'px ' + petal.cy + 'px'" />
-                      
+
               </g>
             }
           </svg>
@@ -82,16 +69,16 @@
                    [style.top]="getNumberPosition($index).y"
                    [style.transform]="'translate(-50%, -50%)'">
                 
-                <!-- Counter-rotation wrapper -->
-                <div class="w-full h-full animate-[spin_40s_linear_infinite_reverse] pointer-events-none">
+                <!-- Number Container -->
+                <div class="w-full h-full pointer-events-none">
                   <button
                     (mouseenter)="onPetalHover($index)"
                     (mouseleave)="onPetalLeave()"
                     (click)="selectPetal($index)"
-                    class="w-full h-full rounded-full border transition-all duration-300 font-mono text-xs font-bold pointer-events-auto flex items-center justify-center"
+                    class="w-full h-full transition-all duration-300 font-mono text-xl font-black pointer-events-auto flex items-center justify-center"
                     [class]="activeIndex === $index 
-                      ? 'bg-prometer-neon border-white text-white scale-125 shadow-neon' 
-                      : 'bg-[#110321]/95 border-prometer-mint/20 text-prometer-mint/60 hover:text-prometer-mint hover:border-prometer-mint/50 hover:scale-110'"
+                      ? 'text-white scale-125 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' 
+                      : 'text-prometer-mint/40 hover:text-prometer-mint/80 hover:scale-110'"
                   >
                     0{{ $index + 1 }}
                   </button>

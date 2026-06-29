@@ -3,12 +3,14 @@
   <!-- Header -->
   <div class="container mx-auto px-6 mb-12">
     <div class="text-center max-w-2xl mx-auto">
-      <span class="text-prometer-neon text-xs font-bold uppercase tracking-[2.5px] block mb-3">Field Success Partnerships</span>
+      <span class="text-prometer-neon text-xs font-bold uppercase tracking-[2.5px] block mb-3">
+        {{ currentText.badge }}
+      </span>
       <h2 class="text-2xl md:text-3xl font-extrabold text-prometer-mint tracking-tight mb-4">
-        Trusted by Leading Brands in the Kingdom
+        {{ currentText.title }}
       </h2>
       <p class="text-sm text-prometer-mint/60 font-light leading-relaxed">
-        Major suppliers and distributors utilize ProMeter for their promoter teams to track live field transactions and daily sales records.
+        {{ currentText.desc }}
       </p>
     </div>
   </div>
@@ -16,7 +18,7 @@
   <!-- Marquee rows -->
   <div class="flex flex-col gap-5 md:gap-6 w-full">
     @for (row of rows; track $index) {
-      <div class="marquee-row relative w-full overflow-hidden">
+      <div class="marquee-row relative w-full overflow-hidden" dir="ltr">
         <div class="marquee-track flex items-center gap-5 md:gap-6 {{ row.dirClass }}" style="width: max-content;">
           
           <!-- Render brands 3x for a seamless loop -->
