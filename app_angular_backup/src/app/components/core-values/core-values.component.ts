@@ -109,66 +109,36 @@ export class CoreValuesComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public generatePetals(): void {
     const center = 200;
-    const D = 104.5; // Finalized Distance
-    const R = 61.5;  // Finalized Radius
-
-    // Calculate intersection points of adjacent circles
-    const d = D * Math.sin(36 * Math.PI / 180);
-    const h = Math.sqrt(R * R - d * d);
-    const rOut = D * Math.cos(36 * Math.PI / 180) + h;
-    const rIn = D * Math.cos(36 * Math.PI / 180) - h;
-
+    const D = 52; // Distance for the spirograph circles (cy=148, center=200 -> 52)
+    
     this.petals = [];
     for (let i = 0; i < 5; i++) {
       const angleCenter = (i * 72 - 90) * Math.PI / 180;
-      
-      // Angles for the radial seams where petals meet
-      const angleL = ((i * 72 - 36) - 90) * Math.PI / 180;
-      const angleR = ((i * 72 + 36) - 90) * Math.PI / 180;
-
-      // The 4 corner points of the petal
-      const p_out_L = { x: center + rOut * Math.cos(angleL), y: center + rOut * Math.sin(angleL) };
-      const p_out_R = { x: center + rOut * Math.cos(angleR), y: center + rOut * Math.sin(angleR) };
-      const p_in_R = { x: center + rIn * Math.cos(angleR), y: center + rIn * Math.sin(angleR) };
-      const p_in_L = { x: center + rIn * Math.cos(angleL), y: center + rIn * Math.sin(angleL) };
-
-      // Exact rosette boundary:
-      // Left boundary (Arc of Circle i-1), Outer boundary (Arc of Circle i),
-      // Right boundary (Arc of Circle i+1), Inner boundary (Arc of Circle i)
-      let path = `M ${p_in_L.x} ${p_in_L.y} `;
-      path += `A ${R} ${R} 0 0 0 ${p_out_L.x} ${p_out_L.y} `;
-      path += `A ${R} ${R} 0 0 1 ${p_out_R.x} ${p_out_R.y} `;
-      path += `A ${R} ${R} 0 0 0 ${p_in_R.x} ${p_in_R.y} `;
-      path += `A ${R} ${R} 0 0 1 ${p_in_L.x} ${p_in_L.y} Z`;
-
-      // Centroid for scaling inner stroke and placing text
       const cx = center + D * Math.cos(angleCenter);
       const cy = center + D * Math.sin(angleCenter);
-
-      this.petals.push({ path, cx, cy });
+      this.petals.push({ path: '', cx, cy });
     }
   }
 
   ngAfterViewInit(): void {
     if (typeof document !== 'undefined') {
       this.gsapService.run((gsap) => {
-        const paths = document.querySelectorAll('.petal-path');
-        if (paths.length > 0) {
-          paths.forEach(p => {
-            const length = (p as SVGPathElement).getTotalLength();
-            gsap.set(p, { strokeDasharray: length, strokeDashoffset: length });
-          });
-
-          gsap.to(paths, {
-            strokeDashoffset: 0,
-            duration: 1.5,
-            stagger: 0.2,
-            ease: 'power2.inOut',
-            scrollTrigger: {
-              trigger: this.valuesSection.nativeElement,
-              start: 'top 60%'
+        // Fade in animation for the SVG group instead of stroke drawing
+        const svgElement = this.valuesSection.nativeElement.querySelector('svg');
+        if (svgElement) {
+          gsap.fromTo(svgElement, 
+            { opacity: 0, scale: 0.9 },
+            { 
+              opacity: 1, 
+              scale: 1, 
+              duration: 1.5, 
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: this.valuesSection.nativeElement,
+                start: 'top 60%'
+              }
             }
-          });
+          );
         }
       });
     }
@@ -204,15 +174,14 @@ export class CoreValuesComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public getNumberPosition(index: number) {
-    if (this.petals && this.petals.length > index) {
-      const cx = this.petals[index].cx;
-      const cy = this.petals[index].cy;
-      return { 
-        x: (cx / 400 * 100) + '%', 
-        y: (cy / 400 * 100) + '%' 
-      };
-    }
-    return { x: '50%', y: '50%' };
+    const positions = [
+      { x: '50%', y: '25%' },
+      { x: '73.8%', y: '42.3%' },
+      { x: '64.7%', y: '70.2%' },
+      { x: '35.3%', y: '70.2%' },
+      { x: '26.2%', y: '42.3%' }
+    ];
+    return positions[index];
   }
 
   private startAutoCycle(): void {

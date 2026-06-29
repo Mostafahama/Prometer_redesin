@@ -1,10 +1,10 @@
 <footer class="relative bg-prometer-dark border-t border-prometer-mint/5 py-16 overflow-hidden">
   
   <div class="container mx-auto px-6 relative z-10 w-full text-left rtl:text-right">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+    <div class="flex overflow-x-auto lg:grid lg:grid-cols-5 gap-6 lg:gap-10 pb-4 snap-x snap-mandatory" style="scrollbar-width: none;">
       
       <!-- Brand & Description (Col 1-2) -->
-      <div class="lg:col-span-2">
+      <div class="flex-shrink-0 w-[240px] lg:w-auto snap-start lg:col-span-2">
         <a href="#hero" (click)="scrollToSection('#hero'); $event.preventDefault();" class="flex items-center gap-2 mb-4 select-none justify-start">
           <img src="assets/prometer-eco-logo.webp" alt="ProMeter Logo" class="h-8 w-auto object-contain" style="filter: invert(1) brightness(2);">
           <span class="text-base font-black text-prometer-mint tracking-wider uppercase">ProMeter</span>
@@ -22,7 +22,7 @@
       </div>
 
       <!-- Links Column 1 -->
-      <div>
+      <div class="flex-shrink-0 w-[140px] lg:w-auto snap-start">
         <h4 class="text-xs font-black text-prometer-mint mb-4 uppercase tracking-wider">
           {{ isAr ? 'المنصة' : 'Platform' }}
         </h4>
@@ -39,7 +39,7 @@
       </div>
 
       <!-- Links Column 2 -->
-      <div>
+      <div class="flex-shrink-0 w-[140px] lg:w-auto snap-start">
         <h4 class="text-xs font-black text-prometer-mint mb-4 uppercase tracking-wider">
           {{ isAr ? 'القطاعات' : 'Sectors' }}
         </h4>
@@ -52,7 +52,7 @@
       </div>
 
       <!-- Links Column 3 -->
-      <div>
+      <div class="flex-shrink-0 w-[140px] lg:w-auto snap-start">
         <h4 class="text-xs font-black text-prometer-mint mb-4 uppercase tracking-wider">
           {{ isAr ? 'الشركة' : 'Company' }}
         </h4>

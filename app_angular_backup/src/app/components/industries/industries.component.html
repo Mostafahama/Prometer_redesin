@@ -15,10 +15,10 @@
     </div>
   </div>
 
-  <!-- Industries Grid -->
-  <div #gridRef class="container mx-auto px-6 relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
+  <!-- Industries Grid/Carousel -->
+  <div #gridRef class="container mx-auto px-6 relative z-10 flex overflow-x-auto lg:grid lg:grid-cols-5 gap-4 lg:gap-6 max-w-6xl mx-auto pb-6 snap-x snap-mandatory" style="scrollbar-width: none;">
     @for (ind of industries; track $index) {
-      <div class="industry-card flex flex-col justify-between p-6 rounded-2xl cursor-pointer select-none transition-all duration-300 relative group text-left rtl:text-right
+      <div class="industry-card flex-shrink-0 w-[280px] lg:w-auto snap-center flex flex-col justify-between p-6 rounded-2xl cursor-pointer select-none transition-all duration-300 relative group text-left rtl:text-right
                   {{ ind.isCosmetics 
                       ? 'border border-prometer-neon/50 bg-prometer-neon/[0.04] shadow-neon hover:shadow-neon-lg' 
                       : 'border border-prometer-mint/10 bg-prometer-dark/30 backdrop-blur-xl shadow-glass hover:border-prometer-neon/40' 

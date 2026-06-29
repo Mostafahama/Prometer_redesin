@@ -26,9 +26,14 @@
         <!-- Interactive Pentagon/Flower Base -->
         <div class="relative w-[500px] h-[500px] mx-auto group">
                
-            <!-- Central SVG Geometry -->
-            <svg viewBox="0 0 400 400" class="w-full h-full drop-shadow-[0_0_15px_rgba(165,55,251,0.2)]">
+          <svg width="420" height="420" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full overflow-visible">
             <defs>
+              <!-- Single Petal Definition for the rotating logo -->
+              <g id="petal-shape">
+                <path d="M 200 68 C 248 68 280 135 200 200 C 120 135 152 68 200 68 Z" 
+                      stroke-width="1.8" stroke-linejoin="round" />
+              </g>
+
               <!-- Gradual Center Glow -->
               <radialGradient id="center-glow" cx="50%" cy="50%" r="50%">
                 <stop offset="0%" stop-color="rgba(165,55,251,0.25)" />
@@ -37,58 +42,110 @@
             </defs>
 
             <!-- Ambient glow under the logo -->
-            <circle cx="200" cy="200" r="140" fill="url(#center-glow)" />
+            <circle cx="200" cy="200" r="140" fill="url(#center-glow)" pointer-events-none />
 
-            <!-- ── EXACT GEOMETRIC PETAL PATHS ── -->
-            <!-- Each petal is rendered independently, allowing individual hover fills and the exact 5-cusp pentagon negative space -->
-            @for (petal of petals; track $index) {
-              <g class="petal-group pointer-events-auto cursor-pointer transition-all duration-300" 
-                 (mouseenter)="onPetalHover($index)"
-                 (mouseleave)="onPetalLeave()"
-                 (click)="selectPetal($index)">
-                
-                <!-- Main Petal Outline & Fill -->
-                <path class="petal-path transition-all duration-300" 
-                      [attr.d]="petal.path" 
-                      [attr.fill]="activeIndex === $index ? 'rgba(165,55,251,0.15)' : 'rgba(17,3,33,0.3)'" 
-                      [attr.stroke]="activeIndex === $index ? '#A537FB' : 'rgba(202,227,222,0.8)'" 
-                      stroke-width="2.5" 
-                      stroke-linecap="round" 
-                      stroke-linejoin="round" />
-                
+            <!-- Dashed guide track for the numbers -->
+            <circle cx="200" cy="200" r="100" stroke="rgba(202,227,222,0.12)" stroke-width="1.2" stroke-dasharray="6 4" />
 
+            <!-- ── ROTATING LOGO MARK LAYER 1 (Purple - Clockwise) ── -->
+            <g class="animate-[spin_40s_linear_infinite]" style="transform-origin: 200px 200px;">
+              <g stroke="rgba(165, 55, 251, 0.4)" fill="none">
+                <use href="#petal-shape" transform="rotate(0, 200, 200)" />
+                <use href="#petal-shape" transform="rotate(72, 200, 200)" />
+                <use href="#petal-shape" transform="rotate(144, 200, 200)" />
+                <use href="#petal-shape" transform="rotate(216, 200, 200)" />
+                <use href="#petal-shape" transform="rotate(288, 200, 200)" />
               </g>
-            }
+            </g>
+
+            <!-- ── ROTATING LOGO MARK LAYER 2 (Mint/White - Counter-Clockwise, Offset) ── -->
+            <g class="animate-[spin_28s_linear_infinite_reverse]" style="transform-origin: 200px 200px;">
+              <g stroke="rgba(202, 227, 222, 0.3)" fill="none">
+                <use href="#petal-shape" transform="rotate(18, 200, 200)" />
+                <use href="#petal-shape" transform="rotate(90, 200, 200)" />
+                <use href="#petal-shape" transform="rotate(162, 200, 200)" />
+                <use href="#petal-shape" transform="rotate(234, 200, 200)" />
+                <use href="#petal-shape" transform="rotate(306, 200, 200)" />
+              </g>
+            </g>
+
+            <!-- ── STATIC INTERACTIVE 5-PETAL PROMETER LOGO CORE ── -->
+            <!-- Each of the 5 petals points directly to its corresponding number, with the active one highlighted -->
+            <g fill="none">
+              <!-- Petal 1 (points to 01 at top / 0 deg) -->
+              <path d="M 200 68 C 248 68 280 135 200 200 C 120 135 152 68 200 68 Z" 
+                    [attr.stroke]="activeIndex === 0 ? '#CAE3DE' : 'rgba(165, 55, 251, 0.25)'" 
+                    [attr.stroke-width]="activeIndex === 0 ? 2.5 : 1.5"
+                    [attr.fill]="activeIndex === 0 ? 'rgba(165, 55, 251, 0.1)' : 'transparent'"
+                    class="transition-all duration-300 cursor-pointer"
+                    (click)="selectPetal(0)" />
+
+              <!-- Petal 2 (points to 02 at right-top / 72 deg) -->
+              <path d="M 200 68 C 248 68 280 135 200 200 C 120 135 152 68 200 68 Z" 
+                    transform="rotate(72, 200, 200)"
+                    [attr.stroke]="activeIndex === 1 ? '#CAE3DE' : 'rgba(165, 55, 251, 0.25)'" 
+                    [attr.stroke-width]="activeIndex === 1 ? 2.5 : 1.5"
+                    [attr.fill]="activeIndex === 1 ? 'rgba(165, 55, 251, 0.1)' : 'transparent'"
+                    class="transition-all duration-300 cursor-pointer"
+                    (click)="selectPetal(1)" />
+
+              <!-- Petal 3 (points to 03 at right-bottom / 144 deg) -->
+              <path d="M 200 68 C 248 68 280 135 200 200 C 120 135 152 68 200 68 Z" 
+                    transform="rotate(144, 200, 200)"
+                    [attr.stroke]="activeIndex === 2 ? '#CAE3DE' : 'rgba(165, 55, 251, 0.25)'" 
+                    [attr.stroke-width]="activeIndex === 2 ? 2.5 : 1.5"
+                    [attr.fill]="activeIndex === 2 ? 'rgba(165, 55, 251, 0.1)' : 'transparent'"
+                    class="transition-all duration-300 cursor-pointer"
+                    (click)="selectPetal(2)" />
+
+              <!-- Petal 4 (points to 04 at left-bottom / 216 deg) -->
+              <path d="M 200 68 C 248 68 280 135 200 200 C 120 135 152 68 200 68 Z" 
+                    transform="rotate(216, 200, 200)"
+                    [attr.stroke]="activeIndex === 3 ? '#CAE3DE' : 'rgba(165, 55, 251, 0.25)'" 
+                    [attr.stroke-width]="activeIndex === 3 ? 2.5 : 1.5"
+                    [attr.fill]="activeIndex === 3 ? 'rgba(165, 55, 251, 0.1)' : 'transparent'"
+                    class="transition-all duration-300 cursor-pointer"
+                    (click)="selectPetal(3)" />
+
+              <!-- Petal 5 (points to 05 at left-top / 288 deg) -->
+              <path d="M 200 68 C 248 68 280 135 200 200 C 120 135 152 68 200 68 Z" 
+                    transform="rotate(288, 200, 200)"
+                    [attr.stroke]="activeIndex === 4 ? '#CAE3DE' : 'rgba(165, 55, 251, 0.25)'" 
+                    [attr.stroke-width]="activeIndex === 4 ? 2.5 : 1.5"
+                    [attr.fill]="activeIndex === 4 ? 'rgba(165, 55, 251, 0.1)' : 'transparent'"
+                    class="transition-all duration-300 cursor-pointer"
+                    (click)="selectPetal(4)" />
+            </g>
           </svg>
 
-          <!-- ── INTERACTIVE NUMBERS (Orbit with the logo, but counter-rotate to stay upright) ── -->
+          <!-- ── CENTRAL LOGO (Added for user request) ── -->
+          <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+            <div class="w-14 h-14 rounded-full bg-[#110321] border border-prometer-mint/20 flex items-center justify-center shadow-[0_0_20px_rgba(165,55,251,0.2)]">
+              <img src="assets/prometer-eco-logo.webp" alt="ProMeter" class="w-7 h-auto" style="filter: invert(1) brightness(2);">
+            </div>
+          </div>
+
+          <!-- ── INTERACTIVE NUMBERS PLACED ON TOP AS HTML BUTTONS ── -->
           <div class="absolute inset-0 pointer-events-none z-10">
             @for (val of currentTextValues; track $index) {
-              <div class="absolute w-11 h-11"
-                   [style.left]="getNumberPosition($index).x"
-                   [style.top]="getNumberPosition($index).y"
-                   [style.transform]="'translate(-50%, -50%)'">
-                
-                <!-- Number Container -->
-                <div class="w-full h-full pointer-events-none">
-                  <button
-                    (mouseenter)="onPetalHover($index)"
-                    (mouseleave)="onPetalLeave()"
-                    (click)="selectPetal($index)"
-                    class="w-full h-full transition-all duration-300 font-mono text-xl font-black pointer-events-auto flex items-center justify-center"
-                    [class]="activeIndex === $index 
-                      ? 'text-white scale-125 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' 
-                      : 'text-prometer-mint/40 hover:text-prometer-mint/80 hover:scale-110'"
-                  >
-                    0{{ $index + 1 }}
-                  </button>
-                </div>
-              </div>
+              <button
+                (mouseenter)="onPetalHover($index)"
+                (mouseleave)="onPetalLeave()"
+                (click)="selectPetal($index)"
+                class="absolute pointer-events-auto flex items-center justify-center w-11 h-11 rounded-full border transition-all duration-300 font-mono text-xs font-bold"
+                [class]="activeIndex === $index 
+                  ? 'bg-prometer-neon border-white text-white scale-125 shadow-neon' 
+                  : 'bg-[#110321]/95 border-prometer-mint/20 text-prometer-mint/60 hover:text-prometer-mint hover:border-prometer-mint/50 hover:scale-110'"
+                [style.left]="getNumberPosition($index).x"
+                [style.top]="getNumberPosition($index).y"
+                [style.transform]="'translate(-50%, -50%)'"
+              >
+                0{{ $index + 1 }}
+              </button>
             }
           </div>
 
         </div>
-
       </div>
 
       <!-- Shared Text Panel (crossfade text card) -->

@@ -15,9 +15,9 @@
     </div>
 
     <!-- Cards Grid -->
-    <div #pillarsContainer class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto">
+    <div #pillarsContainer class="flex overflow-x-auto md:grid md:grid-cols-3 gap-4 md:gap-8 items-stretch max-w-6xl mx-auto snap-x snap-mandatory pb-4" style="scrollbar-width: none;">
       @for (card of cards; track $index) {
-        <div class="pillar-card flex flex-col justify-between p-8 rounded-2xl transition-all duration-300 {{ card.bgClass }} cursor-pointer select-none text-left">
+        <div class="pillar-card flex-shrink-0 w-[280px] md:w-auto snap-center flex flex-col justify-between p-8 rounded-2xl transition-all duration-300 {{ card.bgClass }} cursor-pointer select-none text-left rtl:text-right">
           <div>
             <!-- Accent Label -->
             <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-6 bg-black/10 border border-white/5">

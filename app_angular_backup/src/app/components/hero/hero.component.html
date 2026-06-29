@@ -36,7 +36,7 @@
 
   <!-- 4. Content Container -->
   <div class="container mx-auto px-6 relative w-full text-left rtl:text-right" style="z-index: 10;">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <div class="grid grid-cols-2 gap-4 lg:gap-12 items-center">
       
       <!-- Left/Right Column: Text Content -->
       <div class="flex flex-col items-start rtl:items-start text-left rtl:text-right max-w-xl">
@@ -46,30 +46,30 @@
         </div>
 
         <!-- H1 Main Cinematic Title -->
-        <h1 #heroTitle class="text-4xl sm:text-5xl lg:text-[3.4rem] font-black text-prometer-mint leading-[1.05] mb-6 select-none">
+        <h1 #heroTitle class="text-base sm:text-3xl lg:text-[3.4rem] font-black text-prometer-mint leading-snug lg:leading-[1.1] mb-2 lg:mb-6 select-none">
           {{ currentText.title1 }}<br>
           <span class="text-white">{{ currentText.title2 }}</span>
         </h1>
 
         <!-- H2 Subtitle -->
-        <h2 #heroSubtitle class="text-lg sm:text-xl font-bold text-prometer-mint/90 mb-6 tracking-wide uppercase">
+        <h2 #heroSubtitle class="text-[8px] sm:text-sm lg:text-xl font-bold text-prometer-mint/90 mb-2 lg:mb-6 tracking-wide uppercase">
           {{ currentText.subtitle }}
         </h2>
 
         <!-- Description Paragraph -->
-        <p #heroText class="text-sm sm:text-base text-prometer-mint/70 leading-relaxed mb-10 font-light">
+        <p #heroText class="text-[7px] sm:text-xs lg:text-base text-prometer-mint/70 leading-relaxed mb-4 lg:mb-10 font-light">
           {{ currentText.desc }}
         </p>
 
         <!-- Call To Action Buttons -->
-        <div #heroCta class="flex flex-wrap items-center gap-4 mb-12">
+        <div #heroCta class="flex flex-col sm:flex-row items-start sm:items-center gap-2 lg:gap-4 mb-6 lg:mb-12 w-full">
           <!-- Request Demo Button (Magnetic) -->
           <a #magneticBtn href="#contact"
-             class="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-xl px-7 py-3.5 font-bold text-sm tracking-wide text-white transition-all duration-300 shadow-neon hover:shadow-neon-lg"
+             class="group relative inline-flex items-center justify-center gap-1.5 lg:gap-2.5 overflow-hidden rounded-lg lg:rounded-xl px-2 lg:px-7 py-1.5 lg:py-3.5 font-bold text-[8px] lg:text-sm tracking-wide text-white transition-all duration-300 shadow-neon hover:shadow-neon-lg w-full sm:w-auto text-center"
              style="background: linear-gradient(135deg, #9C3FFA 0%, #7B2FD4 100%);">
-            <span class="relative z-10 flex items-center gap-2">
+            <span class="relative z-10 flex items-center gap-1 lg:gap-2">
               {{ currentText.requestDemo }}
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180 transition-transform duration-200">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-2.5 h-2.5 lg:w-4 lg:h-4 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180 transition-transform duration-200">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
               </svg>
             </span>
@@ -79,13 +79,13 @@
 
           <!-- Watch Platform Button -->
           <a href="#experience"
-             class="group inline-flex items-center gap-2.5 rounded-xl px-7 py-3.5 font-bold text-sm tracking-wide transition-all duration-300"
+             class="group inline-flex items-center justify-center gap-1.5 lg:gap-2.5 rounded-lg lg:rounded-xl px-2 lg:px-7 py-1.5 lg:py-3.5 font-bold text-[8px] lg:text-sm tracking-wide transition-all duration-300 w-full sm:w-auto text-center"
              style="background: rgba(255,255,255,0.04); border: 1px solid rgba(156,63,250,0.25); color: rgba(255,255,255,0.8);"
              onmouseenter="this.style.borderColor='rgba(156,63,250,0.5)'; this.style.background='rgba(156,63,250,0.08)';"
              onmouseleave="this.style.borderColor='rgba(156,63,250,0.25)'; this.style.background='rgba(255,255,255,0.04)';">
-            <span class="w-7 h-7 rounded-full flex items-center justify-center"
+            <span class="w-4 h-4 lg:w-7 lg:h-7 rounded-full flex items-center justify-center"
                   style="background: rgba(156,63,250,0.15); border: 1px solid rgba(156,63,250,0.3);">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 text-prometer-neon ml-0.5 rtl:mr-0.5 rtl:ml-0 rtl:rotate-180">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-2 h-2 lg:w-3 lg:h-3 text-prometer-neon ml-0.5 rtl:mr-0.5 rtl:ml-0 rtl:rotate-180">
                 <path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clip-rule="evenodd" />
               </svg>
             </span>
@@ -106,8 +106,8 @@
       </div>
 
       <!-- Right Column: 3D Floating Screenshots Parallax -->
-      <div class="relative hidden lg:block" style="perspective: 1200px;">
-        <div #floatContainer class="relative w-full" style="transform-style: preserve-3d; transition: transform 0.15s ease-out;">
+      <div class="relative block" style="perspective: 1200px;">
+        <div #floatContainer class="relative w-full scale-[0.8] lg:scale-100 origin-center" style="transform-style: preserve-3d; transition: transform 0.15s ease-out;">
           
           <!-- Main: Admin Dashboard Screenshot (z-10, lower translateZ) -->
           <div #floatDashboard class="rounded-2xl overflow-hidden relative z-10"
