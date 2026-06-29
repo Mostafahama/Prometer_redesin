@@ -14,6 +14,12 @@ export class ComparisonComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('sectionRef', { static: true }) sectionRef!: ElementRef<HTMLElement>;
 
   private triggers: any[] = [];
+  
+  public mobileTab: 'trad' | 'pm' = 'trad';
+
+  public setMobileTab(tab: 'trad' | 'pm') {
+    this.mobileTab = tab;
+  }
 
   public texts = {
     en: {
@@ -98,6 +104,10 @@ export class ComparisonComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public get currentText() {
     return this.langService.currentLang === 'en' ? this.texts.en : this.texts.ar;
+  }
+
+  public get isAr() {
+    return this.langService.currentLang === 'ar';
   }
 
   constructor(private gsapService: GsapService, private langService: LanguageService) {}

@@ -31,7 +31,7 @@
     </div>
 
     <!-- Active view content -->
-    <div class="grid grid-cols-2 gap-4 lg:gap-12 items-center max-w-6xl mx-auto text-left rtl:text-right">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center max-w-6xl mx-auto text-left rtl:text-right">
       
       <!-- Features list (Left Column) -->
       <div class="transition-opacity duration-300" [class.opacity-40]="transitioning">
@@ -42,12 +42,27 @@
           {{ views[activeIndex].desc }}
         </p>
 
-        <div class="space-y-2 lg:space-y-4">
+        <div class="hidden lg:block space-y-2 lg:space-y-4">
           @for (f of views[activeIndex].features; track f.text) {
             <div class="flex items-start lg:items-center gap-1.5 lg:gap-4 p-[8px] lg:p-4 rounded-lg lg:rounded-xl border border-prometer-mint/5 bg-prometer-dark/30 backdrop-blur-xl">
               <!-- Number Indicator -->
               <span class="text-[12px] lg:text-xs font-mono font-bold text-prometer-neon flex-shrink-0 w-3 lg:w-5 pt-0.5 lg:pt-0">0{{ $index + 1 }}.</span>
               <span class="text-[13px] lg:text-sm text-prometer-mint/80 font-semibold leading-snug">{{ f.text }}</span>
+            </div>
+          }
+        </div>
+
+        <!-- Mobile Features Cards (Horizontal Scroll) -->
+        <div class="flex lg:hidden overflow-x-auto gap-3 pb-4 snap-x snap-mandatory" style="scrollbar-width: none;">
+          @for (f of views[activeIndex].features; track f.text) {
+            <div class="flex-shrink-0 w-[220px] snap-center p-5 rounded-2xl border border-prometer-mint/5 flex flex-col items-start shadow-glass text-left rtl:text-right" style="background-color: #1a162b;">
+              <span class="text-[10px] font-mono font-bold text-prometer-neon/60 mb-2">0{{ $index + 1 }}</span>
+              <div class="w-8 h-8 rounded-xl bg-prometer-neon/10 flex items-center justify-center mb-3 text-prometer-neon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                </svg>
+              </div>
+              <h4 class="text-[13px] text-white font-bold leading-relaxed">{{ f.text }}</h4>
             </div>
           }
         </div>

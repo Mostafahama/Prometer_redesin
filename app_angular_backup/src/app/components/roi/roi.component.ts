@@ -35,7 +35,8 @@ export class RoiComponent implements OnInit, OnDestroy {
       sar: 'SAR',
       productivityGain: 'Productivity Gain',
       supervisionTimeSaved: 'Supervision Time Saved',
-      complianceIncrease: 'Visit Compliance Increase'
+      complianceIncrease: 'Visit Compliance',
+      counterCoverage: 'Counter Coverage'
     },
     ar: {
       badge: 'حاسبة العائد على الاستثمار',
@@ -50,7 +51,8 @@ export class RoiComponent implements OnInit, OnDestroy {
       sar: 'ريال سعودي',
       productivityGain: 'زيادة الإنتاجية',
       supervisionTimeSaved: 'الوقت الموفر في الإشراف',
-      complianceIncrease: 'زيادة الامتثال للزيارات'
+      complianceIncrease: 'تأكيد الزيارات',
+      counterCoverage: 'تغطية منافذ البيع'
     }
   };
 

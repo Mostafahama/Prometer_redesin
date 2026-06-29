@@ -29,17 +29,10 @@
       </a>
     </div>
 
-    <!-- Mobile Menu Toggle Button -->
-    <button (click)="toggleMobileMenu()" class="md:hidden flex items-center justify-center w-10 h-10 rounded-xl border border-prometer-mint/10 bg-prometer-dark/30 text-prometer-mint">
-      @if (mobileMenuOpen) {
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-        </svg>
-      } @else {
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
-        </svg>
-      }
+    <!-- Mobile Language Toggle Button -->
+    <button (click)="toggleLanguage()" 
+            class="md:hidden px-4 py-2 rounded-xl text-xs font-bold font-mono border border-prometer-mint/15 bg-prometer-dark/40 text-prometer-mint/85 hover:text-prometer-neon hover:border-prometer-neon/30 transition-all duration-300">
+      {{ currentLang === 'en' ? 'العربية' : 'EN' }}
     </button>
 
   </div>

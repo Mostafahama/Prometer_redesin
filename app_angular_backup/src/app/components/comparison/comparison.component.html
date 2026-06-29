@@ -17,12 +17,35 @@
       </p>
     </div>
 
+    <!-- Mobile Tabs Toggle -->
+    <div class="flex lg:hidden bg-prometer-dark/60 p-1.5 rounded-xl mx-auto max-w-sm mb-8 border border-prometer-mint/5 relative z-10 w-full" style="backdrop-filter: blur(8px);">
+      <button 
+        (click)="setMobileTab('trad')"
+        class="flex-1 flex items-center justify-center gap-2 py-3 rounded-lg text-[13px] font-bold transition-all duration-300"
+        [ngClass]="mobileTab === 'trad' ? 'bg-red-500/10 text-red-400 border border-red-500/20 shadow-[0_0_15px_rgba(239,68,68,0.1)]' : 'text-prometer-mint/50 hover:text-prometer-mint/80'">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+          <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+        </svg>
+        {{ isAr ? 'بدون بروميتر' : 'Without ProMeter' }}
+      </button>
+      <button 
+        (click)="setMobileTab('pm')"
+        class="flex-1 flex items-center justify-center gap-2 py-3 rounded-lg text-[13px] font-bold transition-all duration-300"
+        [ngClass]="mobileTab === 'pm' ? 'bg-prometer-neon/10 text-prometer-neon border border-prometer-neon/20 shadow-[0_0_15px_rgba(165,55,251,0.15)]' : 'text-prometer-mint/50 hover:text-prometer-mint/80'">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+          <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
+        </svg>
+        {{ isAr ? 'مع بروميتر' : 'With ProMeter' }}
+      </button>
+    </div>
+
     <!-- Contrast Grid -->
-    <div class="grid grid-cols-2 gap-3 lg:gap-8 items-stretch max-w-5xl mx-auto text-left rtl:text-right">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-8 items-stretch max-w-5xl mx-auto text-left rtl:text-right">
       
       <!-- LEFT: Traditional Chaos (Void/Dark theme) -->
       <div 
-        class="rounded-xl lg:rounded-2xl px-[8px] py-[10px] lg:p-10 border border-red-500/10 bg-prometer-card flex flex-col justify-between transition-shadow duration-300 hover:shadow-[0_0_30px_rgba(239,68,68,0.03)]"
+        class="rounded-xl lg:rounded-2xl px-[12px] py-[16px] lg:p-10 border border-red-500/10 bg-prometer-card flex-col justify-between transition-shadow duration-300 hover:shadow-[0_0_30px_rgba(239,68,68,0.03)]"
+        [ngClass]="mobileTab === 'pm' ? 'hidden lg:flex' : 'flex'"
       >
         <div>
           <div class="flex items-start lg:items-center gap-1.5 lg:gap-2 mb-3 lg:mb-6 justify-start flex-col lg:flex-row">
@@ -56,7 +79,8 @@
 
       <!-- RIGHT: ProMeter Control (Solid Mint theme) -->
       <div 
-        class="rounded-xl lg:rounded-2xl px-[8px] py-[10px] lg:p-10 bg-prometer-mint text-prometer-dark flex flex-col justify-between transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(206,229,224,0.15)]"
+        class="rounded-xl lg:rounded-2xl px-[12px] py-[16px] lg:p-10 bg-prometer-mint text-prometer-dark flex-col justify-between transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(206,229,224,0.15)]"
+        [ngClass]="mobileTab === 'trad' ? 'hidden lg:flex' : 'flex'"
       >
         <div>
           <div class="flex items-start lg:items-center gap-1.5 lg:gap-2 mb-3 lg:mb-6 justify-start flex-col lg:flex-row">
