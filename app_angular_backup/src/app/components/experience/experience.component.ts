@@ -51,7 +51,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
       id: 'supervisor',
       label: 'Supervisors',
       desc: 'Save time and streamline your operations with a smart system that automatically collects all required data and generates comprehensive sales reports with just one click.',
-      image: 'assets/dashboard-2.webp',
+      image: 'assets/supervisors.webp',
       features: [
         { text: 'Detailed real-time sales reports' },
         { text: 'Integrated coaching reports' },
@@ -64,7 +64,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
       id: 'admin',
       label: 'Company Decision Makers',
       desc: 'A powerful all-in-one dashboard that gives you complete visibility over your operations, including total monthly sales, target achievement rates, employee attendance, and workforce insights.',
-      image: 'assets/dashboard-3.webp',
+      image: 'assets/company-admin.webp',
       features: [
         { text: 'Live sales and performance tracking' },
         { text: 'Visual charts showing sales trends and target progress' },
@@ -76,7 +76,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
       id: 'employee',
       label: 'Employees',
       desc: 'Transform your promoter management into a smarter and more efficient experience with an all-in-one system.',
-      image: 'assets/dashboard-1.webp',
+      image: 'assets/employees.webp',
       features: [
         { text: 'Location-based attendance tracking' },
         { text: 'Advanced sales entry with multiple products in a single transaction for accurate KPI measurement' },
@@ -92,7 +92,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
       id: 'supervisor',
       label: 'المشرفين',
       desc: 'وفّر وقتك وجهدك مع نظام ذكي يجمع كل البيانات المطلوبة تلقائيًا ويحوّلها إلى تقارير احترافية شاملة لجميع تفاصيل المبيعات بضغطة زر.',
-      image: 'assets/dashboard-2.webp',
+      image: 'assets/supervisors.webp',
       features: [
         { text: 'تقارير مبيعات لحظية ودقيقة' },
         { text: 'تقارير الزيارات الميدانية متكامل للبروموتر' },
@@ -105,7 +105,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
       id: 'admin',
       label: 'أصحاب القرار في الشركة',
       desc: 'لوحة تحكم متكاملة تمنحك رؤية شاملة لأداء أعمالك، تشمل إجمالي مبيعات الشهر، نسبة تحقيق الأهداف، إجمالي الموظفين والحضور، مع تقارير وتحليلات لحظية تساعدك على اتخاذ القرار بسرعة واحترافية',
-      image: 'assets/dashboard-3.webp',
+      image: 'assets/company-admin.webp',
       features: [
         { text: 'متابعة مباشرة للمبيعات والأداء' },
         { text: 'تشارت احترافي يوضح اتجاه المبيعات وتحقيق الأهداف' },
@@ -117,7 +117,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
       id: 'employee',
       label: 'الموظفين',
       desc: 'حوّل إدارة فريق البروموتر إلى تجربة أكثر ذكاءً وكفاءة مع نظام متكامل.',
-      image: 'assets/dashboard-1.webp',
+      image: 'assets/employees.webp',
       features: [
         { text: 'تسجيل الحضور والانصراف بالموقع المحدد' },
         { text: 'توثيق المبيعات بإمكانية إضافة عدة منتجات في العملية الواحدة لقياس الـ KPI بدقة' },
