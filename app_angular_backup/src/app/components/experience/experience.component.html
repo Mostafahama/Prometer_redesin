@@ -35,19 +35,19 @@
       
       <!-- Features list (Left Column) -->
       <div class="transition-opacity duration-300" [class.opacity-40]="transitioning">
-        <h3 class="text-sm lg:text-xl font-black text-prometer-mint mb-2 lg:mb-4 leading-tight">
+        <h3 class="text-[16px] lg:text-xl font-black text-prometer-mint mb-2 lg:mb-4 leading-tight">
           {{ currentText.featuresHeader }}
         </h3>
-        <p class="text-[8px] lg:text-sm text-prometer-mint/70 mb-4 lg:mb-8 leading-relaxed font-light">
+        <p class="text-[13px] lg:text-sm text-prometer-mint/70 mb-4 lg:mb-8 leading-relaxed font-light">
           {{ views[activeIndex].desc }}
         </p>
 
         <div class="space-y-2 lg:space-y-4">
           @for (f of views[activeIndex].features; track f.text) {
-            <div class="flex items-start lg:items-center gap-1.5 lg:gap-4 p-2 lg:p-4 rounded-lg lg:rounded-xl border border-prometer-mint/5 bg-prometer-dark/30 backdrop-blur-xl">
+            <div class="flex items-start lg:items-center gap-1.5 lg:gap-4 p-[8px] lg:p-4 rounded-lg lg:rounded-xl border border-prometer-mint/5 bg-prometer-dark/30 backdrop-blur-xl">
               <!-- Number Indicator -->
-              <span class="text-[7px] lg:text-xs font-mono font-bold text-prometer-neon flex-shrink-0 w-3 lg:w-5 pt-0.5 lg:pt-0">0{{ $index + 1 }}.</span>
-              <span class="text-[8px] lg:text-sm text-prometer-mint/80 font-semibold leading-snug">{{ f.text }}</span>
+              <span class="text-[12px] lg:text-xs font-mono font-bold text-prometer-neon flex-shrink-0 w-3 lg:w-5 pt-0.5 lg:pt-0">0{{ $index + 1 }}.</span>
+              <span class="text-[13px] lg:text-sm text-prometer-mint/80 font-semibold leading-snug">{{ f.text }}</span>
             </div>
           }
         </div>

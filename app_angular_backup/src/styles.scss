@@ -131,3 +131,36 @@ html.lenis, html.lenis body {
     text-align: left !important;
   }
 }
+
+/* ── Mobile Responsiveness Global Rules ── */
+@media (max-width: 768px) {
+  /* Prevent horizontal scroll */
+  body, html { 
+    overflow-x: hidden; 
+  }
+  
+  /* Global font scale */
+  p { 
+    font-size: 13px !important; 
+    line-height: 1.5; 
+  }
+  h1 { 
+    font-size: clamp(1.6rem, 5vw, 2.5rem) !important; 
+  }
+  h2 { 
+    font-size: clamp(1.3rem, 4vw, 2rem) !important; 
+  }
+  h3 { 
+    font-size: clamp(1rem, 3vw, 1.5rem) !important; 
+  }
+  
+  /* Section padding */
+  section { 
+    padding: 40px 16px !important; 
+  }
+  
+  /* Cards general */
+  .card, .glass-panel {
+    padding: 12px !important;
+  }
+}

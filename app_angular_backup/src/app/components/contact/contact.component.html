@@ -78,13 +78,13 @@
       <form (submit)="onSubmit($event)"
             class="w-full glass-panel p-8 rounded-2xl border border-prometer-mint/10 bg-prometer-dark/30 backdrop-blur-xl space-y-4">
         
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-2 gap-[8px] lg:gap-4">
           <div>
             <label class="text-[10px] text-prometer-mint/50 uppercase tracking-wider mb-1.5 block font-bold">
               {{ currentText.nameLabel }}:
             </label>
             <input type="text" [(ngModel)]="name" name="name" required
-                   class="w-full px-4 py-3.5 rounded-xl text-xs text-prometer-mint bg-prometer-dark/60 border border-prometer-mint/10 focus:border-prometer-neon focus:shadow-neon-sm outline-none transition-all duration-300"
+                   class="w-full p-[8px] lg:px-4 lg:py-3.5 rounded-xl text-[13px] lg:text-xs text-prometer-mint bg-prometer-dark/60 border border-prometer-mint/10 focus:border-prometer-neon focus:shadow-neon-sm outline-none transition-all duration-300"
                    placeholder="{{ isAr ? 'الاسم بالكامل' : 'Full name' }}">
           </div>
           <div>
@@ -92,7 +92,7 @@
               {{ currentText.companyLabel }}:
             </label>
             <input type="text" [(ngModel)]="company" name="company"
-                   class="w-full px-4 py-3.5 rounded-xl text-xs text-prometer-mint bg-prometer-dark/60 border border-prometer-mint/10 focus:border-prometer-neon focus:shadow-neon-sm outline-none transition-all duration-300"
+                   class="w-full p-[8px] lg:px-4 lg:py-3.5 rounded-xl text-[13px] lg:text-xs text-prometer-mint bg-prometer-dark/60 border border-prometer-mint/10 focus:border-prometer-neon focus:shadow-neon-sm outline-none transition-all duration-300"
                    placeholder="{{ isAr ? 'علامة تجارية لمستحضرات التجميل' : 'Cosmetics brand' }}">
           </div>
         </div>
@@ -102,8 +102,8 @@
             {{ currentText.emailLabel }}:
           </label>
           <input type="email" [(ngModel)]="email" name="email" required
-                 class="w-full px-4 py-3.5 rounded-xl text-xs text-prometer-mint bg-prometer-dark/60 border border-prometer-mint/10 focus:border-prometer-neon focus:shadow-neon-sm outline-none transition-all duration-300"
-                 placeholder="name&#64;company.com">
+                 class="w-full p-[8px] lg:px-4 lg:py-3.5 rounded-xl text-[13px] lg:text-xs text-prometer-mint bg-prometer-dark/60 border border-prometer-mint/10 focus:border-prometer-neon focus:shadow-neon-sm outline-none transition-all duration-300"
+                 placeholder="name@company.com">
         </div>
 
         <div>
@@ -111,7 +111,7 @@
             {{ currentText.messageLabel }}:
           </label>
           <textarea rows="4" [(ngModel)]="message" name="message"
-                    class="w-full px-4 py-3.5 rounded-xl text-xs text-prometer-mint bg-prometer-dark/60 border border-prometer-mint/10 focus:border-prometer-neon focus:shadow-neon-sm outline-none resize-none transition-all duration-300"
+                    class="w-full p-[8px] lg:px-4 lg:py-3.5 rounded-xl text-[13px] lg:text-xs text-prometer-mint bg-prometer-dark/60 border border-prometer-mint/10 focus:border-prometer-neon focus:shadow-neon-sm outline-none resize-none transition-all duration-300"
                     placeholder="{{ isAr ? 'كيف يمكن لبروميتر مساعدة عمليات فريقك الميداني؟' : 'How can ProMeter assist your field team operations?' }}"></textarea>
         </div>
 

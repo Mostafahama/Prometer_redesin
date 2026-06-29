@@ -260,8 +260,8 @@ export class EcosystemComponent implements OnInit, AfterViewInit, OnDestroy {
         this.sceneSize = 520;
         this.cardSize = 75;
       } else {
-        this.sceneSize = Math.min(360, vw * 0.9);
-        this.cardSize = 58;
+        this.sceneSize = Math.min(320, vw - 48);
+        this.cardSize = 54;
       }
     }
   }
