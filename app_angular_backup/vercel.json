@@ -1,5 +1,16 @@
 {
   "outputDirectory": "dist/prometer-app/browser",
+  "headers": [
+    {
+      "source": "/(.*)\\.(js|css|webp|png|jpg|jpeg|svg|ico|woff2|woff)$",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]

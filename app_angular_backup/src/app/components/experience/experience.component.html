@@ -89,14 +89,11 @@
           </div>
 
           <!-- Screenshot (Rendering Actual Image Assets) -->
-          <div class="w-full h-[calc(100%-43px)] flex items-center justify-center p-6 bg-gradient-to-b from-prometer-dark to-prometer-deep relative overflow-hidden"
-               [class.py-8]="views[activeIndex].id === 'employee'">
+          <div class="w-full h-[calc(100%-43px)] flex items-center justify-center p-6 bg-gradient-to-b from-prometer-dark to-prometer-deep relative overflow-hidden">
             
             <img src="{{ views[activeIndex].image }}" 
                  alt="{{ views[activeIndex].label }}"
-                 [class]="views[activeIndex].id === 'employee' 
-                          ? 'w-[45%] max-w-[200px] rounded-[1.25rem] shadow-2xl h-auto block transition-all duration-300' 
-                          : 'w-full h-auto block transition-all duration-300'"
+                 class="w-full h-auto block transition-all duration-300"
                  [class.scale-[0.95]]="transitioning"
                  [class.opacity-0]="transitioning"
                  [class.opacity-100]="!transitioning"
