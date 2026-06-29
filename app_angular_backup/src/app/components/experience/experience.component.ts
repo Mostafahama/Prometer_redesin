@@ -48,84 +48,82 @@ export class ExperienceComponent implements OnInit, OnDestroy {
 
   private enViews: ViewItem[] = [
     {
-      id: 'admin',
-      label: 'Administrator Dashboard',
-      desc: 'Complete command center for managers and executives to supervise all field sales activities, regions, and representative metrics.',
-      image: 'assets/dashboard-1.webp',
+      id: 'supervisor',
+      label: 'Supervisors',
+      desc: 'Save time and streamline your operations with a smart system that automatically collects all required data and generates comprehensive sales reports with just one click.',
+      image: 'assets/dashboard-2.webp',
       features: [
-        { text: 'Live sell-out performance logging across all pharmacy counters' },
-        { text: 'Dynamic GPS map listing all active promoter positions' },
-        { text: 'Unified client database with visit histories and display reviews' },
-        { text: 'Executive reports and charts built for executive decisions' },
-        { text: 'Automated warnings for geofence breaches or route delays' }
+        { text: 'Detailed real-time sales reports' },
+        { text: 'Integrated coaching reports' },
+        { text: 'Advanced performance insights to identify and improve promoter weaknesses' },
+        { text: 'Flexible brand target setting based on sales value or quantity sold, with the ability to assign specific unit targets for each product within the brand' },
+        { text: 'Zone Limit tracking with instant notifications when employees leave their assigned area' }
       ]
     },
     {
-      id: 'supervisor',
-      label: 'Supervisor Workspace',
-      desc: 'Dedicated oversight dashboard designed for field supervisors to verify daily promoter visits, attendance, and coach teams.',
-      image: 'assets/dashboard-2.webp',
+      id: 'admin',
+      label: 'Company Decision Makers',
+      desc: 'A powerful all-in-one dashboard that gives you complete visibility over your operations, including total monthly sales, target achievement rates, employee attendance, and workforce insights.',
+      image: 'assets/dashboard-3.webp',
       features: [
-        { text: 'Track real-time promoter team visits and sales achievement' },
-        { text: 'Verify visit coordinates via geofenced GPS check-in reports' },
-        { text: 'Audit daily biometric check-ins and total working hours' },
-        { text: 'Compare active field sales performance vs target margins' },
-        { text: 'Direct messaging and quick coaching tips to underperforming reps' }
+        { text: 'Live sales and performance tracking' },
+        { text: 'Visual charts showing sales trends and target progress' },
+        { text: 'Target distribution analytics across teams and locations' },
+        { text: 'Top-performing employees ranking for smarter performance management' }
       ]
     },
     {
       id: 'employee',
-      label: 'Promoter Mobile App',
-      desc: 'Mobile application designed for promoters to record sales, log display compliance, check-in, and review monthly commission achievements.',
-      image: 'assets/dashboard-3.webp',
+      label: 'Employees',
+      desc: 'Transform your promoter management into a smarter and more efficient experience with an all-in-one system.',
+      image: 'assets/dashboard-1.webp',
       features: [
-        { text: 'Geofenced GPS attendance clock-in with selfie confirmation' },
-        { text: 'Log counter visits with image uploads for shelf compliance' },
-        { text: 'Register order sheets and cash/credit collections in real time' },
-        { text: 'Track monthly target achievements and pending commissions' },
-        { text: 'Access optimized route sequences to prevent time loss in transit' }
+        { text: 'Location-based attendance tracking' },
+        { text: 'Advanced sales entry with multiple products in a single transaction for accurate KPI measurement' },
+        { text: 'Real-time target and commission tracking' },
+        { text: 'Precise inventory management' },
+        { text: 'Complete visibility over sales performance and operational insights in real time' }
       ]
     }
   ];
 
   private arViews: ViewItem[] = [
     {
-      id: 'admin',
-      label: 'لوحة تحكم المدير المسؤول',
-      desc: 'مركز قيادة كامل للمدراء والمسؤولين للإشراف على جميع الأنشطة الميدانية للمبيعات والمناطق ومؤشرات المناديب.',
-      image: 'assets/dashboard-1.webp',
+      id: 'supervisor',
+      label: 'المشرفين',
+      desc: 'وفّر وقتك وجهدك مع نظام ذكي يجمع كل البيانات المطلوبة تلقائيًا ويحوّلها إلى تقارير احترافية شاملة لجميع تفاصيل المبيعات بضغطة زر.',
+      image: 'assets/dashboard-2.webp',
       features: [
-        { text: 'تسجيل أداء المبيعات الفوري عبر جميع منافذ الصيدليات' },
-        { text: 'خريطة تفاعلية بالـ GPS توضح مواقع المروجين النشطين' },
-        { text: 'قاعدة بيانات موحدة للعملاء مع سجل الزيارات وتقييم العرض' },
-        { text: 'تقارير وتحليلات متقدمة مصممة لدعم القرارات الإدارية' },
-        { text: 'تنبيهات تلقائية في حالة تأخر المندوب أو خروجه عن النطاق الجغرافي' }
+        { text: 'تقارير مبيعات لحظية ودقيقة' },
+        { text: 'تقارير الزيارات الميدانية متكامل للبروموتر' },
+        { text: 'تحليل أداء يساعدك على اكتشاف نقاط ضعف الموظفين وتطويرها بكفاءة' },
+        { text: 'إمكانية تحديد أهداف البراند بكل مرونة، سواء بالقيمة البيعية أو بعدد القطع، مع تحديد هدف خاص بعدد القطع لكل منتج ضمن البراند' },
+        { text: 'خاصية Zone Limit مع تنبيهات فورية عند خروج الموظف من النطاق المحدد' }
       ]
     },
     {
-      id: 'supervisor',
-      label: 'مساحة عمل المشرف الميداني',
-      desc: 'لوحة تحكم مخصصة للمشرفين الميدانيين للتحقق من زيارات المروجين اليومية وحضورهم وتوجيه الفرق.',
-      image: 'assets/dashboard-2.webp',
+      id: 'admin',
+      label: 'أصحاب القرار في الشركة',
+      desc: 'لوحة تحكم متكاملة تمنحك رؤية شاملة لأداء أعمالك، تشمل إجمالي مبيعات الشهر، نسبة تحقيق الأهداف، إجمالي الموظفين والحضور، مع تقارير وتحليلات لحظية تساعدك على اتخاذ القرار بسرعة واحترافية',
+      image: 'assets/dashboard-3.webp',
       features: [
-        { text: 'متابعة زيارات فريق المروجين ونسب تحقيق المبيعات فوراً' },
-        { text: 'التحقق من إحداثيات الزيارة عبر تقارير حضور الـ GPS الجغرافية' },
-        { text: 'تدقيق الحضور بالبصمة الحيوية وإجمالي ساعات العمل اليومية' },
-        { text: 'مقارنة أداء المبيعات الميداني الفعلي مع الأهداف المحددة' },
-        { text: 'رسائل مباشرة ونصائح سريعة لتوجيه المندوبين الأقل أداءً' }
+        { text: 'متابعة مباشرة للمبيعات والأداء' },
+        { text: 'تشارت احترافي يوضح اتجاه المبيعات وتحقيق الأهداف' },
+        { text: 'تحليل وتوزيع الأهداف على الفروع والموظفين' },
+        { text: 'عرض أفضل الموظفين أداءً لرفع كفاءة فريق العمل' }
       ]
     },
     {
       id: 'employee',
-      label: 'تطبيق الهاتف للمروج الميداني',
-      desc: 'تطبيق هاتف ذكي مخصص للمروجين لتسجيل المبيعات وتوثيق حالة منصات العرض، وتسجيل الحضور ومتابعة العمولات.',
-      image: 'assets/dashboard-3.webp',
+      label: 'الموظفين',
+      desc: 'حوّل إدارة فريق البروموتر إلى تجربة أكثر ذكاءً وكفاءة مع نظام متكامل.',
+      image: 'assets/dashboard-1.webp',
       features: [
-        { text: 'تسجيل حضور بالـ GPS الموثق جغرافياً مع التحقق بالصورة الشخصية' },
-        { text: 'توثيق زيارات العرض بالصور للتحقق من مطابقة الأرفف للمعايير' },
-        { text: 'تسجيل فواتير الطلبات والتحصيلات النقدية والائتمانية فوراً' },
-        { text: 'تتبع تحقيق الأهداف الشهرية والعمولات المستحقة والنشطة' },
-        { text: 'عرض مسارات الزيارات المحسنة لتجنب ضياع الوقت في التنقل' }
+        { text: 'تسجيل الحضور والانصراف بالموقع المحدد' },
+        { text: 'توثيق المبيعات بإمكانية إضافة عدة منتجات في العملية الواحدة لقياس الـ KPI بدقة' },
+        { text: 'متابعة لحظية للأهداف ونسب الإنجاز والعمولات' },
+        { text: 'إدارة دقيقة للمخزون عبر لوحة تحكم احترافية' },
+        { text: 'رؤية شاملة لجميع تفاصيل الأداء والمبيعات في الوقت الفعلي' }
       ]
     }
   ];
