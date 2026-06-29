@@ -120,8 +120,8 @@
 
           <!-- ── CENTRAL LOGO (Added for user request) ── -->
           <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-            <div class="w-14 h-14 rounded-full bg-[#110321] border border-prometer-mint/20 flex items-center justify-center shadow-[0_0_20px_rgba(165,55,251,0.2)]">
-              <img src="assets/prometer-eco-logo.webp" alt="ProMeter" class="w-7 h-auto" style="filter: invert(1) brightness(2);">
+            <div class="w-14 h-14 rounded-full bg-prometer-mint flex items-center justify-center shadow-[0_0_20px_rgba(202,227,222,0.4)]">
+              <div class="w-7 h-7 bg-prometer-neon" style="-webkit-mask-image: url('assets/prometer-eco-logo.webp'); mask-image: url('assets/prometer-eco-logo.webp'); -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: center; mask-position: center;"></div>
             </div>
           </div>
 
@@ -134,8 +134,8 @@
                 (click)="selectPetal($index)"
                 class="absolute pointer-events-auto flex items-center justify-center w-11 h-11 rounded-full border transition-all duration-300 font-mono text-xs font-bold"
                 [class]="activeIndex === $index 
-                  ? 'bg-prometer-neon border-white text-white scale-125 shadow-neon' 
-                  : 'bg-[#110321]/95 border-prometer-mint/20 text-prometer-mint/60 hover:text-prometer-mint hover:border-prometer-mint/50 hover:scale-110'"
+                  ? 'bg-prometer-mint border-prometer-mint text-prometer-neon scale-125 shadow-[0_0_15px_rgba(202,227,222,0.5)]' 
+                  : 'bg-prometer-mint/10 border-prometer-mint/50 text-prometer-mint hover:bg-prometer-mint hover:text-prometer-neon hover:scale-110'"
                 [style.left]="getNumberPosition($index).x"
                 [style.top]="getNumberPosition($index).y"
                 [style.transform]="'translate(-50%, -50%)'"

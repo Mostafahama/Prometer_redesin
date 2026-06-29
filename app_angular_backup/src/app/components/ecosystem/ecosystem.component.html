@@ -50,7 +50,7 @@
               class="glass-module-card absolute"
               [style.left.px]="positions[$index].left - cardSize / 2"
               [style.top.px]="positions[$index].top - cardSize / 2"
-              [style.z-index]="positions[$index].z"
+              [style.z-index]="hoveredIndex === $index ? 100 : positions[$index].z"
               [style.opacity]="positions[$index].opacity"
               [style.transform]="'scale(' + positions[$index].scale + ')'"
               (mouseenter)="hoveredIndex = $index"

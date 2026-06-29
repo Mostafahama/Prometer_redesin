@@ -26,6 +26,13 @@
   text-align: left;
 }
 
+[dir="rtl"] .tracking-wide,
+[dir="rtl"] .tracking-wider,
+[dir="rtl"] .tracking-widest,
+[dir="rtl"] .tracking-[0.2em] {
+  letter-spacing: normal !important;
+}
+
 html, body {
   margin: 0;
   padding: 0;
