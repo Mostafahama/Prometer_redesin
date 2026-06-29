@@ -51,7 +51,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
       id: 'admin',
       label: 'Administrator Dashboard',
       desc: 'Complete command center for managers and executives to supervise all field sales activities, regions, and representative metrics.',
-      image: 'images/experience-admin.png',
+      image: 'assets/dashboard-1.webp',
       features: [
         { text: 'Live sell-out performance logging across all pharmacy counters' },
         { text: 'Dynamic GPS map listing all active promoter positions' },
@@ -64,7 +64,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
       id: 'supervisor',
       label: 'Supervisor Workspace',
       desc: 'Dedicated oversight dashboard designed for field supervisors to verify daily promoter visits, attendance, and coach teams.',
-      image: 'images/experience-supervisor.png',
+      image: 'assets/dashboard-2.webp',
       features: [
         { text: 'Track real-time promoter team visits and sales achievement' },
         { text: 'Verify visit coordinates via geofenced GPS check-in reports' },
@@ -77,7 +77,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
       id: 'employee',
       label: 'Promoter Mobile App',
       desc: 'Mobile application designed for promoters to record sales, log display compliance, check-in, and review monthly commission achievements.',
-      image: 'images/experience-mobile.png',
+      image: 'assets/dashboard-3.webp',
       features: [
         { text: 'Geofenced GPS attendance clock-in with selfie confirmation' },
         { text: 'Log counter visits with image uploads for shelf compliance' },
@@ -93,7 +93,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
       id: 'admin',
       label: 'لوحة تحكم المدير المسؤول',
       desc: 'مركز قيادة كامل للمدراء والمسؤولين للإشراف على جميع الأنشطة الميدانية للمبيعات والمناطق ومؤشرات المناديب.',
-      image: 'images/experience-admin.png',
+      image: 'assets/dashboard-1.webp',
       features: [
         { text: 'تسجيل أداء المبيعات الفوري عبر جميع منافذ الصيدليات' },
         { text: 'خريطة تفاعلية بالـ GPS توضح مواقع المروجين النشطين' },
@@ -106,7 +106,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
       id: 'supervisor',
       label: 'مساحة عمل المشرف الميداني',
       desc: 'لوحة تحكم مخصصة للمشرفين الميدانيين للتحقق من زيارات المروجين اليومية وحضورهم وتوجيه الفرق.',
-      image: 'images/experience-supervisor.png',
+      image: 'assets/dashboard-2.webp',
       features: [
         { text: 'متابعة زيارات فريق المروجين ونسب تحقيق المبيعات فوراً' },
         { text: 'التحقق من إحداثيات الزيارة عبر تقارير حضور الـ GPS الجغرافية' },
@@ -119,7 +119,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
       id: 'employee',
       label: 'تطبيق الهاتف للمروج الميداني',
       desc: 'تطبيق هاتف ذكي مخصص للمروجين لتسجيل المبيعات وتوثيق حالة منصات العرض، وتسجيل الحضور ومتابعة العمولات.',
-      image: 'images/experience-mobile.png',
+      image: 'assets/dashboard-3.webp',
       features: [
         { text: 'تسجيل حضور بالـ GPS الموثق جغرافياً مع التحقق بالصورة الشخصية' },
         { text: 'توثيق زيارات العرض بالصور للتحقق من مطابقة الأرفف للمعايير' },
