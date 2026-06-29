@@ -13,6 +13,7 @@ import { LanguageService } from '../../services/language.service';
 export class CoreValuesComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('valuesSection', { static: true }) valuesSection!: ElementRef<HTMLElement>;
 
+  public petals: { path: string, cx: number, cy: number }[] = [];
   public activeIndex = 0;
   public textOpacity = 1;
   private autoCycleInterval: any;
@@ -96,26 +97,59 @@ export class CoreValuesComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.startAutoCycle();
+    if (typeof window !== 'undefined') {
+      this.startAutoCycle();
+    }
+    this.generatePetals();
+  }
+
+  private generatePetals(): void {
+    const D = 122;
+    const R = 82;
+    const center = 200;
+
+    const h = Math.sqrt(R * R - (D * Math.sin(36 * Math.PI / 180)) * (D * Math.sin(36 * Math.PI / 180)));
+    const rOut = D * Math.cos(36 * Math.PI / 180) + h;
+    const rIn = D * Math.cos(36 * Math.PI / 180) - h;
+
+    this.petals = [];
+    for (let i = 0; i < 5; i++) {
+      const angleCenter = (i * 72 - 90) * Math.PI / 180;
+      const angleL = ((i * 72 - 36) - 90) * Math.PI / 180;
+      const angleR = ((i * 72 + 36) - 90) * Math.PI / 180;
+
+      const oL = { x: center + rOut * Math.cos(angleL), y: center + rOut * Math.sin(angleL) };
+      const oR = { x: center + rOut * Math.cos(angleR), y: center + rOut * Math.sin(angleR) };
+      const iR = { x: center + rIn * Math.cos(angleR), y: center + rIn * Math.sin(angleR) };
+      const iL = { x: center + rIn * Math.cos(angleL), y: center + rIn * Math.sin(angleL) };
+
+      let path = `M ${oL.x} ${oL.y} `;
+      path += `A ${R} ${R} 0 0 1 ${oR.x} ${oR.y} `;
+      path += `A ${R} ${R} 0 0 0 ${iR.x} ${iR.y} `;
+      path += `A ${R} ${R} 0 0 1 ${iL.x} ${iL.y} `;
+      path += `A ${R} ${R} 0 0 0 ${oL.x} ${oL.y} Z`;
+
+      const cx = center + D * Math.cos(angleCenter);
+      const cy = center + D * Math.sin(angleCenter);
+
+      this.petals.push({ path, cx, cy });
+    }
   }
 
   ngAfterViewInit(): void {
-    // Entrance animations if needed
     if (typeof document !== 'undefined') {
       this.gsapService.run((gsap) => {
-        const path = document.querySelector('.logo-path') as SVGPathElement;
-        if (path) {
-          // Native stroke drawing animation using GSAP
-          const length = path.getTotalLength();
-          gsap.set(path, {
-            strokeDasharray: length,
-            strokeDashoffset: length
+        const paths = document.querySelectorAll('.petal-path');
+        if (paths.length > 0) {
+          paths.forEach(p => {
+            const length = (p as SVGPathElement).getTotalLength();
+            gsap.set(p, { strokeDasharray: length, strokeDashoffset: length });
           });
 
-          // Create an animation tied to ScrollTrigger so it draws when scrolled into view
-          gsap.to(path, {
+          gsap.to(paths, {
             strokeDashoffset: 0,
-            duration: 3.5,
+            duration: 1.5,
+            stagger: 0.2,
             ease: 'power2.inOut',
             scrollTrigger: {
               trigger: this.valuesSection.nativeElement,
@@ -150,48 +184,21 @@ export class CoreValuesComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.resumeTimeout) {
       clearTimeout(this.resumeTimeout);
     }
-    // Resume cycle after 3.5s of no interaction
     this.resumeTimeout = setTimeout(() => {
       this.startAutoCycle();
     }, 3500);
   }
 
   public getNumberPosition(index: number) {
-    // Calculated for radius = 30.5% (aligning with the centers of the white logo loops)
-    const positions = [
-      { x: '50%', y: '19.5%' },
-      { x: '79.0%', y: '40.6%' },
-      { x: '67.9%', y: '74.7%' },
-      { x: '32.1%', y: '74.7%' },
-      { x: '21.0%', y: '40.6%' }
-    ];
-    return positions[index];
-  }
-
-  public get continuousFlowerPath(): string {
-    // Generates a single path containing 5 full overlapping circles.
-    // This perfectly recreates the internal connections of the ProMeter logo.
-    // GSAP drawSVG will draw them sequentially as a single continuous animation.
-    // Centers are at radius 122 (perfectly aligning with the numbers).
-    // Circle radius is 82 (creating the exact overlapping intersections).
-    const center = 200;
-    const dist = 122;
-    const r = 82;
-    let path = '';
-    
-    for (let i = 0; i < 5; i++) {
-      const angle = (i * 72 - 90) * Math.PI / 180;
-      const cx = center + dist * Math.cos(angle);
-      const cy = center + dist * Math.sin(angle);
-      
-      // Draw a full circle using two SVG arcs
-      // M (cx - r), cy
-      // A r, r 0 1,1 (cx + r), cy
-      // A r, r 0 1,1 (cx - r), cy
-      path += `M ${cx - r} ${cy} A ${r} ${r} 0 1 1 ${cx + r} ${cy} A ${r} ${r} 0 1 1 ${cx - r} ${cy} `;
+    if (this.petals && this.petals.length > index) {
+      const cx = this.petals[index].cx;
+      const cy = this.petals[index].cy;
+      return { 
+        x: (cx / 400 * 100) + '%', 
+        y: (cy / 400 * 100) + '%' 
+      };
     }
-    
-    return path;
+    return { x: '50%', y: '50%' };
   }
 
   private startAutoCycle(): void {
