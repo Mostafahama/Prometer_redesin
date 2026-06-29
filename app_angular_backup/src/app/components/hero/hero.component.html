@@ -1,4 +1,4 @@
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden py-24 md:py-32 bg-[#110321]">
+<section class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-36 pb-12 md:py-32 bg-[#110321]">
   <!-- 1. Blurred Hero Background Image (Ensured visible by positive z-index stack) -->
   <div class="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none" 
        style="background-image: url('assets/hero-section.webp'); filter: blur(2px); opacity: 0.8; transform: scale(1.02); z-index: 1;"></div>
@@ -46,30 +46,30 @@
         </div>
 
         <!-- H1 Main Cinematic Title -->
-        <h1 #heroTitle class="text-base sm:text-3xl lg:text-[3.4rem] font-black text-prometer-mint leading-snug lg:leading-[1.1] mb-2 lg:mb-6 select-none">
+        <h1 #heroTitle class="text-3xl sm:text-4xl lg:text-[3.4rem] font-black text-prometer-mint leading-tight lg:leading-[1.1] mb-3 lg:mb-6 select-none">
           {{ currentText.title1 }}<br>
           <span class="text-white">{{ currentText.title2 }}</span>
         </h1>
 
         <!-- H2 Subtitle -->
-        <h2 #heroSubtitle class="text-[8px] sm:text-sm lg:text-xl font-bold text-prometer-mint/90 mb-2 lg:mb-6 tracking-wide uppercase">
+        <h2 #heroSubtitle class="text-sm sm:text-base lg:text-xl font-bold text-prometer-mint/90 mb-3 lg:mb-6 tracking-wide uppercase">
           {{ currentText.subtitle }}
         </h2>
 
         <!-- Description Paragraph -->
-        <p #heroText class="text-[7px] sm:text-xs lg:text-base text-prometer-mint/70 leading-relaxed mb-4 lg:mb-10 font-light">
+        <p #heroText class="text-sm sm:text-base lg:text-lg text-prometer-mint/70 leading-relaxed mb-6 lg:mb-10 font-light">
           {{ currentText.desc }}
         </p>
 
         <!-- Call To Action Buttons -->
-        <div #heroCta class="flex flex-col sm:flex-row items-start sm:items-center gap-2 lg:gap-4 mb-6 lg:mb-12 w-full">
+        <div #heroCta class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 lg:gap-4 mb-8 lg:mb-12 w-full sm:w-auto">
           <!-- Request Demo Button (Magnetic) -->
           <a #magneticBtn href="#contact"
-             class="group relative inline-flex items-center justify-center gap-1.5 lg:gap-2.5 overflow-hidden rounded-lg lg:rounded-xl px-2 lg:px-7 py-1.5 lg:py-3.5 font-bold text-[8px] lg:text-sm tracking-wide text-white transition-all duration-300 shadow-neon hover:shadow-neon-lg w-full sm:w-auto text-center"
+             class="group relative inline-flex items-center justify-center gap-2 lg:gap-2.5 overflow-hidden rounded-xl px-6 lg:px-7 py-3 lg:py-3.5 font-bold text-sm lg:text-sm tracking-wide text-white transition-all duration-300 shadow-neon hover:shadow-neon-lg w-full sm:w-auto text-center"
              style="background: linear-gradient(135deg, #9C3FFA 0%, #7B2FD4 100%);">
-            <span class="relative z-10 flex items-center gap-1 lg:gap-2">
+            <span class="relative z-10 flex items-center gap-2">
               {{ currentText.requestDemo }}
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-2.5 h-2.5 lg:w-4 lg:h-4 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180 transition-transform duration-200">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 lg:w-4 lg:h-4 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180 transition-transform duration-200">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
               </svg>
             </span>
@@ -79,13 +79,13 @@
 
           <!-- Watch Platform Button -->
           <a href="#experience"
-             class="group inline-flex items-center justify-center gap-1.5 lg:gap-2.5 rounded-lg lg:rounded-xl px-2 lg:px-7 py-1.5 lg:py-3.5 font-bold text-[8px] lg:text-sm tracking-wide transition-all duration-300 w-full sm:w-auto text-center"
+             class="group inline-flex items-center justify-center gap-2 lg:gap-2.5 rounded-xl px-6 lg:px-7 py-3 lg:py-3.5 font-bold text-sm lg:text-sm tracking-wide transition-all duration-300 w-full sm:w-auto text-center"
              style="background: rgba(255,255,255,0.04); border: 1px solid rgba(156,63,250,0.25); color: rgba(255,255,255,0.8);"
              onmouseenter="this.style.borderColor='rgba(156,63,250,0.5)'; this.style.background='rgba(156,63,250,0.08)';"
              onmouseleave="this.style.borderColor='rgba(156,63,250,0.25)'; this.style.background='rgba(255,255,255,0.04)';">
-            <span class="w-4 h-4 lg:w-7 lg:h-7 rounded-full flex items-center justify-center"
+            <span class="w-6 h-6 lg:w-7 lg:h-7 rounded-full flex items-center justify-center"
                   style="background: rgba(156,63,250,0.15); border: 1px solid rgba(156,63,250,0.3);">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-2 h-2 lg:w-3 lg:h-3 text-prometer-neon ml-0.5 rtl:mr-0.5 rtl:ml-0 rtl:rotate-180">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3 lg:w-3 lg:h-3 text-prometer-neon ml-0.5 rtl:mr-0.5 rtl:ml-0 rtl:rotate-180">
                 <path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clip-rule="evenodd" />
               </svg>
             </span>
@@ -94,12 +94,12 @@
         </div>
 
         <!-- KPI Grid -->
-        <div #kpisContainer class="grid grid-cols-2 sm:grid-cols-5 gap-3 w-full pt-8 border-t border-prometer-mint/10">
+        <div #kpisContainer class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full pt-8 border-t border-prometer-mint/10">
           @for (kpi of kpis; track $index) {
-            <div class="glass-panel p-3.5 rounded-xl flex flex-col items-center justify-center text-center">
-              <span class="text-lg font-black text-prometer-mint">{{ kpi.val }}</span>
-              <span class="text-[9px] font-semibold text-prometer-neon mt-0.5 whitespace-nowrap">{{ kpi.label }}</span>
-              <span class="text-[8px] text-prometer-mint/50 mt-0.5">{{ kpi.desc }}</span>
+            <div class="glass-panel p-4 rounded-xl flex flex-col items-center justify-center text-center">
+              <span class="text-xl sm:text-2xl font-black text-prometer-mint">{{ kpi.val }}</span>
+              <span class="text-[10px] sm:text-xs font-bold text-prometer-neon mt-1.5 whitespace-nowrap">{{ kpi.label }}</span>
+              <span class="text-[8px] sm:text-[10px] text-prometer-mint/50 mt-1">{{ kpi.desc }}</span>
             </div>
           }
         </div>
