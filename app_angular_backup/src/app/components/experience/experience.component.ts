@@ -62,7 +62,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
     },
     {
       id: 'admin',
-      label: 'Company Decision Makers',
+      label: 'Company Administration',
       desc: 'A powerful all-in-one dashboard that gives you complete visibility over your operations, including total monthly sales, target achievement rates, employee attendance, and workforce insights.',
       image: 'assets/company-admin.webp',
       features: [
@@ -103,7 +103,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
     },
     {
       id: 'admin',
-      label: 'أصحاب القرار في الشركة',
+      label: 'إدارة الشركة',
       desc: 'لوحة تحكم متكاملة تمنحك رؤية شاملة لأداء أعمالك، تشمل إجمالي مبيعات الشهر، نسبة تحقيق الأهداف، إجمالي الموظفين والحضور، مع تقارير وتحليلات لحظية تساعدك على اتخاذ القرار بسرعة واحترافية',
       image: 'assets/company-admin.webp',
       features: [
