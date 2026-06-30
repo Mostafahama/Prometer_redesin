@@ -90,7 +90,7 @@
                        ? (((yearlyMode ? plan.yearlyPrice : plan.monthlyPrice) | number) + ' ' + currentText.sar) 
                        : (currentText.sar + ' ' + ((yearlyMode ? plan.yearlyPrice : plan.monthlyPrice) | number)) }}
                   </span>
-                  <span class="text-[10px] text-prometer-mint/45">/{{ isAr ? 'مسوق/شهرياً' : 'rep/month' }}</span>
+                  <span class="text-[10px] text-prometer-mint/45">/{{ isAr ? 'شهرياً' : 'month' }}</span>
                 </div>
                 @if (yearlyMode) {
                   <p class="text-[10px] text-prometer-neon font-bold mt-1">
