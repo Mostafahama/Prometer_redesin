@@ -70,22 +70,26 @@
     }
 
     <!-- Viewport Deferred Ecosystem Section -->
-    @defer (on viewport) {
-      <app-ecosystem id="ecosystem"></app-ecosystem>
-    } @placeholder {
-      <div class="min-h-[50vh] flex items-center justify-center bg-prometer-dark border-t border-prometer-mint/5">
-        <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
-      </div>
-    }
+    <div id="ecosystem">
+      @defer (on viewport) {
+        <app-ecosystem></app-ecosystem>
+      } @placeholder {
+        <div class="min-h-[50vh] flex items-center justify-center bg-prometer-dark border-t border-prometer-mint/5">
+          <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
+        </div>
+      }
+    </div>
 
     <!-- Viewport Deferred Clients Section -->
-    @defer (on viewport) {
-      <app-clients id="clients"></app-clients>
-    } @placeholder {
-      <div class="min-h-[50vh] flex items-center justify-center bg-prometer-dark border-t border-prometer-mint/5">
-        <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
-      </div>
-    }
+    <div id="clients">
+      @defer (on viewport) {
+        <app-clients></app-clients>
+      } @placeholder {
+        <div class="min-h-[50vh] flex items-center justify-center bg-prometer-dark border-t border-prometer-mint/5">
+          <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
+        </div>
+      }
+    </div>
 
     <!-- Viewport Deferred Industries Section -->
     @defer (on viewport) {
@@ -97,40 +101,48 @@
     }
 
     <!-- Viewport Deferred Experience Section -->
-    @defer (on viewport) {
-      <app-experience id="experience"></app-experience>
-    } @placeholder {
-      <div class="min-h-[50vh] flex items-center justify-center bg-prometer-dark border-t border-prometer-mint/5">
-        <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
-      </div>
-    }
+    <div id="experience">
+      @defer (on viewport) {
+        <app-experience></app-experience>
+      } @placeholder {
+        <div class="min-h-[50vh] flex items-center justify-center bg-prometer-dark border-t border-prometer-mint/5">
+          <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
+        </div>
+      }
+    </div>
 
     <!-- Viewport Deferred ROI Section -->
-    @defer (on viewport) {
-      <app-roi id="roi"></app-roi>
-    } @placeholder {
-      <div class="min-h-[50vh] flex items-center justify-center bg-prometer-deep border-t border-prometer-mint/5">
-        <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
-      </div>
-    }
+    <div id="roi">
+      @defer (on viewport) {
+        <app-roi></app-roi>
+      } @placeholder {
+        <div class="min-h-[50vh] flex items-center justify-center bg-prometer-deep border-t border-prometer-mint/5">
+          <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
+        </div>
+      }
+    </div>
 
     <!-- Viewport Deferred Pricing Section -->
-    @defer (on viewport) {
-      <app-pricing id="pricing"></app-pricing>
-    } @placeholder {
-      <div class="min-h-[50vh] flex items-center justify-center bg-prometer-dark border-t border-prometer-mint/5">
-        <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
-      </div>
-    }
+    <div id="pricing">
+      @defer (on viewport) {
+        <app-pricing></app-pricing>
+      } @placeholder {
+        <div class="min-h-[50vh] flex items-center justify-center bg-prometer-dark border-t border-prometer-mint/5">
+          <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
+        </div>
+      }
+    </div>
 
     <!-- Viewport Deferred Contact Section -->
-    @defer (on viewport) {
-      <app-contact id="contact"></app-contact>
-    } @placeholder {
-      <div class="min-h-[50vh] flex items-center justify-center bg-prometer-deep border-t border-prometer-mint/5">
-        <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
-      </div>
-    }
+    <div id="contact">
+      @defer (on viewport) {
+        <app-contact></app-contact>
+      } @placeholder {
+        <div class="min-h-[50vh] flex items-center justify-center bg-prometer-deep border-t border-prometer-mint/5">
+          <div class="w-8 h-8 rounded-full border-2 border-prometer-neon/30 border-t-prometer-neon animate-spin"></div>
+        </div>
+      }
+    </div>
 
     <!-- Footer Section -->
     <app-footer></app-footer>
