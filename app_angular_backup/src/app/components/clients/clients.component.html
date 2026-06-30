@@ -25,10 +25,8 @@
           @for (loop of [0, 1, 2]; track loop) {
             <div class="flex items-center gap-5 md:gap-6">
               @for (brand of row.brands; track brand) {
-                <div class="trusted-brand-card flex-shrink-0 flex items-center justify-center px-8 py-4 rounded-xl select-none transition-all duration-300 hover:scale-105 border border-prometer-neon/10 bg-prometer-neon/[0.03] shadow-glass min-w-[150px] h-[55px]">
-                  <span class="text-prometer-mint font-bold text-sm tracking-wider whitespace-nowrap">
-                    {{ brand }}
-                  </span>
+                <div class="trusted-brand-card flex-shrink-0 flex items-center justify-center px-4 py-2 rounded-xl select-none transition-all duration-300 hover:scale-105 border border-prometer-neon/10 bg-prometer-neon/[0.03] shadow-glass w-[140px] h-[60px] lg:w-[170px] lg:h-[75px] overflow-hidden">
+                  <img src="assets/{{ brand }}" alt="Partner Brand" class="w-full h-full object-contain rounded-lg">
                 </div>
               }
             </div>

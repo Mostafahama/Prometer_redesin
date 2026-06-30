@@ -70,39 +70,57 @@
 
       <!-- 3D Parallax Screenshot (Right Column) -->
       <div #imageContainer class="relative flex justify-center w-full" style="perspective: 1200px;">
-        <div class="relative w-full max-w-[500px] aspect-[4/3] rounded-xl lg:rounded-2xl overflow-hidden shadow-neon border border-prometer-mint/10 bg-prometer-dark/50 transition-transform duration-200 ease-out"
-             [style.transform]="'rotateY(' + (mouseX * 6) + 'deg) rotateX(' + (-mouseY * 5) + 'deg)'"
-             style="transform-style: preserve-3d;">
-          
-          <!-- Mockup Browser Header -->
-          <div class="flex items-center gap-1.5 lg:gap-2 px-2 lg:px-4 py-1.5 lg:py-3 border-b border-prometer-mint/10 bg-prometer-dark/80 justify-start">
-            <div class="flex gap-1.5 flex-row">
-              <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
-              <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
-              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
-            </div>
-            <div class="flex-1 mx-2 lg:mx-4 flex justify-center">
-              <div class="px-2 lg:px-4 py-0.5 rounded-md text-[6px] lg:text-[10px] text-prometer-mint/40 bg-prometer-mint/5 border border-prometer-mint/10 font-mono tracking-wide truncate max-w-[80%] lg:max-w-[260px] select-all">
-                prometer-sa.com/app/{{ views[activeIndex].id }}
+        @if (views[activeIndex].id !== 'employee') {
+          <div class="relative w-full max-w-[500px] aspect-[4/3] rounded-xl lg:rounded-2xl overflow-hidden shadow-neon border border-prometer-mint/10 bg-prometer-dark/50 transition-transform duration-200 ease-out"
+               [style.transform]="'rotateY(' + (mouseX * 6) + 'deg) rotateX(' + (-mouseY * 5) + 'deg)'"
+               style="transform-style: preserve-3d;">
+            
+            <!-- Mockup Browser Header -->
+            <div class="flex items-center gap-1.5 lg:gap-2 px-2 lg:px-4 py-1.5 lg:py-3 border-b border-prometer-mint/10 bg-prometer-dark/80 justify-start">
+              <div class="flex gap-1.5 flex-row">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+              </div>
+              <div class="flex-1 mx-2 lg:mx-4 flex justify-center">
+                <div class="px-2 lg:px-4 py-0.5 rounded-md text-[6px] lg:text-[10px] text-prometer-mint/40 bg-prometer-mint/5 border border-prometer-mint/10 font-mono tracking-wide truncate max-w-[80%] lg:max-w-[260px] select-all">
+                  prometer-sa.com/app/{{ views[activeIndex].id }}
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Screenshot (Rendering Actual Image Assets) -->
-          <div class="w-full h-[calc(100%-43px)] flex items-center justify-center p-6 bg-gradient-to-b from-prometer-dark to-prometer-deep relative overflow-hidden">
+            <!-- Screenshot (Rendering Actual Image Assets) -->
+            <div class="w-full h-[calc(100%-43px)] flex items-center justify-center p-4 lg:p-6 bg-gradient-to-b from-prometer-dark to-prometer-deep relative overflow-hidden">
+              <img src="{{ views[activeIndex].image }}" 
+                   alt="{{ views[activeIndex].label }}"
+                   class="w-full h-auto block rounded-[1rem] lg:rounded-[1.5rem] transition-all duration-300"
+                   [class.scale-[0.95]]="transitioning"
+                   [class.opacity-0]="transitioning"
+                   [class.opacity-100]="!transitioning"
+                   loading="eager">
+            </div>
+          </div>
+        } @else {
+          <!-- Mobile Phone Frame -->
+          <div class="relative w-[260px] lg:w-[300px] aspect-[9/19] rounded-[2rem] lg:rounded-[2.5rem] overflow-hidden shadow-[0_20px_60px_rgba(165,55,251,0.3)] border-[6px] lg:border-[8px] border-[#222] bg-[#000] transition-transform duration-200 ease-out"
+               [style.transform]="'rotateY(' + (mouseX * 6) + 'deg) rotateX(' + (-mouseY * 5) + 'deg)'"
+               style="transform-style: preserve-3d;">
             
-            <img src="{{ views[activeIndex].image }}" 
-                 alt="{{ views[activeIndex].label }}"
-                 class="w-full h-auto block transition-all duration-300"
-                 [class.scale-[0.95]]="transitioning"
-                 [class.opacity-0]="transitioning"
-                 [class.opacity-100]="!transitioning"
-                 [style.boxShadow]="views[activeIndex].id === 'employee' ? '0 20px 60px rgba(165,55,251,0.3), 0 0 0 3px rgba(165,55,251,0.15)' : ''"
-                 loading="eager">
+            <!-- Mobile Notch -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[35%] h-[20px] bg-[#222] rounded-b-xl z-20"></div>
 
+            <!-- Screenshot -->
+            <div class="w-full h-full flex items-center justify-center relative overflow-hidden bg-black">
+              <img src="{{ views[activeIndex].image }}" 
+                   alt="{{ views[activeIndex].label }}"
+                   class="w-full h-full object-cover block transition-all duration-300 rounded-[1.6rem] lg:rounded-[2rem]"
+                   [class.scale-[0.95]]="transitioning"
+                   [class.opacity-0]="transitioning"
+                   [class.opacity-100]="!transitioning"
+                   loading="eager">
+            </div>
           </div>
-
-        </div>
+        }
       </div>
 
     </div>

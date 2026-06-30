@@ -175,11 +175,11 @@ export class CoreValuesComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public getNumberPosition(index: number) {
     const positions = [
-      { x: '50%', y: '25%' },
-      { x: '73.8%', y: '42.3%' },
-      { x: '64.7%', y: '70.2%' },
-      { x: '35.3%', y: '70.2%' },
-      { x: '26.2%', y: '42.3%' }
+      { x: '50%', y: '27%' },
+      { x: '71.9%', y: '42.9%' },
+      { x: '63.5%', y: '68.6%' },
+      { x: '36.5%', y: '68.6%' },
+      { x: '28.1%', y: '42.9%' }
     ];
     return positions[index];
   }

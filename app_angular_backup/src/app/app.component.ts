@@ -54,6 +54,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.isBrowser) {
+      // Prevent browser from restoring scroll position, which causes jumps with GSAP
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+
       // Initialize Lenis smooth scroll
       this.lenis = new Lenis({
         duration: 1.2,
@@ -65,6 +70,18 @@ export class AppComponent implements OnInit, OnDestroy {
         touchMultiplier: 2,
         infinite: false,
       });
+
+      // Force scroll to top on load
+      window.scrollTo(0, 0);
+      this.lenis.scrollTo(0, { immediate: true });
+      
+      // Delay it slightly to override any browser default restoration after paint
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        if (this.lenis) {
+          this.lenis.scrollTo(0, { immediate: true });
+        }
+      }, 50);
 
       // Synchronize Lenis scrolling with ScrollTrigger
       this.gsapService.run((gsap, ScrollTrigger) => {

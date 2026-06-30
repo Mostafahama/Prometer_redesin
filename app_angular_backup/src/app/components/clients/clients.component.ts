@@ -16,10 +16,10 @@ export class ClientsComponent implements OnInit, AfterViewInit, OnDestroy {
   private triggers: any[] = [];
 
   public rows = [
-    { dirClass: 'animate-marquee-ltr', brands: ['Al-Dawaa', 'Al Nahdi', 'Extra', 'Jarir'] },
-    { dirClass: 'animate-marquee-rtl', brands: ['Lulu', 'Carrefour', 'Tamimi', 'Othaim'] },
-    { dirClass: 'animate-marquee-ltr', brands: ['Panda', 'Danube', 'Al-Dawaa', 'Al Nahdi'] },
-    { dirClass: 'animate-marquee-rtl', brands: ['Extra', 'Jarir', 'Lulu', 'Carrefour'] }
+    { dirClass: 'animate-marquee-ltr', brands: ['1brand.webp', '2brand.webp', '3brand.webp', '4brand.webp'] },
+    { dirClass: 'animate-marquee-rtl', brands: ['5brand.webp', '6brand.webp', '7brand.webp', '8brand.webp'] },
+    { dirClass: 'animate-marquee-ltr', brands: ['9brand.webp', '10brand.webp', '11brand.webp', '1brand.webp'] },
+    { dirClass: 'animate-marquee-rtl', brands: ['2brand.webp', '3brand.webp', '4brand.webp', '5brand.webp'] }
   ];
 
   public text = {

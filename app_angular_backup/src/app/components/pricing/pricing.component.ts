@@ -123,7 +123,7 @@ export class PricingComponent implements OnInit, OnDestroy {
   private arPlans: PlanItem[] = [
     {
       name: 'الباقة الأساسية',
-      users: 'حتى 10 مروجين ميدانيين',
+      users: 'حتى 10 مسوقين ميدانيين',
       monthlyPrice: 299,
       yearlyPrice: 239,
       isPopular: false,
@@ -136,7 +136,7 @@ export class PricingComponent implements OnInit, OnDestroy {
     },
     {
       name: 'باقة النمو',
-      users: 'حتى 30 مروجاً ميدانياً',
+      users: 'حتى 30 مسوقاً ميدانياً',
       monthlyPrice: 799,
       yearlyPrice: 639,
       isPopular: true,
@@ -150,7 +150,7 @@ export class PricingComponent implements OnInit, OnDestroy {
     },
     {
       name: 'الباقة الاحترافية',
-      users: 'حتى 100 مروج ميداني',
+      users: 'حتى 100 مسوق ميداني',
       monthlyPrice: 1499,
       yearlyPrice: 1199,
       isPopular: false,
@@ -164,12 +164,12 @@ export class PricingComponent implements OnInit, OnDestroy {
     },
     {
       name: 'باقة المؤسسات',
-      users: 'أكثر من 100 مروج ميداني',
+      users: 'أكثر من 100 مسوق ميداني',
       monthlyPrice: 0,
       yearlyPrice: 0,
       isPopular: false,
       features: [
-        'عدد غير محدود من المروجين والمناديب الميدانيين',
+        'عدد غير محدود من المسوقين والمناديب الميدانيين',
         'استضافة سحابية خاصة وآمنة للمؤسسة',
         'ربط مباشر مع أنظمة ERP عبر واجهات API',
         'تطوير وتخصيص ميزات خاصة بطلب العميل',

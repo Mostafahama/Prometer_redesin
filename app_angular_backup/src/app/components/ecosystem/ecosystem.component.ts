@@ -279,7 +279,7 @@ export class EcosystemComponent implements OnInit, AfterViewInit, OnDestroy {
     this.stopOrbitAnimation();
 
     // Duration for one full revolution (ms)
-    const revolutionDuration = 22000;
+    const revolutionDuration = 40000;
 
     const tick = (now: number) => {
       const elapsed = now - this.startTime;
