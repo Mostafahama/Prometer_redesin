@@ -48,7 +48,7 @@
         <!-- H1 Main Cinematic Title -->
         <h1 #heroTitle class="text-3xl sm:text-4xl lg:text-[3.4rem] font-black text-prometer-mint leading-tight lg:leading-[1.1] mb-3 lg:mb-6 select-none">
           {{ currentText.title1 }}<br>
-          <span class="text-white">{{ currentText.title2 }}</span>
+          <span class="text-white" [innerHTML]="currentText.title2"></span>
         </h1>
 
         <!-- H2 Subtitle -->

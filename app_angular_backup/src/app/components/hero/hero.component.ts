@@ -30,8 +30,8 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public texts = {
     en: {
-      title1: 'One Platform.',
-      title2: 'Total Field Visibility.',
+      title1: 'One Platform',
+      title2: 'Total Field Visibility',
       subtitle: 'Complete Control. One Touch.',
       desc: 'Track and optimize field promoters in real-time across Middle Eastern pharmacies and retail counters. Verify employee attendance via GPS biometric verification, trace cosmetic shelf stock levels, and collect direct sales data to multiply operational revenue based on hard facts.',
       requestDemo: 'Request Demo',
@@ -41,7 +41,7 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     ar: {
       title1: 'منصة واحدة',
-      title2: 'رؤية شاملة أداء بلا حدود',
+      title2: 'رؤية شاملة<br>أداء بلا حدود',
       subtitle: 'سيطرة كاملة بلمسة واحدة',
       desc: 'تتبع وحسّن أداء المروجين الميدانيين في الوقت الفعلي عبر الصيدليات ومنافذ التجزئة في الشرق الأوسط. تحقق من حضور الموظفين عبر نظام تحديد المواقع الجغرافي وبصمة الميدان، وتتبع مستويات مخزون مستحضرات التجميل على الأرفف، واجمع بيانات المبيعات المباشرة لمضاعفة أرباحك التشغيلية استناداً إلى الحقائق.',
       requestDemo: 'طلب تجربة المنصة',
