@@ -58,9 +58,9 @@
             {{ currentText.tradDesc }}
           </p>
           
-          <ul class="space-y-2 lg:space-y-4">
+          <ul class="space-y-3 lg:space-y-5">
             @for (item of traditional; track $index) {
-              <li class="flex items-start gap-1.5 lg:gap-3 text-prometer-mint/70 text-[12px] lg:text-xs font-light leading-relaxed">
+              <li class="flex items-start gap-2 lg:gap-3 text-prometer-mint/80 text-[13px] lg:text-[15px] font-medium leading-relaxed">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-[14px] h-[14px] lg:w-4 lg:h-4 text-red-500/50 mt-0.5 flex-shrink-0 rtl:rotate-180">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                 </svg>
@@ -84,18 +84,15 @@
       >
         <div>
           <div class="flex items-start lg:items-center gap-1.5 lg:gap-2 mb-3 lg:mb-6 justify-start flex-col lg:flex-row">
-            <span class="w-1.5 h-1.5 lg:w-2 lg:h-2 rounded-full bg-prometer-neon animate-pulse mt-1 lg:mt-0"></span>
-            <h3 class="text-[14px] lg:text-xl font-black tracking-tight text-prometer-dark">
-              {{ currentText.pmTitle }}
-            </h3>
+            <img src="images/prometer-logo.png" alt="ProMeter" class="h-6 lg:h-8 w-auto object-contain" style="filter: brightness(0.1);">
           </div>
           <p class="text-prometer-dark/70 text-[12px] lg:text-xs leading-relaxed mb-4 lg:mb-8 font-medium">
             {{ currentText.pmDesc }}
           </p>
 
-          <ul class="space-y-2 lg:space-y-4">
+          <ul class="space-y-3 lg:space-y-5">
             @for (item of prometer; track $index) {
-              <li class="flex items-start gap-1.5 lg:gap-3 text-prometer-dark/90 text-[12px] lg:text-xs font-medium leading-relaxed">
+              <li class="flex items-start gap-2 lg:gap-3 text-prometer-dark/95 text-[13px] lg:text-[15px] font-bold leading-relaxed">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-[14px] h-[14px] lg:w-4 lg:h-4 text-prometer-neon mt-0.5 flex-shrink-0">
                   <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                 </svg>

@@ -41,6 +41,15 @@ export class EcosystemComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('orbitScene', { static: false }) orbitScene!: ElementRef<HTMLDivElement>;
 
   public hoveredIndex: number | null = null;
+  public clickedIndex: number | null = null;
+
+  public toggleClick(index: number) {
+    if (this.clickedIndex === index) {
+      this.clickedIndex = null;
+    } else {
+      this.clickedIndex = index;
+    }
+  }
   public sceneSize = 650;
   public cardSize = 100;
   public positions: CardPosition[] = [];

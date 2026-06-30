@@ -19,8 +19,7 @@ export class ClientsComponent implements OnInit, AfterViewInit, OnDestroy {
     { dirClass: 'animate-marquee-ltr', brands: ['Al-Dawaa', 'Al Nahdi', 'Extra', 'Jarir'] },
     { dirClass: 'animate-marquee-rtl', brands: ['Lulu', 'Carrefour', 'Tamimi', 'Othaim'] },
     { dirClass: 'animate-marquee-ltr', brands: ['Panda', 'Danube', 'Al-Dawaa', 'Al Nahdi'] },
-    { dirClass: 'animate-marquee-rtl', brands: ['Extra', 'Jarir', 'Lulu', 'Carrefour'] },
-    { dirClass: 'animate-marquee-ltr', brands: ['Tamimi', 'Othaim', 'Panda', 'Danube'] }
+    { dirClass: 'animate-marquee-rtl', brands: ['Extra', 'Jarir', 'Lulu', 'Carrefour'] }
   ];
 
   public text = {
