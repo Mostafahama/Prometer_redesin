@@ -14,20 +14,20 @@ export class HeaderComponent implements OnInit {
 
   private enLinks = [
     { label: 'Home', anchor: '#hero' },
-    { label: 'Comparison', anchor: '#why-us' },
     { label: 'Ecosystem', anchor: '#ecosystem' },
-    { label: 'Interfaces', anchor: '#experience' },
+    { label: 'Dashboards', anchor: '#experience' },
+    { label: 'ROI', anchor: '#roi' },
     { label: 'Pricing', anchor: '#pricing' },
-    { label: 'Contact', anchor: '#contact' }
+    { label: 'Partners', anchor: '#clients' }
   ];
 
   private arLinks = [
     { label: 'الرئيسية', anchor: '#hero' },
-    { label: 'المقارنة', anchor: '#why-us' },
     { label: 'المنظومة', anchor: '#ecosystem' },
-    { label: 'الواجهات', anchor: '#experience' },
+    { label: 'لوحات التحكم', anchor: '#experience' },
+    { label: 'العائد', anchor: '#roi' },
     { label: 'الأسعار', anchor: '#pricing' },
-    { label: 'تواصل معنا', anchor: '#contact' }
+    { label: 'شركاء النجاح', anchor: '#clients' }
   ];
 
   public get navLinks() {
@@ -56,9 +56,16 @@ export class HeaderComponent implements OnInit {
 
   public scrollToSection(anchor: string): void {
     this.mobileMenuOpen = false;
-    const target = document.querySelector(anchor);
+    const target = document.querySelector(anchor) as HTMLElement;
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const headerOffset = 80; // Fixed header height
+      const elementPosition = target.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+  
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   }
 }
