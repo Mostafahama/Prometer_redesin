@@ -32,7 +32,7 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
     en: {
       title1: 'One Platform',
       title2: 'Total Field Visibility',
-      subtitle: 'Complete Control. One Touch.',
+      subtitle: 'Complete Control One Touch',
       desc: 'Track and optimize field promoters in real-time across Middle Eastern pharmacies and retail counters. Verify employee attendance via GPS biometric verification, trace cosmetic shelf stock levels, and collect direct sales data to multiply operational revenue based on hard facts.',
       requestDemo: 'Request Demo',
       watchPlatform: 'Watch Platform',
